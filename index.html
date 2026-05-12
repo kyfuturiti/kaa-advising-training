@@ -291,7 +291,7 @@ ul.clean li strong{color:var(--text)}
   <div class="name-gate-card">
     <div class="name-gate-emoji">👋</div>
     <div class="name-gate-tag">Before we begin</div>
-    <h2>Welcome to <em>KAA Advising</em>.</h2>
+    <h2>Welcome to <em>KAA's Postsecondary Advising Scope and Sequence Training</em></h2>
     <p>Tell us who you are. We'll personalize your action plan and your <strong>certificate of completion</strong> at the end of the training.</p>
     <input type="text" class="name-input" id="userNameInput" placeholder="Your full name" autocomplete="name" oninput="validateName()" onkeypress="if(event.key==='Enter')startTraining()">
     <input type="text" class="org-input" id="userOrgInput" placeholder="School, district, or organization (optional)" autocomplete="organization">
@@ -928,17 +928,17 @@ function countSentences(text) {
   return parts.length;
 }
 
-async function loadState() {
+function loadState() {
   try {
-    const saved = await window.storage.get('kpa_training_state_v4');
-    if (saved && saved.value) state = { ...state, ...JSON.parse(saved.value) };
+    const saved = localStorage.getItem('kpa_training_state_v4');
+    if (saved) state = { ...state, ...JSON.parse(saved) };
   } catch (e) {}
   applyState();
 }
 
-async function saveState() {
+function saveState() {
   try {
-    await window.storage.set('kpa_training_state_v4', JSON.stringify(state));
+    localStorage.setItem('kpa_training_state_v4', JSON.stringify(state));
     showSaveIndicator();
   } catch (e) { console.error('Save failed:', e); }
 }
@@ -1163,20 +1163,174 @@ function showRole(card, role, skipSave) {
 
 function downloadActionPlan() {
   const r = state.reflections;
-  const role = state.role ? state.role.charAt(0).toUpperCase() + state.role.slice(1) : 'Not specified';
+  const roleLabels = { admin: 'Administrator', counselor: 'School Counselor', teacher: 'Core / Elective Teacher', cte: 'CTE Instructor' };
+  const role = state.role ? roleLabels[state.role] || state.role : 'Not specified';
   const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  const userLine = state.name ? state.name + (state.org ? ' · ' + state.org : '') : 'Participant';
-  const text = 'KAA POSTSECONDARY ADVISING SCOPE & SEQUENCE\nPERSONAL ACTION PLAN\n=========================================\nPrepared for: ' + userLine + '\nGenerated: ' + date + '\nRole: ' + role + '\n\n\nWHY I\'M HERE\n-----------------------------------------\n' + (r['intent'] || '(No response)') + '\n\n\nFOCUS AREAS ASSESSMENT\n-----------------------------------------\n' + (r['focus-areas-assessment'] || '(No response)') + '\n\n\nFUTURITI AT MY SCHOOL\n-----------------------------------------\n' + (r['futuriti-use'] || '(No response)') + '\n\n\nILP REALITY CHECK\n-----------------------------------------\n' + (r['ilp-reality'] || '(No response)') + '\n\n\nDESIGN PLAN\n-----------------------------------------\n\nWHO are the stakeholders to involve?\n' + (r['design-who'] || '(No response)') + '\n\nWHAT are the opportunities for growth?\n' + (r['design-what'] || '(No response)') + '\n\nWHEN and WHERE could advising occur?\n' + (r['design-when'] || '(No response)') + '\n\nHOW will advising occur?\n' + (r['design-how'] || '(No response)') + '\n\n\nMY FIRST MOVE (next 2 weeks)\n-----------------------------------------\n' + (r['first-move'] || '(No response)') + '\n\n\nKEY KENTUCKY RESOURCES\n-----------------------------------------\n* Futuriti.org — KY\'s career & college platform\n* Student Game Plan Template — bit.ly/4vDrCxW\n* Design Your Advising System — bit.ly/41yxw5K\n* Kentucky Advising Academy — mitzi.holland@ky.gov\n\nKENTUCKY-SPECIFIC PROGRAMS TO KNOW\n* KEES Scholarship — earned starting 9th grade based on GPA\n* WorkReady Scholarship — pays CTE dual credit tuition\n* Dual Credit Scholarship — available 11th and 12th grade\n* EPSOs — Early Postsecondary Opportunities\n* ATCs — Area Technology Centers\n\n\nTHE 60×30 GOAL\n-----------------------------------------\nKentucky is working toward 60% educational attainment by 2030.\nWe\'re at 56.2% today. The Scope & Sequence is how we close\nthat gap — one student, one school, one plan at a time.\n\nYou\'re part of this work. Thank you.\n\n— Council on Postsecondary Education\n   Kentucky Advising Academy\n';
-  const blob = new Blob([text], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  const safeName = (state.name || 'participant').replace(/[^a-z0-9]/gi, '-');
-  a.download = 'KY-Advising-Action-Plan-' + safeName + '.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  const name = state.name || 'Participant';
+  const org = state.org || '';
+
+  function esc(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+  }
+  function fieldOrEmpty(s) {
+    return s && s.trim() ? esc(s) : '<em class="empty">No response recorded</em>';
+  }
+
+  const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Action Plan — ' + esc(name) + '</title>'
+    + '<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">'
+    + '<style>'
+    + '*{box-sizing:border-box;margin:0;padding:0}'
+    + 'body{font-family:Geist,system-ui,sans-serif;background:#f0f0f5;color:#0f172a;-webkit-print-color-adjust:exact;print-color-adjust:exact;line-height:1.55;padding:32px 16px}'
+    + '.toolbar{max-width:880px;margin:0 auto 24px;display:flex;gap:12px;justify-content:flex-end}'
+    + '.toolbar button{padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);color:white;box-shadow:0 8px 24px rgba(79,70,229,.3);transition:all .2s}'
+    + '.toolbar button:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.4)}'
+    + '.toolbar button.alt{background:white;color:#0f172a;border:1px solid rgba(15,23,42,.12);box-shadow:none}'
+    + '.toolbar button.alt:hover{background:#f7f8fc;box-shadow:0 4px 12px rgba(15,23,42,.08)}'
+    + '.doc{max-width:880px;margin:0 auto;background:white;border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(15,23,42,.1)}'
+    + '.hero{background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#a855f7 100%);padding:56px 56px 48px;color:white;position:relative;overflow:hidden}'
+    + '.hero::before{content:"";position:absolute;top:-30%;right:-15%;width:60%;height:200%;background:radial-gradient(circle,rgba(253,230,138,.18) 0%,transparent 60%);pointer-events:none}'
+    + '.hero::after{content:"";position:absolute;bottom:-40%;left:-20%;width:50%;height:180%;background:radial-gradient(circle,rgba(251,113,133,.18) 0%,transparent 60%);pointer-events:none}'
+    + '.hero-tag{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.9;margin-bottom:14px;position:relative;z-index:1;display:inline-block;padding:6px 12px;background:rgba(255,255,255,.12);border-radius:100px}'
+    + '.hero h1{font-family:"Instrument Serif",serif;font-size:48px;font-weight:400;line-height:1;letter-spacing:-.03em;margin-bottom:12px;position:relative;z-index:1}'
+    + '.hero h1 em{font-style:italic;color:#fde68a}'
+    + '.hero-meta{display:flex;flex-wrap:wrap;gap:24px;margin-top:20px;position:relative;z-index:1;font-size:14px;color:rgba(255,255,255,.92)}'
+    + '.hero-meta div strong{display:block;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:3px;font-weight:600}'
+    + '.hero-meta div span{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;font-weight:400}'
+    + '.body{padding:48px 56px 56px}'
+    + '.section-label{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:linear-gradient(135deg,#f3e8ff,#dbeafe);border:1px solid rgba(124,58,237,.18);border-radius:100px;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#3730a3;margin-bottom:18px;font-weight:600}'
+    + '.section-label::before{content:"";width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#a855f7)}'
+    + 'h2{font-family:"Instrument Serif",serif;font-size:36px;font-weight:400;line-height:1.05;letter-spacing:-.025em;margin-bottom:14px;color:#0f172a}'
+    + 'h2 em{font-style:italic;background:linear-gradient(135deg,#4f46e5,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}'
+    + '.intro-text{font-size:16px;color:#475569;line-height:1.6;margin-bottom:32px;max-width:680px}'
+    + '.section-block{margin-bottom:36px}'
+    + '.card{padding:28px 32px;background:linear-gradient(135deg,#ffffff 0%,#faf5ff 100%);border:1px solid rgba(124,58,237,.12);border-radius:20px;margin-bottom:14px;page-break-inside:avoid;break-inside:avoid}'
+    + '.card.rose{background:linear-gradient(135deg,#ffffff 0%,#ffe4e6 100%);border-color:rgba(251,113,133,.18)}'
+    + '.card.amber{background:linear-gradient(135deg,#ffffff 0%,#fef3c7 100%);border-color:rgba(245,158,11,.18)}'
+    + '.card-label{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#7c3aed;font-weight:700;margin-bottom:8px}'
+    + '.card.rose .card-label{color:#e11d48}'
+    + '.card.amber .card-label{color:#92400e}'
+    + '.card-q{font-family:"Instrument Serif",serif;font-size:24px;font-weight:400;line-height:1.25;letter-spacing:-.015em;color:#0f172a;margin-bottom:14px}'
+    + '.card-a{font-size:15px;line-height:1.65;color:#334155;white-space:pre-wrap}'
+    + '.card-a em.empty{color:#94a3b8;font-style:italic;font-weight:500}'
+    + '.design-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}'
+    + '.design-grid .card{margin-bottom:0}'
+    + '@media (max-width:680px){.design-grid{grid-template-columns:1fr}}'
+    + '.kentucky-block{background:linear-gradient(135deg,#f3e8ff,#dbeafe);padding:32px 36px;border-radius:20px;margin-top:32px;border:1px solid rgba(124,58,237,.15)}'
+    + '.kentucky-block h3{font-family:"Instrument Serif",serif;font-size:26px;font-weight:400;color:#0f172a;margin-bottom:6px;letter-spacing:-.02em}'
+    + '.kentucky-block h3 em{font-style:italic;background:linear-gradient(135deg,#4f46e5,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}'
+    + '.kentucky-block .subtitle{font-size:13px;color:#475569;margin-bottom:18px;font-family:"Geist Mono",monospace;letter-spacing:.05em;text-transform:uppercase;font-weight:600}'
+    + '.resource-list{display:grid;gap:8px}'
+    + '.resource-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:rgba(255,255,255,.7);border-radius:12px;border:1px solid rgba(124,58,237,.08)}'
+    + '.resource-item-icon{font-size:18px;line-height:1;padding-top:2px;flex-shrink:0}'
+    + '.resource-item-text{flex:1;font-size:14px;line-height:1.5;color:#334155}'
+    + '.resource-item-text strong{display:block;color:#0f172a;font-size:14.5px;font-weight:600;margin-bottom:2px}'
+    + '.programs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}'
+    + '@media (max-width:680px){.programs-grid{grid-template-columns:1fr}}'
+    + '.program{padding:12px 16px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid rgba(124,58,237,.08);font-size:13px;line-height:1.45;color:#475569}'
+    + '.program strong{display:block;color:#0f172a;font-size:13.5px;font-weight:600;margin-bottom:2px;font-family:"Geist Mono",monospace;letter-spacing:.02em}'
+    + '.footer{padding:40px 56px;background:linear-gradient(135deg,#1e3a8a 0%,#4f46e5 50%,#7c3aed 100%);color:white;text-align:center;position:relative;overflow:hidden}'
+    + '.footer::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(255,255,255,.08) 0%,transparent 30%);pointer-events:none}'
+    + '.footer-h{font-family:"Instrument Serif",serif;font-size:34px;font-weight:400;line-height:1.05;letter-spacing:-.025em;margin-bottom:10px;position:relative;z-index:1}'
+    + '.footer-h em{font-style:italic;color:#fde68a}'
+    + '.footer-stats{display:flex;justify-content:center;gap:32px;margin-top:20px;position:relative;z-index:1;flex-wrap:wrap}'
+    + '.footer-stat{text-align:center}'
+    + '.footer-stat-num{font-family:"Instrument Serif",serif;font-size:42px;font-weight:400;line-height:1;color:#fde68a;font-style:italic}'
+    + '.footer-stat-label{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:4px;font-weight:600}'
+    + '.footer-text{font-size:14.5px;color:rgba(255,255,255,.92);line-height:1.6;max-width:520px;margin:24px auto 0;position:relative;z-index:1}'
+    + '.sign-off{margin-top:24px;font-family:"Instrument Serif",serif;font-style:italic;font-size:18px;color:#fde68a;position:relative;z-index:1}'
+    + '@media print{body{padding:0;background:white}.toolbar{display:none}.doc{box-shadow:none;border-radius:0;max-width:none}.hero,.footer{border-radius:0}@page{margin:0.5in}}'
+    + '</style></head><body>'
+    + '<div class="toolbar"><button onclick="window.print()">🖨️ Print / Save as PDF</button><button class="alt" onclick="window.close()">Close</button></div>'
+    + '<div class="doc">'
+    + '<div class="hero">'
+    +   '<div class="hero-tag">★ Personal Action Plan</div>'
+    +   '<h1>KAA Advising <em>Action Plan</em></h1>'
+    +   '<div class="hero-meta">'
+    +     '<div><strong>Prepared for</strong><span>' + esc(name) + '</span></div>'
+    +     (org ? '<div><strong>Organization</strong><span>' + esc(org) + '</span></div>' : '')
+    +     '<div><strong>Role</strong><span>' + esc(role) + '</span></div>'
+    +     '<div><strong>Generated</strong><span>' + esc(date) + '</span></div>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="body">'
+    +   '<div class="section-block">'
+    +     '<div class="section-label">Section 01 · Why I\'m Here</div>'
+    +     '<h2>Setting the <em>intention</em></h2>'
+    +     '<p class="intro-text">What\'s happening at my school right now that prompted me to take this training, and the outcome I\'m hoping for.</p>'
+    +     '<div class="card rose"><div class="card-label">✦ My Reflection</div><div class="card-a">' + fieldOrEmpty(r['intent']) + '</div></div>'
+    +   '</div>'
+    +   '<div class="section-block">'
+    +     '<div class="section-label">Section 02 · Where We Stand</div>'
+    +     '<h2>Focus areas <em>assessment</em></h2>'
+    +     '<p class="intro-text">An honest read on which of the four focus areas is best supported at my school today, and which has the biggest gap.</p>'
+    +     '<div class="card rose"><div class="card-label">✦ Strongest area + biggest gap</div><div class="card-a">' + fieldOrEmpty(r['focus-areas-assessment']) + '</div></div>'
+    +   '</div>'
+    +   '<div class="section-block">'
+    +     '<div class="section-label">Section 03 · Tools</div>'
+    +     '<h2>Futuriti at <em>my school</em></h2>'
+    +     '<p class="intro-text">How students are (or could be) using Futuriti.org — and where it could fit in our existing calendar.</p>'
+    +     '<div class="card rose"><div class="card-label">✦ Current use + opportunities</div><div class="card-a">' + fieldOrEmpty(r['futuriti-use']) + '</div></div>'
+    +   '</div>'
+    +   '<div class="section-block">'
+    +     '<div class="section-label">Section 04 · ILP Reality</div>'
+    +     '<h2>The Game Plan <em>check</em></h2>'
+    +     '<p class="intro-text">An honest look at whether students experience the ILP as a meaningful plan they own, or as a once-a-year click-through.</p>'
+    +     '<div class="card rose"><div class="card-label">✦ Reality check + first change</div><div class="card-a">' + fieldOrEmpty(r['ilp-reality']) + '</div></div>'
+    +   '</div>'
+    +   '<div class="section-block">'
+    +     '<div class="section-label">Section 05 · Design</div>'
+    +     '<h2>My <em>implementation plan</em></h2>'
+    +     '<p class="intro-text">The four questions every school has to answer when implementing the Scope &amp; Sequence — and my first pass at the answers.</p>'
+    +     '<div class="design-grid">'
+    +       '<div class="card"><div class="card-label">Question 01</div><div class="card-q">Who?</div><div class="card-a">' + fieldOrEmpty(r['design-who']) + '</div></div>'
+    +       '<div class="card"><div class="card-label">Question 02</div><div class="card-q">What?</div><div class="card-a">' + fieldOrEmpty(r['design-what']) + '</div></div>'
+    +       '<div class="card"><div class="card-label">Question 03</div><div class="card-q">When &amp; where?</div><div class="card-a">' + fieldOrEmpty(r['design-when']) + '</div></div>'
+    +       '<div class="card"><div class="card-label">Question 04</div><div class="card-q">How?</div><div class="card-a">' + fieldOrEmpty(r['design-how']) + '</div></div>'
+    +     '</div>'
+    +   '</div>'
+    +   '<div class="section-block">'
+    +     '<div class="section-label">Section 06 · Commitment</div>'
+    +     '<h2>My <em>first move</em></h2>'
+    +     '<p class="intro-text">The single most important part of this plan — the small, specific action I\'ll take in the next two weeks.</p>'
+    +     '<div class="card amber"><div class="card-label">★ Next 2 weeks</div><div class="card-a">' + fieldOrEmpty(r['first-move']) + '</div></div>'
+    +   '</div>'
+    +   '<div class="kentucky-block">'
+    +     '<h3>Kentucky <em>resources</em></h3>'
+    +     '<div class="subtitle">Keep these bookmarked</div>'
+    +     '<div class="resource-list">'
+    +       '<div class="resource-item"><div class="resource-item-icon">🧭</div><div class="resource-item-text"><strong>Futuriti.org</strong>Kentucky\'s career &amp; college platform — 700+ careers, Net Price Calculator, regional job data</div></div>'
+    +       '<div class="resource-item"><div class="resource-item-icon">📋</div><div class="resource-item-text"><strong>Student Game Plan Template</strong>bit.ly/4vDrCxW — the five-tab ILP companion</div></div>'
+    +       '<div class="resource-item"><div class="resource-item-icon">🛠️</div><div class="resource-item-text"><strong>Design Your Advising System</strong>bit.ly/41yxw5K — extended planning workbook</div></div>'
+    +       '<div class="resource-item"><div class="resource-item-icon">✉️</div><div class="resource-item-text"><strong>Kentucky Advising Academy</strong>Mitzi Holland, Director — mitzi.holland@ky.gov</div></div>'
+    +     '</div>'
+    +     '<div class="programs-grid">'
+    +       '<div class="program"><strong>KEES</strong>Earned starting 9th grade based on GPA</div>'
+    +       '<div class="program"><strong>WorkReady Scholarship</strong>Pays CTE dual credit tuition</div>'
+    +       '<div class="program"><strong>Dual Credit Scholarship</strong>Available 11th and 12th grade</div>'
+    +       '<div class="program"><strong>EPSOs</strong>Dual credit, AP, IB, CTE certifications</div>'
+    +     '</div>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="footer">'
+    +   '<div class="footer-h">The <em>60×30</em> goal</div>'
+    +   '<div class="footer-stats">'
+    +     '<div class="footer-stat"><div class="footer-stat-num">56%</div><div class="footer-stat-label">Today</div></div>'
+    +     '<div class="footer-stat"><div class="footer-stat-num">60%</div><div class="footer-stat-label">By 2030</div></div>'
+    +   '</div>'
+    +   '<div class="footer-text">Kentucky is working toward 60% educational attainment by 2030. The Scope &amp; Sequence is how we close that gap — one student, one school, one plan at a time. You\'re part of this work.</div>'
+    +   '<div class="sign-off">— Council on Postsecondary Education &amp; the Kentucky Advising Academy</div>'
+    + '</div>'
+    + '</div>'
+    + '</body></html>';
+
+  const w = window.open('', '_blank');
+  if (w) {
+    w.document.write(html);
+    w.document.close();
+  } else {
+    alert('Please allow pop-ups to download your action plan.');
+  }
 }
 
 function downloadCertificate() {
@@ -1184,20 +1338,129 @@ function downloadCertificate() {
   const org = state.org || '';
   const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const certId = 'KAA-' + Date.now().toString(36).toUpperCase();
-  const certHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificate of Completion - ' + name + '</title><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Geist,system-ui,sans-serif;background:#f0f0f5;padding:40px 20px;min-height:100vh;display:flex;flex-direction:column;align-items:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{margin-bottom:24px;display:flex;gap:12px}.toolbar button{padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);color:white;box-shadow:0 8px 24px rgba(79,70,229,.3)}.toolbar button.alt{background:white;color:#0f172a;border:1px solid rgba(15,23,42,.12);box-shadow:none}.certificate{width:100%;max-width:1100px;aspect-ratio:11/8.5;background:linear-gradient(135deg,#ffffff 0%,#faf5ff 100%);border-radius:24px;padding:56px 64px;box-shadow:0 30px 80px rgba(15,23,42,.15);position:relative;overflow:hidden;display:flex;flex-direction:column}.certificate::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7,#fb7185)}.certificate::after{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 70%);pointer-events:none}.cert-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;position:relative;z-index:1}.cert-brand{display:flex;align-items:center;gap:14px}.cert-brand-mark{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#4f46e5,#a855f7);display:grid;place-items:center;color:white;font-family:"Instrument Serif",serif;font-style:italic;font-size:32px;box-shadow:0 8px 20px rgba(79,70,229,.35)}.cert-brand-text strong{display:block;font-size:15px;color:#0f172a;font-weight:600;line-height:1.2}.cert-brand-text span{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.1em;color:#475569;font-weight:500;text-transform:uppercase}.cert-id{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.1em;color:#94a3b8;text-align:right;line-height:1.5}.cert-id strong{color:#475569;display:block;margin-bottom:2px;font-size:9px;letter-spacing:.15em;text-transform:uppercase}.cert-body{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;padding:20px 0}.cert-tag{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7c3aed;margin-bottom:16px;font-weight:600}.cert-h1{font-family:"Instrument Serif",serif;font-size:56px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:20px}.cert-h1 em{font-style:italic;background:linear-gradient(135deg,#4f46e5,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.cert-presented{font-size:14px;color:#475569;margin-bottom:18px;letter-spacing:.02em;font-weight:500}.cert-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:72px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:10px;padding:0 40px}.cert-org{font-family:Geist,sans-serif;font-size:15px;color:#475569;margin-bottom:24px;font-weight:500}.cert-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent);margin:0 auto 24px}.cert-statement{font-size:15px;line-height:1.6;color:#334155;max-width:680px;margin:0 auto 24px}.cert-statement strong{color:#0f172a}.cert-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:24px;border-top:1px solid rgba(15,23,42,.08);position:relative;z-index:1}.cert-sig{text-align:left;flex:1;max-width:240px}.cert-sig-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;color:#4f46e5;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid rgba(15,23,42,.15)}.cert-sig-title{font-family:"Geist Mono",monospace;font-size:9px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600;line-height:1.4}.cert-date{text-align:right;flex:1;max-width:240px}.cert-date-line{font-family:"Instrument Serif",serif;font-size:22px;color:#0f172a;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid rgba(15,23,42,.15)}.cert-date-label{font-family:"Geist Mono",monospace;font-size:9px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600}@media print{body{padding:0;background:white}.toolbar{display:none}.certificate{box-shadow:none;border-radius:0;max-width:none;width:100vw;min-height:auto}@page{size:landscape;margin:0}}</style></head><body><div class="toolbar"><button onclick="window.print()">🖨️ Print / Save as PDF</button><button class="alt" onclick="window.close()">Close</button></div><div class="certificate"><div class="cert-header"><div class="cert-brand"><div class="cert-brand-mark">K</div><div class="cert-brand-text"><strong>Kentucky Advising Academy</strong><span>KAA × Council on Postsecondary Education</span></div></div><div class="cert-id"><strong>Certificate ID</strong>' + certId + '</div></div><div class="cert-body"><div class="cert-tag">★ Certificate of Completion ★</div><div class="cert-h1">KAA Postsecondary Advising <em>Scope &amp; Sequence</em></div><div class="cert-presented">This certificate is proudly presented to</div><div class="cert-name">' + name + '</div>' + (org ? '<div class="cert-org">' + org + '</div>' : '<div class="cert-org"></div>') + '<div class="cert-divider"></div><div class="cert-statement">For successfully completing the <strong>KAA Postsecondary Advising Scope &amp; Sequence</strong> interactive training — demonstrating an understanding of Kentucky\'s 6–12 advising framework, the four focus areas, and the whole-school approach that supports every Kentucky student in reaching their postsecondary goals.</div></div><div class="cert-footer"><div class="cert-sig"><div class="cert-sig-name">Mitzi Holland</div><div class="cert-sig-title">Director · Kentucky Advising Academy</div></div><div class="cert-date"><div class="cert-date-line">' + date + '</div><div class="cert-date-label">Date Completed</div></div></div></div></body></html>';
-  const certWindow = window.open('', '_blank');
-  if (certWindow) {
-    certWindow.document.write(certHtml);
-    certWindow.document.close();
+
+  function esc(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  const certHtml = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Certificate of Completion — ' + esc(name) + '</title>'
+    + '<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">'
+    + '<style>'
+    + '*{box-sizing:border-box;margin:0;padding:0}'
+    + 'html,body{background:#f0f0f5;font-family:Geist,system-ui,sans-serif;color:#0f172a;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact}'
+    + 'body{padding:32px 16px;display:flex;flex-direction:column;align-items:center;min-height:100vh}'
+    /* toolbar */
+    + '.toolbar{margin-bottom:24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}'
+    + '.toolbar button{padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);color:white;box-shadow:0 8px 24px rgba(79,70,229,.3);transition:all .2s}'
+    + '.toolbar button:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.4)}'
+    + '.toolbar button.alt{background:white;color:#0f172a;border:1px solid rgba(15,23,42,.12);box-shadow:none}'
+    + '.toolbar button.alt:hover{background:#f7f8fc}'
+    + '.hint{max-width:680px;text-align:center;font-size:13px;color:#475569;margin-bottom:20px;line-height:1.55;padding:14px 22px;background:#f3e8ff;border:1px solid rgba(124,58,237,.18);border-radius:14px}'
+    + '.hint strong{color:#3730a3;font-weight:600}'
+    /* certificate — sized for US Letter landscape (11in × 8.5in) with safe margins */
+    /* On screen we use px equivalents; print rules override below */
+    + '.certificate{'
+    +   'width:10in;height:7.5in;'  /* fits within 11×8.5 with 0.5in margins on each side */
+    +   'background:linear-gradient(135deg,#ffffff 0%,#faf5ff 100%);'
+    +   'padding:0.55in 0.7in;'
+    +   'box-shadow:0 30px 80px rgba(15,23,42,.15);'
+    +   'border-radius:24px;'
+    +   'position:relative;overflow:hidden;'
+    +   'display:flex;flex-direction:column;'
+    + '}'
+    + '.certificate::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7,#fb7185)}'
+    + '.certificate::after{content:"";position:absolute;top:-80px;right:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 70%);pointer-events:none}'
+    /* header row */
+    + '.cert-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1;flex-shrink:0}'
+    + '.cert-brand{display:flex;align-items:center;gap:14px}'
+    + '.cert-brand-mark{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);display:grid;place-items:center;color:white;font-family:"Instrument Serif",serif;font-style:italic;font-size:30px;box-shadow:0 8px 20px rgba(79,70,229,.35)}'
+    + '.cert-brand-text strong{display:block;font-size:14px;color:#0f172a;font-weight:600;line-height:1.2}'
+    + '.cert-brand-text span{font-family:"Geist Mono",monospace;font-size:9.5px;letter-spacing:.1em;color:#475569;font-weight:500;text-transform:uppercase}'
+    + '.cert-id{font-family:"Geist Mono",monospace;font-size:9.5px;letter-spacing:.1em;color:#94a3b8;text-align:right;line-height:1.5}'
+    + '.cert-id strong{color:#475569;display:block;margin-bottom:2px;font-size:8.5px;letter-spacing:.15em;text-transform:uppercase}'
+    /* body */
+    + '.cert-body{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}'
+    + '.cert-tag{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7c3aed;margin-bottom:14px;font-weight:600}'
+    + '.cert-h1{font-family:"Instrument Serif",serif;font-size:46px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:18px}'
+    + '.cert-h1 em{font-style:italic;background:linear-gradient(135deg,#4f46e5,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}'
+    + '.cert-presented{font-size:13.5px;color:#475569;margin-bottom:14px;letter-spacing:.02em;font-weight:500}'
+    + '.cert-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:64px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:8px;padding:0 24px;word-break:break-word}'
+    + '.cert-org{font-family:Geist,sans-serif;font-size:14px;color:#475569;margin-bottom:18px;font-weight:500;min-height:18px}'
+    + '.cert-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent);margin:0 auto 18px}'
+    + '.cert-statement{font-size:13.5px;line-height:1.55;color:#334155;max-width:680px;margin:0 auto}'
+    + '.cert-statement strong{color:#0f172a}'
+    /* footer / signatures */
+    + '.cert-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:18px;border-top:1px solid rgba(15,23,42,.08);position:relative;z-index:1;flex-shrink:0}'
+    + '.cert-sig{text-align:left;flex:1;max-width:260px}'
+    + '.cert-sig-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;color:#4f46e5;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid rgba(15,23,42,.15);line-height:1.1}'
+    + '.cert-sig-title{font-family:"Geist Mono",monospace;font-size:8.5px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600;line-height:1.4}'
+    + '.cert-date{text-align:right;flex:1;max-width:260px}'
+    + '.cert-date-line{font-family:"Instrument Serif",serif;font-size:22px;color:#0f172a;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid rgba(15,23,42,.15);line-height:1.1}'
+    + '.cert-date-label{font-family:"Geist Mono",monospace;font-size:8.5px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600}'
+    /* PRINT RULES — landscape US Letter (11in × 8.5in) */
+    + '@page{size:11in 8.5in;margin:0.5in}'  /* explicit dimensions force letter landscape */
+    + '@media print{'
+    +   'html,body{background:white !important;padding:0 !important;margin:0 !important;width:auto;min-height:0;display:block}'
+    +   '.toolbar,.hint{display:none !important}'
+    +   '.certificate{'
+    +     'width:10in !important;'
+    +     'height:7.5in !important;'
+    +     'box-shadow:none !important;'
+    +     'border-radius:0 !important;'
+    +     'margin:0 auto !important;'
+    +     'page-break-inside:avoid;'
+    +     'page-break-after:avoid;'
+    +   '}'
+    + '}'
+    + '</style></head><body>'
+    + '<div class="toolbar">'
+    +   '<button onclick="window.print()">🖨️ Print / Save as PDF</button>'
+    +   '<button class="alt" onclick="window.close()">Close</button>'
+    + '</div>'
+    + '<div class="hint">📄 <strong>For best results:</strong> in the print dialog, set <strong>Layout: Landscape</strong>, <strong>Paper size: Letter (8.5×11)</strong>, and <strong>Margins: Default</strong>. Background graphics should be on (usually under "More settings").</div>'
+    + '<div class="certificate">'
+    +   '<div class="cert-header">'
+    +     '<div class="cert-brand">'
+    +       '<div class="cert-brand-mark">K</div>'
+    +       '<div class="cert-brand-text"><strong>Kentucky Advising Academy</strong><span>KAA × Council on Postsecondary Education</span></div>'
+    +     '</div>'
+    +     '<div class="cert-id"><strong>Certificate ID</strong>' + certId + '</div>'
+    +   '</div>'
+    +   '<div class="cert-body">'
+    +     '<div class="cert-tag">★ Certificate of Completion ★</div>'
+    +     '<div class="cert-h1">KAA Postsecondary Advising <em>Scope &amp; Sequence</em></div>'
+    +     '<div class="cert-presented">This certificate is proudly presented to</div>'
+    +     '<div class="cert-name">' + esc(name) + '</div>'
+    +     '<div class="cert-org">' + (org ? esc(org) : '') + '</div>'
+    +     '<div class="cert-divider"></div>'
+    +     '<div class="cert-statement">For successfully completing the <strong>KAA Postsecondary Advising Scope &amp; Sequence</strong> interactive training — demonstrating an understanding of Kentucky\'s 6–12 advising framework, the four focus areas, and the whole-school approach that supports every Kentucky student in reaching their postsecondary goals.</div>'
+    +   '</div>'
+    +   '<div class="cert-footer">'
+    +     '<div class="cert-sig">'
+    +       '<div class="cert-sig-name">Mitzi Holland</div>'
+    +       '<div class="cert-sig-title">Director · Kentucky Advising Academy</div>'
+    +     '</div>'
+    +     '<div class="cert-date">'
+    +       '<div class="cert-date-line">' + esc(date) + '</div>'
+    +       '<div class="cert-date-label">Date Completed</div>'
+    +     '</div>'
+    +   '</div>'
+    + '</div>'
+    + '</body></html>';
+
+  const w = window.open('', '_blank');
+  if (w) {
+    w.document.write(certHtml);
+    w.document.close();
   } else {
     alert('Please allow pop-ups to download your certificate.');
   }
 }
 
-async function resetProgress() {
+function resetProgress() {
   if (!confirm('Reset all progress, reflections, and name? This cannot be undone.')) return;
   state = { completed: [], current: 0, reflections: {}, quizzes: {}, role: null, pillar: null, name: '', org: '', started: false, completedDate: null };
-  try { await window.storage.delete('kpa_training_state_v4'); } catch (e) {}
+  try { localStorage.removeItem('kpa_training_state_v4'); } catch (e) {}
   document.querySelectorAll('textarea').forEach(t => t.value = '');
   document.querySelectorAll('.quiz-option').forEach(o => {
     o.disabled = false;
