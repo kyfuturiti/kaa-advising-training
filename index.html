@@ -1350,28 +1350,29 @@ function downloadCertificate() {
     + 'html,body{background:#f0f0f5;font-family:Geist,system-ui,sans-serif;color:#0f172a;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact}'
     + 'body{padding:32px 16px;display:flex;flex-direction:column;align-items:center;min-height:100vh}'
     /* toolbar */
-    + '.toolbar{margin-bottom:24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}'
+    + '.toolbar{margin-bottom:20px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}'
     + '.toolbar button{padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);color:white;box-shadow:0 8px 24px rgba(79,70,229,.3);transition:all .2s}'
-    + '.toolbar button:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.4)}'
+    + '.toolbar button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 12px 32px rgba(79,70,229,.4)}'
+    + '.toolbar button:disabled{opacity:.5;cursor:wait}'
     + '.toolbar button.alt{background:white;color:#0f172a;border:1px solid rgba(15,23,42,.12);box-shadow:none}'
     + '.toolbar button.alt:hover{background:#f7f8fc}'
     + '.hint{max-width:680px;text-align:center;font-size:13px;color:#475569;margin-bottom:20px;line-height:1.55;padding:14px 22px;background:#f3e8ff;border:1px solid rgba(124,58,237,.18);border-radius:14px}'
     + '.hint strong{color:#3730a3;font-weight:600}'
-    /* certificate — sized for US Letter landscape (11in × 8.5in) with safe margins */
-    /* On screen we use px equivalents; print rules override below */
+    /* certificate — sized for US Letter landscape minus 0.5in margins */
     + '.certificate{'
-    +   'width:10in;height:7.5in;'  /* fits within 11×8.5 with 0.5in margins on each side */
+    +   'width:10in;'
+    +   'min-height:7.5in;'  /* min-height instead of height — content can\'t overflow */
     +   'background:linear-gradient(135deg,#ffffff 0%,#faf5ff 100%);'
-    +   'padding:0.55in 0.7in;'
+    +   'padding:0.5in 0.6in;'
     +   'box-shadow:0 30px 80px rgba(15,23,42,.15);'
     +   'border-radius:24px;'
     +   'position:relative;overflow:hidden;'
-    +   'display:flex;flex-direction:column;'
+    +   'display:flex;flex-direction:column;justify-content:space-between;'
     + '}'
     + '.certificate::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7,#fb7185)}'
-    + '.certificate::after{content:"";position:absolute;top:-80px;right:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 70%);pointer-events:none}'
+    + '.certificate::after{content:"";position:absolute;top:-80px;right:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 70%);pointer-events:none;z-index:0}'
     /* header row */
-    + '.cert-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1;flex-shrink:0}'
+    + '.cert-header{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;flex-shrink:0}'
     + '.cert-brand{display:flex;align-items:center;gap:14px}'
     + '.cert-brand-mark{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);display:grid;place-items:center;color:white;font-family:"Instrument Serif",serif;font-style:italic;font-size:30px;box-shadow:0 8px 20px rgba(79,70,229,.35)}'
     + '.cert-brand-text strong{display:block;font-size:14px;color:#0f172a;font-weight:600;line-height:1.2}'
@@ -1379,18 +1380,18 @@ function downloadCertificate() {
     + '.cert-id{font-family:"Geist Mono",monospace;font-size:9.5px;letter-spacing:.1em;color:#94a3b8;text-align:right;line-height:1.5}'
     + '.cert-id strong{color:#475569;display:block;margin-bottom:2px;font-size:8.5px;letter-spacing:.15em;text-transform:uppercase}'
     /* body */
-    + '.cert-body{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}'
+    + '.cert-body{text-align:center;position:relative;z-index:1;padding:0.2in 0}'
     + '.cert-tag{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7c3aed;margin-bottom:14px;font-weight:600}'
-    + '.cert-h1{font-family:"Instrument Serif",serif;font-size:46px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:18px}'
+    + '.cert-h1{font-family:"Instrument Serif",serif;font-size:44px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:18px}'
     + '.cert-h1 em{font-style:italic;background:linear-gradient(135deg,#4f46e5,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}'
     + '.cert-presented{font-size:13.5px;color:#475569;margin-bottom:14px;letter-spacing:.02em;font-weight:500}'
-    + '.cert-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:64px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:8px;padding:0 24px;word-break:break-word}'
+    + '.cert-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:60px;line-height:1.05;letter-spacing:-.025em;color:#0f172a;margin-bottom:8px;padding:0 24px;word-break:break-word}'
     + '.cert-org{font-family:Geist,sans-serif;font-size:14px;color:#475569;margin-bottom:18px;font-weight:500;min-height:18px}'
     + '.cert-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent);margin:0 auto 18px}'
     + '.cert-statement{font-size:13.5px;line-height:1.55;color:#334155;max-width:680px;margin:0 auto}'
     + '.cert-statement strong{color:#0f172a}'
     /* footer / signatures */
-    + '.cert-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:18px;border-top:1px solid rgba(15,23,42,.08);position:relative;z-index:1;flex-shrink:0}'
+    + '.cert-footer{display:flex;justify-content:space-between;align-items:flex-end;padding-top:18px;border-top:1px solid rgba(15,23,42,.08);position:relative;z-index:1;flex-shrink:0}'
     + '.cert-sig{text-align:left;flex:1;max-width:260px}'
     + '.cert-sig-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;color:#4f46e5;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid rgba(15,23,42,.15);line-height:1.1}'
     + '.cert-sig-title{font-family:"Geist Mono",monospace;font-size:8.5px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600;line-height:1.4}'
@@ -1398,23 +1399,28 @@ function downloadCertificate() {
     + '.cert-date-line{font-family:"Instrument Serif",serif;font-size:22px;color:#0f172a;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid rgba(15,23,42,.15);line-height:1.1}'
     + '.cert-date-label{font-family:"Geist Mono",monospace;font-size:8.5px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600}'
     /* PRINT RULES — landscape US Letter (11in × 8.5in) */
-    + '@page{size:11in 8.5in;margin:0.5in}'  /* explicit dimensions force letter landscape */
+    /* Use letter + landscape — most reliable across browsers */
+    + '@page{size:letter landscape;margin:0.5in}'
     + '@media print{'
-    +   'html,body{background:white !important;padding:0 !important;margin:0 !important;width:auto;min-height:0;display:block}'
+    +   'html,body{background:white !important;padding:0 !important;margin:0 !important;min-height:0 !important;display:block !important}'
     +   '.toolbar,.hint{display:none !important}'
     +   '.certificate{'
     +     'width:10in !important;'
-    +     'height:7.5in !important;'
+    +     'min-height:7.5in !important;'
+    +     'max-height:7.5in !important;'
     +     'box-shadow:none !important;'
     +     'border-radius:0 !important;'
-    +     'margin:0 auto !important;'
-    +     'page-break-inside:avoid;'
-    +     'page-break-after:avoid;'
+    +     'margin:0 !important;'
+    +     'padding:0.5in 0.6in !important;'
+    +     'page-break-inside:avoid !important;'
+    +     'page-break-after:avoid !important;'
+    +     'overflow:hidden !important;'
     +   '}'
+    +   '.certificate::before{height:10px !important}'
     + '}'
     + '</style></head><body>'
     + '<div class="toolbar">'
-    +   '<button onclick="window.print()">🖨️ Print / Save as PDF</button>'
+    +   '<button id="printBtn" disabled>⏳ Loading...</button>'
     +   '<button class="alt" onclick="window.close()">Close</button>'
     + '</div>'
     + '<div class="hint">📄 <strong>For best results:</strong> in the print dialog, set <strong>Layout: Landscape</strong>, <strong>Paper size: Letter (8.5×11)</strong>, and <strong>Margins: Default</strong>. Background graphics should be on (usually under "More settings").</div>'
@@ -1446,10 +1452,16 @@ function downloadCertificate() {
     +     '</div>'
     +   '</div>'
     + '</div>'
+    /* Wait for fonts before enabling print — prevents blank PDFs */
+    + '<script>'
+    + 'function enablePrint(){var b=document.getElementById("printBtn");b.disabled=false;b.textContent="\\ud83d\\udda8\\ufe0f Print / Save as PDF";b.onclick=function(){window.print()}}'
+    + 'if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){setTimeout(enablePrint,300)})}else{setTimeout(enablePrint,1200)}'
+    + '<\/script>'
     + '</body></html>';
 
   const w = window.open('', '_blank');
   if (w) {
+    w.document.open();
     w.document.write(certHtml);
     w.document.close();
   } else {
