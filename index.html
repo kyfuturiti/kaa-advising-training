@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAA Postsecondary Advising Scope &amp; Sequence — Interactive Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafbff;--surface:#fff;--surface-2:#f7f8fc;--surface-3:#eef0f8;--border:rgba(15,23,42,.06);--border-strong:rgba(15,23,42,.12);--text:#0f172a;--text-muted:#475569;--text-dim:#94a3b8;--brand-1:#4f46e5;--brand-2:#7c3aed;--brand-3:#a855f7;--brand-deep:#3730a3;--coral:#fb7185;--coral-deep:#e11d48;--amber:#f59e0b;--emerald:#10b981;--sky:#0ea5e9;--tint-purple:#f3e8ff;--tint-blue:#dbeafe;--tint-amber:#fef3c7;--tint-emerald:#d1fae5;--tint-rose:#ffe4e6;--display:'Instrument Serif',Georgia,serif;--body:'Geist',system-ui,sans-serif;--mono:'Geist Mono',monospace;--shadow-sm:0 1px 2px rgba(15,23,42,.04);--shadow:0 4px 16px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);--shadow-lg:0 12px 40px rgba(79,70,229,.12),0 4px 12px rgba(15,23,42,.06)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.55;font-size:16px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 700px at 5% 0%,rgba(168,85,247,.10) 0%,transparent 50%),radial-gradient(ellipse 700px 600px at 95% 25%,rgba(14,165,233,.08) 0%,transparent 50%),radial-gradient(ellipse 800px 700px at 50% 100%,rgba(251,113,133,.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+.name-gate{position:fixed;inset:0;background:rgba(250,251,255,.92);backdrop-filter:blur(20px);z-index:200;display:flex;align-items:center;justify-content:center;padding:32px;transition:opacity .5s,visibility .5s}
+.name-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.name-gate-card{max-width:560px;width:100%;background:var(--surface);border-radius:28px;box-shadow:0 30px 80px rgba(79,70,229,.18),0 8px 24px rgba(15,23,42,.08);border:1px solid var(--border);padding:56px 48px;text-align:center;position:relative;overflow:hidden}
+.name-gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--brand-1),var(--brand-3),var(--coral))}
+.name-gate-emoji{font-size:56px;margin-bottom:24px;display:block}
+.name-gate-tag{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-2);font-weight:600;margin-bottom:14px}
+.name-gate-card h2{font-family:var(--display);font-size:44px;font-weight:400;line-height:1.05;letter-spacing:-.025em;color:var(--text);margin-bottom:12px}
+.name-gate-card h2 em{font-style:italic;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.name-gate-card p{color:var(--text-muted);font-size:15.5px;line-height:1.55;margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto}
+.name-input{width:100%;padding:18px 22px;border:2px solid var(--border-strong);border-radius:14px;font-family:var(--display);font-size:22px;background:var(--surface-2);color:var(--text);transition:all .25s;text-align:center;margin-bottom:12px}
+.name-input::placeholder{color:var(--text-dim);font-family:var(--body);font-size:17px}
+.name-input:focus{outline:none;border-color:var(--brand-2);background:var(--surface);box-shadow:0 0 0 4px rgba(124,58,237,.1)}
+.org-input{width:100%;padding:14px 18px;border:2px solid var(--border-strong);border-radius:12px;font-family:var(--body);font-size:15px;background:var(--surface-2);color:var(--text);transition:all .25s;text-align:center;margin-bottom:24px}
+.org-input::placeholder{color:var(--text-dim)}
+.org-input:focus{outline:none;border-color:var(--brand-2);background:var(--surface);box-shadow:0 0 0 4px rgba(124,58,237,.1)}
+.name-gate-note{font-size:13px;color:var(--text-dim);line-height:1.5;margin-bottom:28px}
+.start-btn{width:100%;padding:18px 28px;border-radius:100px;font-family:var(--body);font-weight:600;font-size:16px;border:none;cursor:pointer;transition:all .25s;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));color:white;box-shadow:0 8px 24px rgba(79,70,229,.3)}
+.start-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(79,70,229,.45)}
+.start-btn:disabled{background:var(--surface-3);color:var(--text-dim);cursor:not-allowed;box-shadow:none}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(250,251,255,.85);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border)}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;gap:20px}
+.brand{font-weight:600;font-size:14px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));display:grid;place-items:center;color:white;font-family:var(--display);font-style:italic;font-size:20px;box-shadow:0 6px 16px rgba(79,70,229,.3)}
+.brand-text{display:flex;flex-direction:column;line-height:1.2}
+.brand-text span{font-size:13.5px}
+.brand-text small{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:.05em}
+.progress-track{flex:1;height:8px;background:var(--surface-3);border-radius:100px;overflow:hidden;max-width:320px;box-shadow:inset 0 1px 2px rgba(15,23,42,.05)}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--brand-1) 0%,var(--brand-3) 50%,var(--coral) 100%);width:0%;transition:width .8s cubic-bezier(.4,0,.2,1);border-radius:100px}
+.progress-text{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap}
+.user-badge{font-family:var(--mono);font-size:11px;color:var(--brand-deep);background:var(--tint-purple);border:1px solid rgba(124,58,237,.18);padding:7px 14px;border-radius:100px;font-weight:600;display:none;align-items:center;gap:6px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.user-badge.show{display:inline-flex}
+.reset-btn{font-family:var(--mono);font-size:11px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:8px 14px;border-radius:100px;cursor:pointer;transition:all .2s}
+.reset-btn:hover{border-color:var(--coral);color:var(--coral-deep);background:var(--tint-rose)}
+.layout{max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:280px 1fr;gap:64px;position:relative;z-index:2}
+.sidenav{position:sticky;top:96px;align-self:start;padding:48px 0;max-height:calc(100vh - 96px);overflow-y:auto}
+.sidenav::-webkit-scrollbar{width:4px}
+.sidenav::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px}
+.sidenav-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;padding-left:4px}
+.nav-item{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:14px;cursor:pointer;transition:all .25s;margin-bottom:4px;border:1px solid transparent;position:relative}
+.nav-item:hover{background:var(--surface);border-color:var(--border)}
+.nav-item.active{background:var(--surface);border-color:var(--border-strong);box-shadow:var(--shadow)}
+.nav-item.active::before{content:'';position:absolute;left:-16px;width:3px;height:28px;background:linear-gradient(180deg,var(--brand-1),var(--brand-3));border-radius:4px}
+.nav-num{font-family:var(--mono);font-size:11px;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--surface-3);color:var(--text-muted);flex-shrink:0;transition:all .25s;font-weight:600}
+.nav-item.active .nav-num{background:linear-gradient(135deg,var(--brand-1),var(--brand-3));color:white;box-shadow:0 4px 12px rgba(79,70,229,.3)}
+.nav-item.completed .nav-num{background:linear-gradient(135deg,var(--emerald),#059669);color:white}
+.nav-item.completed .nav-num::after{content:'✓';font-size:13px;font-weight:700}
+.nav-item.completed .nav-num span{display:none}
+.nav-text{font-size:14px;font-weight:500;line-height:1.3;color:var(--text)}
+main{padding:48px 0 160px;max-width:820px}
+.section{display:none}
+.section.active{display:block;animation:sectionEnter .7s cubic-bezier(.16,1,.3,1)}
+@keyframes sectionEnter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.section-meta{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:linear-gradient(135deg,var(--tint-purple),var(--tint-blue));border:1px solid rgba(124,58,237,.18);border-radius:100px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:24px;font-weight:600}
+.section-meta::before{content:'';width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1.section-title{font-family:var(--display);font-weight:400;font-size:clamp(48px,7vw,88px);line-height:.95;letter-spacing:-.04em;margin-bottom:28px;color:var(--text)}
+h1.section-title em{font-style:italic;background:linear-gradient(135deg,var(--brand-1),var(--brand-3) 50%,var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lead{font-size:22px;line-height:1.45;color:var(--text-muted);margin-bottom:56px;max-width:660px;letter-spacing:-.015em}
+h2{font-family:var(--display);font-weight:400;font-size:38px;line-height:1.05;letter-spacing:-.025em;margin:64px 0 24px;color:var(--text)}
+h2 em{font-style:italic;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+h3{font-weight:600;font-size:17px;margin:36px 0 14px;color:var(--text);display:flex;align-items:center;gap:10px}
+h3::before{content:'';width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--brand-1),var(--brand-3))}
+p{margin-bottom:18px;color:var(--text-muted);font-size:16px;line-height:1.65}
+p strong{font-weight:600;color:var(--text)}
+p em{font-style:italic;color:var(--text)}
+ul.clean{list-style:none;padding:0;margin:24px 0}
+ul.clean li{padding:18px 0 18px 36px;position:relative;border-bottom:1px solid var(--border);font-size:15.5px;color:var(--text-muted);line-height:1.6}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{content:'→';position:absolute;left:0;top:16px;color:var(--brand-2);font-weight:700;font-size:18px}
+ul.clean li strong{color:var(--text)}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:40px 0}
+.stat{padding:32px 28px;background:var(--surface);border:1px solid var(--border);border-radius:24px;position:relative;overflow:hidden;transition:all .4s;box-shadow:var(--shadow-sm)}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand-1),var(--brand-3),var(--coral));border-radius:24px 24px 0 0}
+.stat-emoji{display:inline-block;font-size:28px;margin-bottom:12px}
+.stat-num{font-family:var(--display);font-weight:400;font-size:64px;line-height:.9;letter-spacing:-.05em;color:var(--text);margin-bottom:12px}
+.stat-num em{font-style:italic;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat-num sup{font-size:28px;color:var(--text-muted);font-weight:300;vertical-align:super;line-height:0}
+.stat-label{font-size:13.5px;color:var(--text-muted);line-height:1.45}
+.roadmap{margin:32px 0;padding:36px 28px;background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow-x:auto;box-shadow:var(--shadow-sm)}
+.roadmap-stops{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:700px;position:relative}
+.roadmap-stops::before{content:'';position:absolute;top:22px;left:24px;right:24px;height:2px;background:linear-gradient(90deg,var(--brand-2),var(--brand-3),var(--coral));opacity:.25}
+.stop{text-align:center;flex:1;position:relative;z-index:1}
+.stop-dot{width:44px;height:44px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;background:var(--surface);border:2px solid var(--border-strong);transition:all .3s;box-shadow:var(--shadow-sm)}
+.stop[data-tier="ms"] .stop-dot{background:linear-gradient(135deg,var(--tint-purple),white);border-color:var(--brand-3);color:var(--brand-deep)}
+.stop[data-tier="hs1"] .stop-dot{background:linear-gradient(135deg,var(--tint-blue),white);border-color:var(--sky);color:#0369a1}
+.stop[data-tier="hs2"] .stop-dot{background:linear-gradient(135deg,var(--tint-rose),white);border-color:var(--coral);color:var(--coral-deep)}
+.stop:hover .stop-dot{transform:scale(1.1)}
+.stop-grade{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--text-muted);margin-bottom:2px;text-transform:uppercase;font-weight:600}
+.stop-phase{font-family:var(--display);font-size:15px;font-style:italic;color:var(--text)}
+.domain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:32px 0 40px}
+.domain{padding:32px 28px;background:var(--surface);border:1px solid var(--border);border-radius:24px;transition:all .35s;box-shadow:var(--shadow-sm)}
+.domain:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.domain[data-color="coral"]{background:linear-gradient(135deg,var(--surface) 0%,#fff0f3 100%)}
+.domain[data-color="violet"]{background:linear-gradient(135deg,var(--surface) 0%,#faf5ff 100%)}
+.domain[data-color="amber"]{background:linear-gradient(135deg,var(--surface) 0%,#fefce8 100%)}
+.domain[data-color="emerald"]{background:linear-gradient(135deg,var(--surface) 0%,#ecfdf5 100%)}
+.domain-emoji{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;font-size:28px}
+.domain[data-color="coral"] .domain-emoji{background:linear-gradient(135deg,var(--coral),#f43f5e);box-shadow:0 8px 20px rgba(251,113,133,.3)}
+.domain[data-color="violet"] .domain-emoji{background:linear-gradient(135deg,var(--brand-2),var(--brand-3));box-shadow:0 8px 20px rgba(124,58,237,.3)}
+.domain[data-color="amber"] .domain-emoji{background:linear-gradient(135deg,var(--amber),#ea580c);box-shadow:0 8px 20px rgba(245,158,11,.3)}
+.domain[data-color="emerald"] .domain-emoji{background:linear-gradient(135deg,var(--emerald),#059669);box-shadow:0 8px 20px rgba(16,185,129,.3)}
+.domain h4{font-family:var(--display);font-weight:400;font-size:26px;margin-bottom:8px;letter-spacing:-.02em;color:var(--text)}
+.domain p{font-size:14.5px;color:var(--text-muted);margin:0 0 14px;line-height:1.55}
+.domain p:last-child{margin-bottom:0}
+.domain-detail{font-size:13.5px;color:var(--text-muted);line-height:1.6;padding-top:14px;border-top:1px dashed var(--border-strong)}
+.domain-detail strong{color:var(--text)}
+.grade-tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--surface);padding:6px;border-radius:18px;margin:32px 0 0;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.grade-tab{padding:14px 8px;border:none;background:transparent;font-family:var(--body);font-weight:500;font-size:13px;color:var(--text-muted);cursor:pointer;border-radius:12px;transition:all .3s;line-height:1.2;text-align:center}
+.grade-tab:hover{color:var(--text);background:var(--surface-2)}
+.grade-tab.active{background:linear-gradient(135deg,var(--brand-1),var(--brand-3));color:white;box-shadow:0 6px 16px rgba(79,70,229,.3)}
+.grade-tab small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;opacity:.7;margin-top:2px;text-transform:uppercase}
+.grade-content{margin-top:16px;padding:40px 36px;background:var(--surface);border-radius:24px;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.grade-band-detail{display:none}
+.grade-band-detail.active{display:block}
+.grade-band-detail h4{font-family:var(--display);font-weight:400;font-size:36px;margin-bottom:12px;color:var(--text);letter-spacing:-.025em}
+.grade-band-detail h4 em{font-style:italic;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.grade-outcome{padding:18px 22px;background:linear-gradient(135deg,var(--tint-purple),var(--tint-blue));border-radius:14px;margin:16px 0 28px;font-size:14.5px;line-height:1.6;color:var(--text)}
+.grade-outcome strong{display:block;margin-bottom:6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono);color:var(--brand-deep);font-weight:600}
+.domain-row{display:grid;grid-template-columns:50px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--border);align-items:start}
+.domain-row:last-child{border-bottom:none;padding-bottom:0}
+.domain-row-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px}
+.domain-row[data-d="ce"] .domain-row-icon{background:var(--tint-rose)}
+.domain-row[data-d="po"] .domain-row-icon{background:var(--tint-purple)}
+.domain-row[data-d="fl"] .domain-row-icon{background:var(--tint-amber)}
+.domain-row[data-d="es"] .domain-row-icon{background:var(--tint-emerald)}
+.domain-row-content{font-size:14.5px;line-height:1.6;color:var(--text-muted)}
+.domain-row-content strong{color:var(--text);display:block;margin-bottom:4px;font-weight:600;font-size:15px}
+.domain-row-content .ev{font-size:13px;color:var(--text-muted);margin-top:8px;padding:10px 12px;background:var(--surface-2);border-radius:8px;border-left:3px solid var(--emerald)}
+.domain-row-content .ev::before{content:'✓ Evidence: ';color:var(--emerald);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.calendar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:24px 0}
+.month{padding:16px 14px;background:var(--surface);border:1px solid var(--border);border-radius:14px;transition:all .25s;box-shadow:var(--shadow-sm)}
+.month:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--brand-3)}
+.month-emoji{font-size:18px;margin-bottom:4px}
+.month-name{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--brand-2);text-transform:uppercase;margin-bottom:4px;font-weight:600}
+.month-theme{font-family:var(--display);font-size:17px;color:var(--text);margin-bottom:4px}
+.month-desc{font-size:11px;color:var(--text-muted);line-height:1.4}
+.quiz{margin:56px 0;padding:44px;background:linear-gradient(135deg,var(--surface) 0%,var(--tint-purple) 100%);border:1px solid rgba(124,58,237,.15);border-radius:28px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.quiz::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand-1),var(--brand-3),var(--coral))}
+.quiz-header{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:20px;font-weight:600}
+.quiz-question{font-family:var(--display);font-size:28px;font-weight:400;line-height:1.25;margin-bottom:28px;letter-spacing:-.02em;color:var(--text)}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{padding:18px 22px;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;cursor:pointer;transition:all .25s;color:var(--text);font-size:15px;text-align:left;font-family:inherit;line-height:1.4;display:flex;align-items:flex-start;gap:14px;box-shadow:var(--shadow-sm)}
+.quiz-option::before{content:'';width:20px;height:20px;border:2px solid var(--border-strong);border-radius:50%;flex-shrink:0;transition:all .25s;margin-top:2px}
+.quiz-option:hover:not(:disabled){background:var(--tint-purple);border-color:var(--brand-3);transform:translateX(4px)}
+.quiz-option:hover:not(:disabled)::before{border-color:var(--brand-2)}
+.quiz-option.correct{background:var(--tint-emerald);border-color:var(--emerald)}
+.quiz-option.correct::before{background:var(--emerald);border-color:var(--emerald);box-shadow:inset 0 0 0 4px var(--surface)}
+.quiz-option.incorrect{background:var(--tint-rose);border-color:var(--coral)}
+.quiz-option.incorrect::before{background:var(--coral);border-color:var(--coral);box-shadow:inset 0 0 0 4px var(--surface)}
+.quiz-option:disabled{cursor:default}
+.quiz-feedback{margin-top:24px;padding:22px 26px;background:var(--surface);border-left:4px solid var(--brand-2);border-radius:12px;font-size:14.5px;line-height:1.6;color:var(--text-muted);display:none;box-shadow:var(--shadow-sm)}
+.quiz-feedback.show{display:block}
+.quiz-feedback strong{color:var(--brand-deep)}
+.reflection{margin:40px 0;padding:32px;background:linear-gradient(135deg,var(--surface) 0%,var(--tint-rose) 100%);border:1px solid rgba(251,113,133,.18);border-radius:24px;box-shadow:var(--shadow-sm)}
+.reflection-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--coral-deep);margin-bottom:12px;font-weight:600}
+.reflection-prompt{font-family:var(--display);font-size:24px;font-weight:400;line-height:1.3;margin-bottom:12px;letter-spacing:-.02em;color:var(--text)}
+.reflection-instruction{font-size:13.5px;color:var(--text-muted);margin-bottom:16px;font-style:italic}
+.reflection textarea{width:100%;min-height:150px;padding:18px;border:1.5px solid var(--border);border-radius:14px;font-family:var(--body);font-size:15px;line-height:1.6;resize:vertical;background:var(--surface);color:var(--text);transition:all .2s}
+.reflection textarea::placeholder{color:var(--text-dim)}
+.reflection textarea:focus{outline:none;border-color:var(--brand-2);box-shadow:0 0 0 4px rgba(124,58,237,.1)}
+.reflection-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-family:var(--mono);font-size:11px;height:16px}
+.reflection-saved{color:var(--emerald);font-weight:600}
+.reflection-counter{color:var(--text-dim);font-weight:600}
+.reflection-counter.met{color:var(--emerald)}
+.reflection-counter.unmet{color:var(--coral-deep)}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:32px 0}
+.pillar{padding:28px 18px;background:var(--surface);border-radius:20px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:all .3s;box-shadow:var(--shadow-sm)}
+.pillar:hover{transform:translateY(-3px);border-color:var(--brand-3)}
+.pillar.selected{background:linear-gradient(135deg,var(--surface) 0%,var(--tint-purple) 100%);border-color:var(--brand-2);box-shadow:0 0 0 1px var(--brand-2),var(--shadow-lg)}
+.pillar-emoji{width:56px;height:56px;margin:0 auto 14px;border-radius:16px;background:linear-gradient(135deg,var(--surface-2),white);display:grid;place-items:center;font-size:26px;border:1px solid var(--border)}
+.pillar.selected .pillar-emoji{background:linear-gradient(135deg,var(--brand-1),var(--brand-3));transform:scale(1.05)}
+.pillar h5{font-family:var(--display);font-size:17px;font-weight:400;color:var(--text)}
+.pillar-detail{margin-top:8px;padding:36px;background:var(--surface);border:1px solid var(--border);border-radius:24px;display:none;box-shadow:var(--shadow-sm)}
+.pillar-detail.show{display:block}
+.pillar-detail h4{font-family:var(--display);font-weight:400;font-size:28px;margin-bottom:14px;color:var(--text)}
+.btn-row{display:flex;gap:12px;margin-top:72px;padding-top:40px;border-top:1px solid var(--border);flex-wrap:wrap;align-items:center}
+.btn{padding:16px 28px;border-radius:100px;font-family:var(--body);font-weight:600;font-size:14.5px;border:none;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,var(--brand-1),var(--brand-3));color:white;box-shadow:0 8px 24px rgba(79,70,229,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(79,70,229,.45)}
+.btn-primary:disabled{background:var(--surface-3);color:var(--text-dim);cursor:not-allowed;box-shadow:none}
+.btn-secondary{background:var(--surface);color:var(--text);border:1.5px solid var(--border-strong);box-shadow:var(--shadow-sm)}
+.btn-secondary:hover{border-color:var(--brand-2);background:var(--tint-purple);color:var(--brand-deep)}
+.btn-download{background:linear-gradient(135deg,var(--coral),var(--coral-deep));color:white;box-shadow:0 8px 24px rgba(225,29,72,.3)}
+.btn-download:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(225,29,72,.45)}
+.btn-cert{background:linear-gradient(135deg,var(--amber),#ea580c);color:white;box-shadow:0 8px 24px rgba(245,158,11,.3)}
+.btn-cert:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(245,158,11,.45)}
+.btn-gate-msg{font-family:var(--mono);font-size:11px;color:var(--coral-deep);font-weight:600}
+.design-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:32px 0}
+.design-card{padding:32px 28px;background:var(--surface);border-radius:24px;border:1.5px solid var(--border);transition:all .3s;box-shadow:var(--shadow-sm)}
+.design-card:focus-within{border-color:var(--brand-2);box-shadow:0 0 0 4px rgba(124,58,237,.08),var(--shadow)}
+.design-card-q{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-2);margin-bottom:10px;font-weight:700}
+.design-card h4{font-family:var(--display);font-weight:400;font-size:22px;margin-bottom:18px;color:var(--text)}
+.design-card textarea{width:100%;min-height:110px;padding:14px;border:1.5px solid var(--border);border-radius:12px;font-family:var(--body);font-size:14.5px;line-height:1.55;resize:vertical;background:var(--surface-2);color:var(--text);transition:all .2s}
+.design-card textarea:focus{outline:none;border-color:var(--brand-2);background:var(--surface);box-shadow:0 0 0 3px rgba(124,58,237,.08)}
+.role-select{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}
+.role-card{padding:28px 20px;background:var(--surface);border:1.5px solid var(--border);border-radius:20px;cursor:pointer;transition:all .3s;text-align:left;box-shadow:var(--shadow-sm)}
+.role-card:hover{transform:translateY(-3px);border-color:var(--brand-3);box-shadow:var(--shadow)}
+.role-card.selected{border-color:var(--brand-2);background:linear-gradient(135deg,var(--surface) 0%,var(--tint-purple) 100%);box-shadow:0 0 0 1px var(--brand-2),var(--shadow-lg)}
+.role-card-emoji{font-size:32px;margin-bottom:12px;display:block}
+.role-card h5{font-family:var(--display);font-weight:400;font-size:21px;margin-bottom:4px;color:var(--text)}
+.role-card p{font-size:12.5px;color:var(--text-muted);margin:0;line-height:1.4}
+.role-tips{margin-top:24px;padding:40px 36px;background:linear-gradient(135deg,var(--surface) 0%,var(--tint-purple) 100%);border:1.5px solid rgba(124,58,237,.18);border-radius:24px;display:none;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.role-tips::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand-1),var(--brand-3),var(--coral))}
+.role-tips.show{display:block}
+.role-tips h4{font-family:var(--display);font-weight:400;font-size:30px;margin-bottom:24px;color:var(--text)}
+.role-tips h4 em{font-style:italic;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.role-tips ul{list-style:none;padding:0}
+.role-tips li{padding:18px 0;border-bottom:1px solid var(--border);line-height:1.6;color:var(--text-muted);font-size:14.5px;padding-left:36px;position:relative}
+.role-tips li:last-child{border-bottom:none}
+.role-tips li::before{content:'→';position:absolute;left:0;color:var(--brand-2);font-weight:700;font-size:18px}
+.role-tips li strong{color:var(--text)}
+.completion-badge{text-align:center;padding:80px 40px;background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#a855f7 100%);border-radius:32px;color:white;margin-bottom:40px;position:relative;overflow:hidden;box-shadow:0 24px 64px rgba(79,70,229,.3)}
+.completion-badge::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(255,255,255,.15) 0%,transparent 30%);animation:rotate 20s linear infinite}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.completion-mark{width:96px;height:96px;border-radius:50%;background:white;display:grid;place-items:center;margin:0 auto 20px;color:var(--brand-deep);font-size:48px;box-shadow:0 0 60px rgba(255,255,255,.4);position:relative;z-index:1}
+.completion-name{font-family:var(--display);font-style:italic;font-size:26px;color:#fde68a;margin-bottom:12px;position:relative;z-index:1}
+.completion-badge h2{font-family:var(--display);font-size:60px;font-weight:400;margin-bottom:16px;line-height:1;color:white;position:relative;z-index:1}
+.completion-badge h2 em{font-style:italic;color:#fde68a;-webkit-text-fill-color:#fde68a}
+.completion-badge p{color:rgba(255,255,255,.92);font-size:17px;max-width:500px;margin:0 auto;line-height:1.55;position:relative;z-index:1}
+.resource-list{display:grid;gap:10px;margin:24px 0 40px}
+.resource{display:flex;align-items:center;gap:18px;padding:22px 26px;background:var(--surface);border:1px solid var(--border);border-radius:18px;text-decoration:none;color:var(--text);transition:all .3s;box-shadow:var(--shadow-sm)}
+.resource:hover{border-color:var(--brand-2);background:linear-gradient(135deg,var(--surface) 0%,var(--tint-purple) 100%);transform:translateX(6px);box-shadow:var(--shadow)}
+.resource-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--surface-2),white);display:grid;place-items:center;flex-shrink:0;font-size:22px;border:1px solid var(--border)}
+.resource-text{flex:1}
+.resource-text strong{display:block;font-size:15.5px;margin-bottom:3px;color:var(--text)}
+.resource-text span{font-size:13px;color:var(--text-muted)}
+.resource-arrow{font-family:var(--mono);color:var(--text-muted);font-size:11px;letter-spacing:.12em;font-weight:600}
+.resource:hover .resource-arrow{color:var(--brand-2)}
+.callout{margin:32px 0;padding:26px 30px;background:linear-gradient(135deg,var(--tint-purple),var(--tint-blue));border:1px solid rgba(124,58,237,.15);border-radius:20px}
+.callout-emoji{display:inline-block;font-size:22px;margin-bottom:8px}
+.callout-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:8px;font-weight:700}
+.callout p{margin:0 0 12px;color:var(--text);font-size:15px;line-height:1.65}
+.callout p:last-child{margin-bottom:0}
+.callout em{font-style:italic;color:var(--brand-deep);font-weight:600}
+.gameplan-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:24px 0}
+.gp-tab{padding:22px 16px;background:var(--surface);border:1px solid var(--border);border-radius:16px;transition:all .25s;box-shadow:var(--shadow-sm)}
+.gp-tab:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--brand-3)}
+.gp-tab-emoji{font-size:22px;margin-bottom:8px}
+.gp-tab-num{font-family:var(--mono);font-size:10px;color:var(--brand-2);letter-spacing:.12em;margin-bottom:4px;font-weight:700}
+.gp-tab h6{font-family:var(--display);font-size:16px;color:var(--text);margin-bottom:4px;font-weight:400}
+.gp-tab p{font-size:11.5px;color:var(--text-muted);margin:0;line-height:1.4}
+.futuriti-hero{margin:32px 0;padding:56px 48px;background:linear-gradient(135deg,#1e3a8a 0%,#4f46e5 40%,#7c3aed 70%,#a855f7 100%);border-radius:32px;color:white;position:relative;overflow:hidden;box-shadow:0 24px 64px rgba(79,70,229,.3)}
+.futuriti-hero::before{content:'';position:absolute;top:-30%;right:-15%;width:70%;height:200%;background:radial-gradient(circle,rgba(253,230,138,.18) 0%,transparent 60%)}
+.futuriti-tag{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.9;margin-bottom:18px;position:relative;z-index:1;display:inline-block;padding:6px 12px;background:rgba(255,255,255,.12);border-radius:100px}
+.futuriti-hero h2{font-family:var(--display);font-size:clamp(40px,5vw,60px);font-weight:400;line-height:.95;margin-bottom:16px;color:white;position:relative;z-index:1}
+.futuriti-hero h2 em{font-style:italic;color:#fde68a;-webkit-text-fill-color:#fde68a}
+.futuriti-hero p{font-size:17px;line-height:1.55;color:rgba(255,255,255,.92);margin:0 0 24px;max-width:580px;position:relative;z-index:1}
+.futuriti-link{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:white;color:var(--brand-deep);text-decoration:none;font-weight:600;font-size:14.5px;border-radius:100px;box-shadow:0 8px 24px rgba(0,0,0,.15);transition:all .25s;position:relative;z-index:1}
+.futuriti-link:hover{transform:translateY(-2px)}
+.futuriti-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:32px 0}
+.f-stat{padding:24px 20px;background:var(--surface);border:1px solid var(--border);border-radius:18px;text-align:center;transition:all .3s;box-shadow:var(--shadow-sm)}
+.f-stat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--brand-3)}
+.f-stat-emoji{font-size:28px;margin-bottom:8px;display:block}
+.f-stat-num{font-family:var(--display);font-size:36px;font-weight:400;line-height:1;letter-spacing:-.03em;margin-bottom:6px;background:linear-gradient(135deg,var(--brand-1),var(--brand-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.f-stat-label{font-size:12px;color:var(--text-muted);line-height:1.4}
+.feature-list{display:grid;gap:14px;margin:24px 0}
+.feature{display:flex;gap:18px;padding:22px 26px;background:var(--surface);border:1px solid var(--border);border-radius:18px;transition:all .25s;box-shadow:var(--shadow-sm);align-items:flex-start}
+.feature:hover{transform:translateX(4px);border-color:var(--brand-3);box-shadow:var(--shadow)}
+.feature-emoji{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--tint-purple),var(--tint-blue));display:grid;place-items:center;flex-shrink:0;font-size:24px}
+.feature-text{flex:1}
+.feature-text strong{display:block;font-size:16px;margin-bottom:4px;color:var(--text)}
+.feature-text p{font-size:14px;color:var(--text-muted);margin:0;line-height:1.55}
+.audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
+.audience{padding:18px 14px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-align:center;transition:all .25s;box-shadow:var(--shadow-sm)}
+.audience:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.audience-emoji{font-size:22px;margin-bottom:8px;display:block}
+.audience-label{font-size:12.5px;color:var(--text);line-height:1.3;font-weight:500}
+@media (max-width:900px){.layout{grid-template-columns:1fr;padding:0 20px;gap:0}.sidenav{position:relative;top:0;max-height:none;padding:16px 0;overflow-x:auto;display:flex;gap:6px;border-bottom:1px solid var(--border)}.sidenav-label{display:none}.nav-item{flex-shrink:0}.nav-item.active::before{display:none}.nav-text{white-space:nowrap}.domain-grid,.stat-grid,.role-select,.design-grid,.futuriti-stats,.audience-grid{grid-template-columns:1fr}.pillars{grid-template-columns:repeat(2,1fr)}.calendar-grid,.gameplan-tabs{grid-template-columns:repeat(2,1fr)}.grade-tabs{grid-template-columns:repeat(4,1fr)}h1.section-title{font-size:48px}.lead{font-size:18px}.topbar-inner{padding:12px 20px;gap:12px}.progress-text,.user-badge{display:none}.brand-text small{display:none}main{padding:32px 0 100px}.quiz,.grade-content,.role-tips,.futuriti-hero,.name-gate-card{padding:28px 24px}.quiz-question{font-size:22px}.completion-badge h2{font-size:40px}}
+.save-indicator{position:fixed;bottom:28px;right:28px;padding:12px 20px;background:linear-gradient(135deg,var(--emerald),#059669);color:white;border-radius:100px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;box-shadow:0 12px 32px rgba(16,185,129,.4);opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:1000}
+.save-indicator.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="name-gate" id="nameGate">
+  <div class="name-gate-card">
+    <div class="name-gate-emoji">👋</div>
+    <div class="name-gate-tag">Before we begin</div>
+    <h2>Welcome to <em>KAA Advising</em>.</h2>
+    <p>Tell us who you are. We'll personalize your action plan and your <strong>certificate of completion</strong> at the end of the training.</p>
+    <input type="text" class="name-input" id="userNameInput" placeholder="Your full name" autocomplete="name" oninput="validateName()" onkeypress="if(event.key==='Enter')startTraining()">
+    <input type="text" class="org-input" id="userOrgInput" placeholder="School, district, or organization (optional)" autocomplete="organization">
+    <div class="name-gate-note">📍 Your progress saves automatically. You can pause and return anytime — even on the same device tomorrow — and pick up where you left off. This training takes about <strong>45–60 minutes</strong>.</div>
+    <button class="start-btn" id="startBtn" disabled onclick="startTraining()">Begin training →</button>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div class="brand-text">
+        <span>KAA Postsecondary Advising Scope &amp; Sequence</span>
+        <small>KENTUCKY ADVISING ACADEMY × CPE</small>
+      </div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0% complete</div>
+    <div class="user-badge" id="userBadge">👤 <span id="userBadgeName"></span></div>
+    <button class="reset-btn" onclick="resetProgress()">Reset</button>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidenav">
+    <div class="sidenav-label">Module · 09 sections</div>
+    <div id="navItems"></div>
+  </nav>
+
+  <main>
+    <!-- Section 1: The Why -->
+    <section class="section active" data-section="0">
+      <div class="section-meta">Section 01 · The Why</div>
+      <h1 class="section-title">Why advising <em>matters</em>.</h1>
+      <p class="lead">Before we get into <em>what</em> the Scope &amp; Sequence is, we have to talk about <em>why</em> it exists. Kentucky has a workforce challenge — and structured advising is how we solve it. ✨</p>
+      <div class="stat-grid">
+        <div class="stat"><span class="stat-emoji">📊</span><div class="stat-num">56<sup>%</sup></div><div class="stat-label">Current Kentucky educational attainment rate</div></div>
+        <div class="stat"><span class="stat-emoji">🎯</span><div class="stat-num"><em>60</em><sup>%</sup></div><div class="stat-label">Our 60×30 goal — postsecondary credential by 2030</div></div>
+        <div class="stat"><span class="stat-emoji">💰</span><div class="stat-num">$1<em>M</em></div><div class="stat-label">Lifetime earnings advantage of a bachelor's degree in KY</div></div>
+      </div>
+      <h2>The <em>real</em> problem</h2>
+      <p>Kentucky ranks 48th nationally in workforce participation. We have <strong>jobs going unfilled</strong> in growing industries like aerospace, advanced manufacturing, and healthcare — and we have <strong>students leaving high school without a clear plan</strong> for how to access them. The gap between those two facts is what advising closes.</p>
+      <p>The challenge isn't a lack of opportunities. The challenge is that <em>too many Kentucky students never learn those opportunities exist</em>, never see themselves in them, and never get a structured path to reach them. That's not a student problem. That's a <strong>systems problem</strong> — and systems problems require systemic solutions.</p>
+      <h2>Why advising as <em>moments</em> doesn't work</h2>
+      <p>Here's what advising looks like in too many Kentucky schools today:</p>
+      <ul class="clean">
+        <li>A senior shows up at their counselor's office in October to talk about FAFSA. It's their first real conversation about financial aid in four years of high school.</li>
+        <li>An 8th grader picks high school courses based on what their friends are taking, not on a CTE pathway connected to their interests.</li>
+        <li>A 10th grader takes the ACT cold, with no preparation or context for why it matters.</li>
+        <li>A junior with strong grades doesn't apply for KEES money she's already earning, because no one ever explained how the program works.</li>
+        <li>A capable student decides college "isn't for them" — without ever exploring apprenticeships, technical credentials, or community college pathways that might actually be a perfect fit.</li>
+      </ul>
+      <p>None of these students lacked talent or motivation. They lacked <strong>structured guidance, delivered consistently, over time</strong>. When advising happens in isolated moments — a single college fair, a rushed scheduling session, a senior-year scramble — students miss the cumulative effect of seeing how their education connects to their future. The result? Some students get great advising at home, from family members who know how the system works. Others don't. And the gap that creates is one of the largest predictors of postsecondary success in Kentucky.</p>
+      <div class="callout">
+        <span class="callout-emoji">💡</span>
+        <div class="callout-label">The big idea</div>
+        <p><strong>Advising isn't an event. It's a system.</strong> When advising is structured — building progressively from middle school through 12th grade, woven into the school day, and reinforced by every adult in the building — outcomes change. Students who experience high-quality advising are significantly more likely to pursue and complete postsecondary education.</p>
+      </div>
+      <h2>What <em>structured advising</em> changes</h2>
+      <p>Imagine the same students in a school where the Scope &amp; Sequence is the operating system:</p>
+      <ul class="clean">
+        <li><strong>The 6th grader</strong> takes a career interest survey, builds an initial ILP, and starts thinking about what work she might enjoy as an adult — long before high school course selection forces a real decision.</li>
+        <li><strong>The 8th grader</strong> tours the local Area Technology Center, learns about EPSOs, and meets with a counselor to plan 9th-grade courses aligned to a CTE pathway he's actually interested in.</li>
+        <li><strong>The 10th grader</strong> uses Futuriti's Net Price Calculator to see what college actually costs in Kentucky and starts a free postsecondary readiness exam plan.</li>
+        <li><strong>The 11th grader</strong> builds a senior-year financial aid timeline in October — not December — and has time to apply for scholarships before deadlines.</li>
+        <li><strong>The 12th grader</strong> files the FAFSA on time, applies to her postsecondary path with a network she's been building since 9th grade, and graduates with an actual plan rather than a vague hope.</li>
+      </ul>
+      <p>Same students. Different outcomes. The difference isn't talent. It's <strong>structure</strong>.</p>
+      <div class="reflection">
+        <div class="reflection-label">✦ Reflection · Setting your intention</div>
+        <div class="reflection-prompt">What's happening at your school right now that prompted you to take this training? What outcome are you hoping for?</div>
+        <div class="reflection-instruction">Write at least 3 sentences. Your responses save automatically and appear on your action plan.</div>
+        <textarea data-key="intent" placeholder="Take a few minutes to think about what brought you here. There's no wrong answer — be specific about what you're seeing at your school..."></textarea>
+        <div class="reflection-meta"><span class="reflection-saved" data-saved-for="intent"></span><span class="reflection-counter" data-counter-for="intent">0 / 3 sentences</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" data-gate-section="0" onclick="completeAndAdvance(0)">Mark complete &amp; continue →</button>
+        <span class="btn-gate-msg" data-gate-msg-section="0"></span>
+      </div>
+    </section>
+
+    <!-- Section 2: Framework -->
+    <section class="section" data-section="1">
+      <div class="section-meta">Section 02 · Framework</div>
+      <h1 class="section-title">A roadmap from <em>6th to 12th</em>.</h1>
+      <p class="lead">The Postsecondary Advising Scope &amp; Sequence is a structured progression of advising experiences that builds knowledge and confidence year after year. It's not a curriculum — it's a flexible framework. 🗺️</p>
+      <h2>What a <em>scope &amp; sequence</em> actually is</h2>
+      <p>If the term "scope &amp; sequence" sounds like education jargon, that's because it is — but the concept is simple. <strong>Scope</strong> is what gets covered. <strong>Sequence</strong> is the order in which it's covered. Together, they answer the question: <em>"What should every student learn, and when should they learn it?"</em></p>
+      <p>Most academic subjects have one. Math has a scope &amp; sequence — you learn fractions before algebra, algebra before calculus. ELA has one. Even PE has one. But for years, postsecondary advising in Kentucky did <em>not</em>. Each school made it up. Each counselor improvised. The result was wildly inconsistent advising across the state — some students got incredible support, others got almost none.</p>
+      <p>The KAA Scope &amp; Sequence changes that. It gives every Kentucky educator a shared answer to "what should advising look like in 6th grade? in 9th? in 11th?" — while leaving room for each school to deliver it in the way that works for their students, schedule, and culture.</p>
+      <h2>Two <em>guides</em>, one framework</h2>
+      <p><strong>The Middle School (6–8) guide</strong> is organized by a monthly advising calendar. Each month has a theme — Self-Discovery in September, Network in November, Dollars &amp; Cents in December, and so on. Within each month, learning experiences scale up by grade. A 6th grader does a basic financial literacy vocabulary lesson; a 7th grader plays the Game of Life; an 8th grader uses the Family Budgeting Calculator. Same theme, deeper engagement.</p>
+      <p><strong>The High School (9–12) guide</strong> is organized by five lesson plans per grade per year: one to revisit the career interest &amp; strength survey, plus one for each of the four focus areas. They can be delivered separately once per quarter, all in one day, or stretched over a week — schools choose what works. Each grade has a distinct phase: 9th is Investigation, 10th is Connection, 11th is Decision, and 12th is Action.</p>
+      <h2>The <em>journey</em>, by phase</h2>
+      <p>Each grade has a specific phase that builds on the last. Here's how students move from exploration to action:</p>
+      <div class="roadmap"><div class="roadmap-stops">
+        <div class="stop" data-tier="ms"><div class="stop-dot">6</div><div class="stop-grade">6th</div><div class="stop-phase">Exploration</div></div>
+        <div class="stop" data-tier="ms"><div class="stop-dot">7</div><div class="stop-grade">7th</div><div class="stop-phase">Preparation</div></div>
+        <div class="stop" data-tier="ms"><div class="stop-dot">8</div><div class="stop-grade">8th</div><div class="stop-phase">Application</div></div>
+        <div class="stop" data-tier="hs1"><div class="stop-dot">9</div><div class="stop-grade">9th</div><div class="stop-phase">Investigation</div></div>
+        <div class="stop" data-tier="hs1"><div class="stop-dot">10</div><div class="stop-grade">10th</div><div class="stop-phase">Connection</div></div>
+        <div class="stop" data-tier="hs2"><div class="stop-dot">11</div><div class="stop-grade">11th</div><div class="stop-phase">Decision</div></div>
+        <div class="stop" data-tier="hs2"><div class="stop-dot">12</div><div class="stop-grade">12th</div><div class="stop-phase">Action</div></div>
+      </div></div>
+      <p>Notice the progression of verbs. <em>Explore</em> a wide world of possibilities. <em>Prepare</em> by connecting interests to options. <em>Apply</em> what you've learned to the next chapter. Then <em>investigate</em> high school opportunities, <em>connect</em> career and postsecondary plans, make <em>decisions</em>, and take <em>action</em>. By 12th grade, students aren't choosing a future — they're implementing one they've been building for seven years.</p>
+      <h2>Why we <em>built</em> it this way</h2>
+      <ul class="clean">
+        <li><strong>Consistency for every student.</strong> Same baseline of high-quality advising regardless of school, zip code, or which counselor a student happens to get</li>
+        <li><strong>Aligned with Kentucky Graduation Requirements</strong> and the Kentucky Academic Standards for Career Studies</li>
+        <li><strong>Supports meaningful ILP completion.</strong> Every learning experience generates evidence that goes in a student's Individual Learning Plan</li>
+        <li><strong>Designed for a whole-school approach.</strong> Advising isn't just the counselor's job — it's everyone's job</li>
+        <li><strong>Flexible delivery.</strong> A counselor can push lessons into classrooms. An advisory teacher can deliver them in 20-minute chunks. A whole-school PD day can knock out a quarter at once</li>
+      </ul>
+      <div class="callout">
+        <span class="callout-emoji">📚</span>
+        <div class="callout-label">Quick context · Not a curriculum</div>
+        <p>The Scope &amp; Sequence tells you <em>what</em> to advise on and <em>when</em>. It doesn't dictate <em>how</em>. Each focus area has linked lesson plans that are ready to use — but they're suggestions. The framework is the spine; the muscle is yours.</p>
+      </div>
+      <div class="quiz" data-quiz="q1">
+        <div class="quiz-header">◆ Knowledge Check · 01</div>
+        <div class="quiz-question">Match the grade to its phase. Which pairing is INCORRECT?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">6th grade — Exploration</button>
+          <button class="quiz-option" data-correct="false">9th grade — Investigation</button>
+          <button class="quiz-option" data-correct="true">11th grade — Application</button>
+          <button class="quiz-option" data-correct="false">12th grade — Action</button>
+        </div>
+        <div class="quiz-feedback"><strong>Correct! ✓</strong> 11th grade is the <em>Decision</em> phase. <em>Application</em> is actually 8th grade — when students apply what they've learned to high school planning.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(0)">← Back</button>
+        <button class="btn btn-primary" onclick="completeAndAdvance(1)">Mark complete &amp; continue →</button>
+      </div>
+    </section>
+
+    <!-- Section 3: Focus Areas -->
+    <section class="section" data-section="2">
+      <div class="section-meta">Section 03 · Focus Areas</div>
+      <h1 class="section-title">The four <em>focus areas</em>.</h1>
+      <p class="lead">Every grade addresses these same four focus areas — what changes is the depth, complexity, and urgency. By the end of 12th grade, students have built well-rounded knowledge across all four. 🎯</p>
+      <p>These four focus areas aren't arbitrary. They emerged from research, employer feedback, and what Kentucky students actually need to succeed after high school. Together, they cover the <em>knowledge</em> (what's possible), the <em>logistics</em> (how to access it), the <em>finances</em> (how to pay for it), and the <em>skills</em> (how to thrive once you're there). Drop any one of them, and the system breaks down.</p>
+      <div class="domain-grid">
+        <div class="domain" data-color="coral"><div class="domain-emoji">💼</div><h4>Career Exploration</h4><p>Interest surveys, career clusters, occupations research, and connecting interests to career paths.</p><div class="domain-detail"><strong>Why it matters:</strong> Students can't aspire to careers they don't know exist. Career Exploration is the entry point — it's how students discover what work feels meaningful, and it provides the personal "why" that powers the rest of the journey.</div></div>
+        <div class="domain" data-color="violet"><div class="domain-emoji">🎓</div><h4>Postsecondary Opportunities</h4><p>Degree types, postsecondary pathways, early college options (EPSOs), and application processes.</p><div class="domain-detail"><strong>Why it matters:</strong> "Postsecondary" is bigger than four-year college. This focus area teaches students that apprenticeships, technical credentials, two-year degrees, military pathways, and certifications are all legitimate options.</div></div>
+        <div class="domain" data-color="amber"><div class="domain-emoji">💰</div><h4>Financial Literacy</h4><p>Budgeting, saving, credit, scholarships, FAFSA, and connecting education to financial outcomes.</p><div class="domain-detail"><strong>Why it matters:</strong> Cost is the #1 reason Kentucky students don't pursue postsecondary education — even when they qualify for aid. Financial Literacy makes the invisible visible: KEES money, FAFSA, scholarships.</div></div>
+        <div class="domain" data-color="emerald"><div class="domain-emoji">🤝</div><h4>Essential Skills</h4><p>Social capital, goal-setting, networking, leadership, and professional communication.</p><div class="domain-detail"><strong>Why it matters:</strong> Knowing what you want isn't enough — students need durable skills that translate across every path. Building a network, communicating professionally, setting goals — these determine whether a plan actually happens.</div></div>
+      </div>
+      <div class="callout">
+        <span class="callout-emoji">📋</span>
+        <div class="callout-label">Five lessons per grade, per year</div>
+        <p>Each grade includes <strong>five lesson plans</strong>: one to revisit the career interest &amp; strength survey, plus one for each of the four focus areas. Each connects to the <strong>Student Game Plan Template</strong> (Kentucky's ILP companion) so the work generates real, lasting evidence.</p>
+      </div>
+      <h2>Monthly calendar · <em>middle school</em></h2>
+      <p>The 6–8 guide includes a suggested monthly theme that builds learning across the school year. Schools can adjust timing to match their own calendars.</p>
+      <div class="calendar-grid">
+        <div class="month"><div class="month-emoji">🔍</div><div class="month-name">Sept</div><div class="month-theme">Self-Discovery</div><div class="month-desc">Career interest surveys</div></div>
+        <div class="month"><div class="month-emoji">💼</div><div class="month-name">Oct</div><div class="month-theme">Occupation</div><div class="month-desc">Career clusters &amp; ILP</div></div>
+        <div class="month"><div class="month-emoji">🤝</div><div class="month-name">Nov</div><div class="month-theme">Network</div><div class="month-desc">Social capital mapping</div></div>
+        <div class="month"><div class="month-emoji">💵</div><div class="month-name">Dec</div><div class="month-theme">Dollars &amp; Cents</div><div class="month-desc">Financial literacy basics</div></div>
+        <div class="month"><div class="month-emoji">🔎</div><div class="month-name">Jan</div><div class="month-theme">Job Search</div><div class="month-desc">Researching careers</div></div>
+        <div class="month"><div class="month-emoji">🗺️</div><div class="month-name">Feb</div><div class="month-theme">Find My Future</div><div class="month-desc">Course planning</div></div>
+        <div class="month"><div class="month-emoji">👋</div><div class="month-name">Mar</div><div class="month-theme">Meet &amp; Greet</div><div class="month-desc">Meet professionals</div></div>
+        <div class="month"><div class="month-emoji">⭐</div><div class="month-name">Apr</div><div class="month-theme">Aspirations</div><div class="month-desc">Postsecondary &amp; aid</div></div>
+        <div class="month"><div class="month-emoji">📅</div><div class="month-name">May</div><div class="month-theme">Mapping Out</div><div class="month-desc">Summer &amp; next-year plans</div></div>
+        <div class="month"><div class="month-emoji">🪞</div><div class="month-name">Summer</div><div class="month-theme">Self-Reflection</div><div class="month-desc">Reassessing goals</div></div>
+      </div>
+      <p>Notice the rhythm: discover yourself, explore the world of work, build a network, learn about money, research jobs, plan courses, meet people, aspire to postsecondary paths, plan ahead, then reflect. By the end of each year, a middle schooler has touched all four focus areas multiple times.</p>
+      <div class="reflection">
+        <div class="reflection-label">✦ Reflection · Mapping to your school</div>
+        <div class="reflection-prompt">Looking at the four focus areas, which one is currently best supported at your school? Which is the weakest, and why do you think that is?</div>
+        <div class="reflection-instruction">Write at least 3 sentences. Be specific — these reflections shape your action plan.</div>
+        <textarea data-key="focus-areas-assessment" placeholder="Most schools have one strong focus area and at least one obvious gap..."></textarea>
+        <div class="reflection-meta"><span class="reflection-saved" data-saved-for="focus-areas-assessment"></span><span class="reflection-counter" data-counter-for="focus-areas-assessment">0 / 3 sentences</span></div>
+      </div>
+      <div class="quiz" data-quiz="q2">
+        <div class="quiz-header">◆ Knowledge Check · 02</div>
+        <div class="quiz-question">Which of these is NOT one of the four focus areas in the Scope &amp; Sequence?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Career Exploration</button>
+          <button class="quiz-option" data-correct="false">Postsecondary Opportunities</button>
+          <button class="quiz-option" data-correct="true">Athletic Recruitment Planning</button>
+          <button class="quiz-option" data-correct="false">Essential Skills</button>
+        </div>
+        <div class="quiz-feedback"><strong>Correct! ✓</strong> The four focus areas are <em>Career Exploration, Postsecondary Opportunities, Financial Literacy,</em> and <em>Essential Skills</em>.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(1)">← Back</button>
+        <button class="btn btn-primary" data-gate-section="2" onclick="completeAndAdvance(2)">Mark complete &amp; continue →</button>
+        <span class="btn-gate-msg" data-gate-msg-section="2"></span>
+      </div>
+    </section>
+
+    <!-- Section 4: Grade Detail -->
+    <section class="section" data-section="3">
+      <div class="section-meta">Section 04 · Grade Detail</div>
+      <h1 class="section-title">Grade by <em>grade</em>.</h1>
+      <p class="lead">Click into each grade to see the outcome, the actual learning experiences from the Scope &amp; Sequence, and the evidence of learning students produce. 📖</p>
+      <p>Each grade-level page includes the same five elements: <strong>outcomes</strong>, <strong>guiding questions</strong>, <strong>learner objectives</strong> tied to Kentucky Academic Standards for Career Studies, <strong>learning experiences</strong>, and <strong>evidence of learning</strong>.</p>
+      <div class="grade-tabs">
+        <button class="grade-tab active" onclick="switchGradeBand(this,'g6')">6th<small>Explore</small></button>
+        <button class="grade-tab" onclick="switchGradeBand(this,'g7')">7th<small>Prepare</small></button>
+        <button class="grade-tab" onclick="switchGradeBand(this,'g8')">8th<small>Apply</small></button>
+        <button class="grade-tab" onclick="switchGradeBand(this,'g9')">9th<small>Investigate</small></button>
+        <button class="grade-tab" onclick="switchGradeBand(this,'g10')">10th<small>Connect</small></button>
+        <button class="grade-tab" onclick="switchGradeBand(this,'g11')">11th<small>Decide</small></button>
+        <button class="grade-tab" onclick="switchGradeBand(this,'g12')">12th<small>Act</small></button>
+      </div>
+      <div class="grade-content">
+        <div class="grade-band-detail active" data-band="g6">
+          <h4>6th Grade · <em>Exploration</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 6th grade, students will build awareness of Kentucky Career Clusters, learn key vocabulary related to postsecondary education and financial literacy, set goals that support future readiness, and build relationships that support future readiness.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>Career Interest Survey + Occupations Closed Sort</strong>Students review personal strengths and interests, then sort occupations into Kentucky Career Cluster headings.<div class="ev">Students create initial ILP with strengths, interests, and three career clusters connected to their lifestyle vision</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>Postsecondary Options + Connecting Careers</strong>Students begin exploring postsecondary degree types and research careers with their required education levels.<div class="ev">Students update ILP with specific postsecondary plans</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>Financial Literacy Vocabulary</strong>Students engage with 16 essential financial literacy words (saving, credit, debt) and learn about the Kentucky 529 plan.<div class="ev">Students match financial literacy words with correct definitions</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>Mapping Social Capital Network</strong>Students "web" their social circle, identifying how individuals could support them.<div class="ev">Students name a minimum of 3 supportive peers/adults in their My Network ILP tab</div></div></div>
+        </div>
+        <div class="grade-band-detail" data-band="g7">
+          <h4>7th Grade · <em>Preparation</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 7th grade, students will connect their strengths and interests, potential careers, and extracurricular activities to postsecondary options. Students will build financial literacy, set personal goals, and participate in collaborative discussions.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>Extracurricular Brainstorm</strong>Students revisit interest surveys and research career-connected extracurricular activities, identifying transferable skills.<div class="ev">Students revise ILP based on interests, values, skills, and current postsecondary thinking</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>AI-Generated College Major Search</strong>Students research college majors based on inventory results using an AI search engine; investigate two career choices.<div class="ev">Students update ILP connecting interests to available college majors</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>Game of Life + Labor Data</strong>Students play Game of Life and compare with U.S. Bureau of Labor Statistics data.<div class="ev">Written reflection on a real-life financial decision they would make and why</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>Career Interests &amp; Goal-Setting</strong>Students draft a list of careers, identify success qualities, and identify how to expand their social capital.<div class="ev">Students update their network and career goals in ILP</div></div></div>
+        </div>
+        <div class="grade-band-detail" data-band="g8">
+          <h4>8th Grade · <em>Application</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 8th grade, students will actively engage in career exploration, connect their interests to related high school and CTE courses, understand how career choices align with postsecondary plans and financial goals, and identify mentors who can support their journey.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>CTE Pathway Research</strong>Students complete a career cluster survey and research CTE pathway opportunities at their prospective high school.<div class="ev">Students revise ILP to include CTE pathways of interest</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>Area Technology Center (ATC) Research + Programs of Study</strong>Students explore local ATCs and map a 4-course sequence for their top CTE pathways.<div class="ev">Sequenced course plan + research on two available CTE pathways uploaded to ILP</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>Career &amp; Lifestyles + Living Wage Calculator</strong>Students connect education and career choices to lifestyle expectations using the Family Budgeting Calculator.<div class="ev">Updated ILP reflecting current postsecondary and career goals</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>High School Course Planning + Mentor Conversations</strong>Students review HS graduation requirements via KHEAA, draft 9th-grade courses, and meet with a counselor/mentor.<div class="ev">9th grade course schedule meeting state requirements, uploaded to ILP</div></div></div>
+          <div class="callout"><span class="callout-emoji">🚀</span><div class="callout-label">Don't miss · 8th grade transitions</div><p>The Scope &amp; Sequence includes a dedicated <strong>8th Grade Transitions Planning Guide</strong> covering HS information sessions, ATC tours, awareness of dual credit/AP/IB, the WorkReady Scholarship, and the KEES scholarship. <em>This is one of the highest-leverage moments in the entire framework.</em></p></div>
+        </div>
+        <div class="grade-band-detail" data-band="g9">
+          <h4>9th Grade · <em>Investigation</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 9th grade, students build foundational knowledge of college and career vocabulary, explore postsecondary opportunities, and recognize how extracurricular involvement, leadership, and early planning support future success.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>Interest &amp; Strength Inventory + CTE Pathway Exploration</strong>Students retake survey, reflect on changes, and explore dual credit, CTE technical programs, EPSOs, and KCTCS opportunities.<div class="ev">Pathway exploration worksheet uploaded to ILP with running reflection</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>Postsecondary Options Group Discussion</strong>Students learn about five postsecondary options: dual credit, work-study, work-based learning, credentials of value, and apprenticeships.<div class="ev">Students compare/contrast early postsecondary opportunities at their HS, upload to ILP</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>Need-based vs. Merit-based + KEES Scholarships</strong>Students explore grants, awards, and the difference between need- and merit-based aid. Make connections to the KEES scholarship — which they're earning right now.<div class="ev">Students explain the connection between HS coursework, EPSOs, and aid available</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>Network Mapping</strong>Students map their network of adults, peers, and connections who can support their postsecondary plans.<div class="ev">Network map uploaded to ILP, Network tab updated</div></div></div>
+        </div>
+        <div class="grade-band-detail" data-band="g10">
+          <h4>10th Grade · <em>Connection</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 10th grade, students deepen their understanding of career pathways, postsecondary options, and associated costs while developing leadership skills and recognizing the importance of readiness for postsecondary success.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>Career Cluster to Postsecondary Plan</strong>Students revisit interest survey results in an occupations sorting activity to explore Kentucky Career Clusters.<div class="ev">ILP shows interests/strengths connected to career cluster + lifestyle impact</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>Postsecondary Readiness Exams</strong>Group activity exploring how readiness exams (ACT, SAT) impact postsecondary planning.<div class="ev">Students create a plan to be ready for the free exam by their junior year</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>Net Price Calculator (on Futuriti)</strong>Students explore Futuriti's Net Price Calculator to estimate postsecondary costs. <em>Sticker price isn't real price.</em><div class="ev">Cost of attendance comparison for different postsecondary options</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>Leadership Skills Connections</strong>Students define leadership skills and connect them to extracurriculars they participate in.<div class="ev">Written reflection on current opportunities + goal for future activity, uploaded to ILP</div></div></div>
+        </div>
+        <div class="grade-band-detail" data-band="g11">
+          <h4>11th Grade · <em>Decision</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 11th grade, students actively engage in career-connected experiences, refine their postsecondary plans, develop professional communication skills, and build knowledge of financial aid and scholarship opportunities.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>Connecting Interests to Experiences &amp; Extracurriculars</strong>Students take a survey, research connected careers, and inform school-wide career-centered experiences.<div class="ev">Completed survey + ILP updated with current career and postsecondary plans</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>My Next Move Search</strong>Students use inventory results to research career choices and develop a list of college and career interests.<div class="ev">Worksheets with research info on two careers + colleges that train for them, uploaded to ILP</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>Senior Year Financial Aid Timeline</strong>Students complete their Senior Year Financial Aid/Scholarship Calendar based on application deadlines.<div class="ev">Year-long plan to guide them through senior year aid season, uploaded to ILP</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>Professional Communication 101</strong>Students investigate the dos and don'ts of professional communication via email, phone, voicemail, and in-person.<div class="ev">Communication reflection + ILP updated with two new contacts</div></div></div>
+        </div>
+        <div class="grade-band-detail" data-band="g12">
+          <h4>12th Grade · <em>Action</em></h4>
+          <div class="grade-outcome"><strong>📌 Outcome</strong>By the end of 12th grade, students finalize and implement a postsecondary plan by completing applications, securing financial aid, leveraging their network, and demonstrating financial readiness for life after high school.</div>
+          <div class="domain-row" data-d="ce"><div class="domain-row-icon">💼</div><div class="domain-row-content"><strong>School to Work Pathway Infographics + Occupational Interviews</strong>Students map paths to careers and conduct informational interviews with career professionals.<div class="ev">Students articulate their pathway with a mentor; school to work pathway uploaded to ILP</div></div></div>
+          <div class="domain-row" data-d="po"><div class="domain-row-icon">🎓</div><div class="domain-row-content"><strong>Postsecondary Application</strong>Students gather components and submit at least one application for their chosen postsecondary path.<div class="ev">Notify guidance staff/leadership of application + name of institution</div></div></div>
+          <div class="domain-row" data-d="fl"><div class="domain-row-icon">💰</div><div class="domain-row-content"><strong>FAFSA &amp; Scholarship Applications</strong>Students complete a FAFSA application and at least one scholarship application. <em>Even students who think they don't qualify.</em><div class="ev">FAFSA filed to begin the financial aid process</div></div></div>
+          <div class="domain-row" data-d="es"><div class="domain-row-icon">🤝</div><div class="domain-row-content"><strong>Expanding Student Networks</strong>Students use an elevator pitch and reach out to prospective people who can join their network.<div class="ev">Craft and send one networking email/outreach for postsecondary support</div></div></div>
+        </div>
+      </div>
+      <h2>Notice the <em>spiral</em></h2>
+      <p>Look at all seven grades together and you'll see the same focus areas appearing again and again — but each time, deeper. A 6th grader takes a career interest survey to discover what jobs exist. A 12th grader retakes it as part of a final reflection on a journey that started six years earlier. A 6th grader maps three supportive adults. A 12th grader sends a networking email to a professional in their field. <em>Same skill. Different stakes.</em></p>
+      <p>This is what curriculum designers call a "spiral curriculum" — concepts revisited at increasing levels of complexity. It's how learning sticks. It's also how a student who got a weak career exploration lesson in 6th grade still gets four more chances to build that knowledge before graduation.</p>
+      <div class="quiz" data-quiz="q3">
+        <div class="quiz-header">◆ Knowledge Check · 03</div>
+        <div class="quiz-question">In which grade do students complete the FAFSA application as part of the Scope &amp; Sequence?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">10th grade — Connection</button>
+          <button class="quiz-option" data-correct="false">11th grade — Decision</button>
+          <button class="quiz-option" data-correct="true">12th grade — Action</button>
+          <button class="quiz-option" data-correct="false">Both 11th and 12th grade</button>
+        </div>
+        <div class="quiz-feedback"><strong>Correct! ✓</strong> 12th grade is the Action phase, where students <em>file</em> the FAFSA. 11th graders build the <em>timeline</em>.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(2)">← Back</button>
+        <button class="btn btn-primary" onclick="completeAndAdvance(3)">Mark complete &amp; continue →</button>
+      </div>
+    </section>
+
+    <!-- Section 5: Futuriti -->
+    <section class="section" data-section="4">
+      <div class="section-meta">Section 05 · Futuriti</div>
+      <h1 class="section-title">Meet <em>Futuriti</em>.</h1>
+      <p class="lead">Futuriti.org is the engine that powers the Scope &amp; Sequence. It's Kentucky's first-of-its-kind career and college platform — and the tool your students will return to from middle school through graduation. 🧭</p>
+      <div class="futuriti-hero">
+        <div class="futuriti-tag">🌟 Launched February 2025</div>
+        <h2>Where Kentuckians <em>find their future</em>.</h2>
+        <p>Kentucky became the first state in the nation to turn its postsecondary and occupational data into a student-facing website. Built by CPE in partnership with KYSTATS and the Kentucky Department of Education.</p>
+        <a href="https://www.futuriti.org" target="_blank" rel="noopener" class="futuriti-link">Visit Futuriti.org →</a>
+      </div>
+      <h2>Why <em>Futuriti</em> exists</h2>
+      <p>Before Futuriti, Kentucky students researching careers had two options: generic national tools that didn't reflect Kentucky's economy, or scattered state databases that weren't built for them. A 9th grader curious about nursing could find national average salaries — but not what nurses actually earn in Pikeville versus Louisville.</p>
+      <p>Futuriti closes that gap. It's a <strong>Kentucky-specific</strong> platform that pulls together career data, college information, and pathway details into one place — and presents them in a way that students, families, and counselors can actually use. Nationally, it's a first: no other state has built a tool like this. And it's free to every Kentuckian.</p>
+      <h2>Futuriti by the <em>numbers</em></h2>
+      <div class="futuriti-stats">
+        <div class="f-stat"><span class="f-stat-emoji">💼</span><div class="f-stat-num">700+</div><div class="f-stat-label">Careers with KY-specific wages</div></div>
+        <div class="f-stat"><span class="f-stat-emoji">👥</span><div class="f-stat-num">45K+</div><div class="f-stat-label">Kentuckians using the platform</div></div>
+        <div class="f-stat"><span class="f-stat-emoji">🏛️</span><div class="f-stat-num">1st</div><div class="f-stat-label">State in the nation with this kind of platform</div></div>
+        <div class="f-stat"><span class="f-stat-emoji">📄</span><div class="f-stat-num">100+</div><div class="f-stat-label">Pages of career &amp; education guidance</div></div>
+      </div>
+      <h2>The <em>Future Finder</em> tool</h2>
+      <p>Future Finder is the heart of Futuriti — an interactive portal where students, families, and educators can explore Kentucky-specific data on careers and education.</p>
+      <div class="feature-list">
+        <div class="feature"><div class="feature-emoji">💼</div><div class="feature-text"><strong>700+ careers with Kentucky wages</strong><p>Job descriptions, salary ranges, required credentials, and projected employment through 2032 — all KY-specific data from KYSTATS. Not national averages. Real Kentucky numbers.</p></div></div>
+        <div class="feature"><div class="feature-emoji">🏫</div><div class="feature-text"><strong>Every Kentucky college, community college &amp; technical school</strong><p>Cost, completion rates, debt information, and majors offered across all public and private institutions. Compare programs side by side.</p></div></div>
+        <div class="feature"><div class="feature-emoji">🛠️</div><div class="feature-text"><strong>Career pathways at every Kentucky high school &amp; ATC</strong><p>Students can see exactly which CTE pathways are offered at their school or local Area Technology Center.</p></div></div>
+        <div class="feature"><div class="feature-emoji">💰</div><div class="feature-text"><strong>Net Price Calculator</strong><p>The 10th-grade Financial Literacy lesson uses this tool to help students estimate <em>real</em> postsecondary costs based on their plans and financial situation.</p></div></div>
+        <div class="feature"><div class="feature-emoji">📍</div><div class="feature-text"><strong>High-demand jobs by region</strong><p>Powered by KYSTATS, students see what jobs are growing in their part of Kentucky — different in Pikeville than in Paducah.</p></div></div>
+        <div class="feature"><div class="feature-emoji">✈️</div><div class="feature-text"><strong>Emerging industries</strong><p>Aerospace &amp; aviation, film &amp; television, registered apprenticeships, military veteran career translation — Futuriti highlights what's growing in Kentucky right now.</p></div></div>
+      </div>
+      <h2>Built for <em>everyone</em></h2>
+      <p>The Futuriti homepage lets visitors select who they are, then tailors the experience.</p>
+      <div class="audience-grid">
+        <div class="audience"><span class="audience-emoji">🎒</span><div class="audience-label">Middle schooler</div></div>
+        <div class="audience"><span class="audience-emoji">📚</span><div class="audience-label">9/10th grader</div></div>
+        <div class="audience"><span class="audience-emoji">🎓</span><div class="audience-label">11/12th grader</div></div>
+        <div class="audience"><span class="audience-emoji">🏫</span><div class="audience-label">College student</div></div>
+        <div class="audience"><span class="audience-emoji">💼</span><div class="audience-label">Career changer</div></div>
+        <div class="audience"><span class="audience-emoji">👨‍👩‍👧</span><div class="audience-label">Parent / guardian</div></div>
+        <div class="audience"><span class="audience-emoji">📋</span><div class="audience-label">Counselor / educator</div></div>
+        <div class="audience"><span class="audience-emoji">🎖️</span><div class="audience-label">Military veteran</div></div>
+      </div>
+      <div class="callout"><span class="callout-emoji">🚀</span><div class="callout-label">Coming through 2026</div><p>CPE continues building on Futuriti's momentum with a <strong>scholarship database, living wage calculator, employer database, personalized AI chat feature</strong>, and additional classroom resources.</p></div>
+      <h2>How Futuriti shows up <em>across grades</em></h2>
+      <p>Futuriti isn't a one-time tool — it's a through-line. Students return year after year, with deeper questions each time.</p>
+      <ul class="clean">
+        <li><strong>Middle School:</strong> Career cluster exploration, vocabulary building, "what jobs exist in Kentucky?" research</li>
+        <li><strong>7th Grade — AI College Major Search:</strong> Students use Futuriti's career data alongside AI tools</li>
+        <li><strong>8th Grade — Career &amp; Lifestyles:</strong> Family Budgeting Calculator and lifestyle research</li>
+        <li><strong>9th Grade — CTE Pathway Exploration:</strong> Students look up what pathways their HS and local ATC offer</li>
+        <li><strong>10th Grade — Net Price Calculator:</strong> A direct lesson built around this Futuriti tool</li>
+        <li><strong>11th Grade — My Next Move &amp; College Research:</strong> Students compile college/career interest list using Futuriti data</li>
+        <li><strong>12th Grade — Postsecondary Applications:</strong> Final research before applying</li>
+      </ul>
+      <p>Imagine a student who has used Futuriti every single year. By 12th grade, they're not learning a new tool — they're using a familiar one to make their biggest decision yet. <strong>That continuity is the point.</strong></p>
+      <h2>What this means for <em>you</em></h2>
+      <p>Futuriti only works as well as students' familiarity with it. A student who first sees Futuriti in March of senior year will use it differently than a student who's been on the site since 6th grade. Your job — regardless of role — is to make Futuriti <strong>visible and habitual</strong>. That can look like a one-time intro at a family night, a recurring assignment in 9th-grade English, a counselor pushing into classrooms with a 15-minute walkthrough, or a school-wide "Futuriti Day" once a quarter.</p>
+      <div class="reflection">
+        <div class="reflection-label">✦ Reflection · Futuriti at your school</div>
+        <div class="reflection-prompt">Are students at your school currently using Futuriti.org? If yes, how? If no, what's one specific lesson, course, or moment where it could fit?</div>
+        <div class="reflection-instruction">Write at least 3 sentences. Be concrete — name a class, a teacher, a moment in the calendar.</div>
+        <textarea data-key="futuriti-use" placeholder="Most schools either haven't introduced Futuriti yet or use it inconsistently..."></textarea>
+        <div class="reflection-meta"><span class="reflection-saved" data-saved-for="futuriti-use"></span><span class="reflection-counter" data-counter-for="futuriti-use">0 / 3 sentences</span></div>
+      </div>
+      <div class="quiz" data-quiz="q4">
+        <div class="quiz-header">◆ Knowledge Check · 04</div>
+        <div class="quiz-question">Which of these is the core feature of Futuriti.org that students use to explore careers, colleges, and pathways?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Career Quiz Maker</button>
+          <button class="quiz-option" data-correct="true">Future Finder</button>
+          <button class="quiz-option" data-correct="false">Path Explorer</button>
+          <button class="quiz-option" data-correct="false">KY Career Hub</button>
+        </div>
+        <div class="quiz-feedback"><strong>Correct! ✓</strong> <em>Future Finder</em> is the interactive portal at the heart of Futuriti.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(3)">← Back</button>
+        <button class="btn btn-primary" data-gate-section="4" onclick="completeAndAdvance(4)">Mark complete &amp; continue →</button>
+        <span class="btn-gate-msg" data-gate-msg-section="4"></span>
+      </div>
+    </section>
+
+    <!-- Section 6: Game Plan -->
+    <section class="section" data-section="5">
+      <div class="section-meta">Section 06 · Student Game Plan</div>
+      <h1 class="section-title">The Student <em>Game Plan</em>.</h1>
+      <p class="lead">The Student Game Plan Template is the ILP companion that ties the entire Scope &amp; Sequence together. Every grade-level lesson generates evidence that goes here. 📋</p>
+      <h2>Why ILPs <em>haven't</em> always worked</h2>
+      <p>Kentucky has required Individual Learning Plans for years. So why hasn't every Kentucky graduate left high school with a coherent plan? Because in many schools, the ILP became a compliance document — a thing students clicked through once a year, not a tool they actually used.</p>
+      <p>The Student Game Plan Template fixes this. It's not a separate ILP — it's a <strong>structured companion</strong> to whatever ILP system your school uses. It gives students a place to consolidate the evidence they generate across years of advising lessons, with tabs that mirror how a young person actually thinks about their future.</p>
+      <h2>Five tabs, one <em>plan</em></h2>
+      <div class="gameplan-tabs">
+        <div class="gp-tab"><div class="gp-tab-emoji">👋</div><div class="gp-tab-num">01</div><h6>Start Here</h6><p>Personal intro: what I like, what I'm good at, career ideas</p></div>
+        <div class="gp-tab"><div class="gp-tab-emoji">💡</div><div class="gp-tab-num">02</div><h6>My Career Interests</h6><p>Survey results + postsecondary planning by grade</p></div>
+        <div class="gp-tab"><div class="gp-tab-emoji">📝</div><div class="gp-tab-num">03</div><h6>My Activities</h6><p>Game plan activities, evidence, and big ideas</p></div>
+        <div class="gp-tab"><div class="gp-tab-emoji">📚</div><div class="gp-tab-num">04</div><h6>My Classes</h6><p>Course planning + dual credit/AP/IB tracker</p></div>
+        <div class="gp-tab"><div class="gp-tab-emoji">🤝</div><div class="gp-tab-num">05</div><h6>My Network</h6><p>The people supporting my journey</p></div>
+      </div>
+      <p>Each tab has a specific job. <strong>Start Here</strong> grounds the student in self-knowledge. <strong>My Career Interests</strong> tracks their evolving thinking about work and postsecondary plans. <strong>My Activities</strong> is where they upload evidence from Scope &amp; Sequence lessons. <strong>My Classes</strong> tracks course planning and credit accumulation, including EPSOs like dual credit, AP, and IB. <strong>My Network</strong> grows from a list of three supportive adults in 6th grade to a real professional network by graduation.</p>
+      <div class="callout"><span class="callout-emoji">✨</span><div class="callout-label">Why this matters</div><p>Across every Scope &amp; Sequence lesson, students are creating evidence that uploads to a tab in the Student Game Plan. <strong>This is what makes ILPs meaningful.</strong> Without the Game Plan, lessons disappear into a folder. With it, students see their own progression — survey results that change, networks that grow, courses that build toward something specific.</p><p>By 12th grade, a student's Game Plan is a <em>document of who they're becoming</em> — not a form they had to fill out.</p></div>
+      <h2>What's needed to make it <em>real</em></h2>
+      <ul class="clean">
+        <li><strong>Time to use it.</strong> Students need dedicated time during the school day to update their Game Plan — 15 minutes once a month is enough.</li>
+        <li><strong>Adults who reference it.</strong> Counselors, advisors, and teachers should refer to the Game Plan in conversations with students.</li>
+        <li><strong>Family awareness.</strong> The Game Plan is most powerful when families know it exists and can ask their student about it.</li>
+      </ul>
+      <p>None of that requires new technology, new curriculum, or new staff. It requires intention and consistency.</p>
+      <div class="reflection">
+        <div class="reflection-label">✦ Reflection · ILP reality check</div>
+        <div class="reflection-prompt">At your school today, do students experience the ILP as a meaningful plan they own, or as a once-a-year click-through? What's one specific thing that could move it toward "real"?</div>
+        <div class="reflection-instruction">Write at least 3 sentences. Be honest about where things stand and concrete about what change you'd make.</div>
+        <textarea data-key="ilp-reality" placeholder="Be specific about what's actually happening — that's where the work gets clearer..."></textarea>
+        <div class="reflection-meta"><span class="reflection-saved" data-saved-for="ilp-reality"></span><span class="reflection-counter" data-counter-for="ilp-reality">0 / 3 sentences</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(4)">← Back</button>
+        <button class="btn btn-primary" data-gate-section="5" onclick="completeAndAdvance(5)">Mark complete &amp; continue →</button>
+        <span class="btn-gate-msg" data-gate-msg-section="5"></span>
+      </div>
+    </section>
+
+    <!-- Section 7: Whole-School -->
+    <section class="section" data-section="6">
+      <div class="section-meta">Section 07 · Whole-School Approach</div>
+      <h1 class="section-title">A whole-school <em>system</em>.</h1>
+      <p class="lead">Advising isn't a counselor's job alone — it's a shared responsibility across the school. The Scope &amp; Sequence is delivered through four interconnected layers. 🏫</p>
+      <h2>Why <em>everyone</em> has to play</h2>
+      <p>Most American high schools have one counselor for every 400+ students. If postsecondary advising is delivered solely through one-on-one counselor meetings, the math doesn't work — there aren't enough hours in the year for a counselor to deliver five hours of structured advising to every student in every grade.</p>
+      <p>The Scope &amp; Sequence solves this by treating advising as a school-wide system. Counselors design and lead, but they don't deliver it alone. Administrators set the conditions. Core and elective teachers weave career connections into their content. CTE instructors leverage work-based learning. Together, the four pillars cover what no single role could.</p>
+      <p>Click each pillar to explore what it can look like in practice:</p>
+      <div class="pillars">
+        <div class="pillar" onclick="showPillar(this,'culture')"><div class="pillar-emoji">🏫</div><h5>Schoolwide Culture</h5></div>
+        <div class="pillar" onclick="showPillar(this,'counseling')"><div class="pillar-emoji">🎯</div><h5>School Counseling</h5></div>
+        <div class="pillar" onclick="showPillar(this,'core')"><div class="pillar-emoji">📐</div><h5>Core &amp; Elective</h5></div>
+        <div class="pillar" onclick="showPillar(this,'cte')"><div class="pillar-emoji">🛠️</div><h5>CTE Courses</h5></div>
+      </div>
+      <div class="pillar-detail" id="pillar-culture">
+        <h4>Schoolwide Culture</h4>
+        <p>Administrators establish an advising culture and climate, setting a vision for what advising looks like throughout the school year by encouraging routines and setting expectations.</p>
+        <p>This is the most <em>upstream</em> of the four pillars. Without administrative commitment, the other three pillars struggle to function.</p>
+        <h3>What it can look like</h3>
+        <ul class="clean">
+          <li>Coordinating school-wide events such as career fairs or family career nights</li>
+          <li>Setting aside time in the master schedule for advising activities</li>
+          <li>Communicating expectations for advising to be delivered by all school personnel</li>
+          <li>Celebrating ALL postsecondary plans equally — 4-year, 2-year, technical, military, apprenticeship, workforce</li>
+        </ul>
+      </div>
+      <div class="pillar-detail" id="pillar-counseling">
+        <h4>School Counseling</h4>
+        <p>School counselors play a critical role designing school counseling programs that incorporate career and academic planning. They guide advising processes throughout the school.</p>
+        <p>Counselors are the <em>quarterbacks</em> — they know the playbook best and they coordinate the rest of the team.</p>
+        <h3>What it can look like</h3>
+        <ul class="clean">
+          <li>Supporting educators in their efforts to advise students throughout the year</li>
+          <li>Pushing into classrooms to deliver academic and career planning content directly</li>
+          <li>Coordinating with parents and families to support students in academic and career planning</li>
+          <li>Serving as the school's lead on Scope &amp; Sequence implementation</li>
+        </ul>
+      </div>
+      <div class="pillar-detail" id="pillar-core">
+        <h4>Core &amp; Elective Courses</h4>
+        <p>Educators in core and elective courses can play a role in delivering career exploration content by explicitly naming how certain topics or skills relate to real-world careers.</p>
+        <p>This is the most <em>scalable</em> pillar. Every English teacher mentioning that journalists, lawyers, marketing professionals, and screenwriters all use writing skills — that's career exploration happening 180 days a year.</p>
+        <h3>What it can look like</h3>
+        <ul class="clean">
+          <li>Routinely (weekly or monthly) integrating career content within course curricula</li>
+          <li>Incorporating Essential Skills like goal-setting and communication into regular coursework</li>
+          <li>Making the "why does this matter for life beyond school?" question explicit in every unit</li>
+          <li>Using Futuriti for one assignment per semester</li>
+        </ul>
+      </div>
+      <div class="pillar-detail" id="pillar-cte">
+        <h4>CTE Courses</h4>
+        <p>CTE coursework naturally incorporates career content. It can also reinforce cross-curricular connections so students see the relationship between CTE and academic subjects.</p>
+        <p>CTE has been doing this work for decades — but its impact has often been confined to "CTE kids." The Scope &amp; Sequence asks CTE programs to <em>extend their reach</em>.</p>
+        <h3>What it can look like</h3>
+        <ul class="clean">
+          <li>Leveraging extracurricular opportunities like CTSOs (DECA, FBLA, SkillsUSA, FFA, HOSA)</li>
+          <li>Facilitating work-based learning that helps students explore careers and build social capital</li>
+          <li>Connecting CTE pathways to academic subjects so students see the full picture</li>
+          <li>Hosting "CTE for everyone" events that bring non-CTE students into the program for a day</li>
+        </ul>
+      </div>
+      <h2>The <em>compounding</em> effect</h2>
+      <p>None of these four pillars can deliver the Scope &amp; Sequence alone. But together, they create something powerful: a school where postsecondary advising isn't a destination, it's the air students breathe. Career connections in 1st period English. ATC visits coordinated by CTE. A counselor pushing in for a Net Price Calculator lesson in 10th-grade Algebra II. A signing day in May that celebrates the apprentice as loudly as the four-year college recruit.</p>
+      <p>That kind of school doesn't happen by accident. It happens because each pillar takes its piece — and trusts the others to take theirs.</p>
+      <div class="quiz" data-quiz="q5">
+        <div class="quiz-header">◆ Knowledge Check · 05</div>
+        <div class="quiz-question">A 10th-grade English teacher mentions during a Romeo &amp; Juliet unit how legal careers analyze conflicting evidence. Which advising system is this?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false">Schoolwide Culture</button>
+          <button class="quiz-option" data-correct="false">School Counseling</button>
+          <button class="quiz-option" data-correct="true">Core &amp; Elective Courses</button>
+          <button class="quiz-option" data-correct="false">CTE Courses</button>
+        </div>
+        <div class="quiz-feedback"><strong>Correct! ✓</strong> This is core &amp; elective course delivery — a teacher in a non-CTE class connecting subject content to real-world careers. Small moments like this, repeated across a school, make advising the air students breathe.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(5)">← Back</button>
+        <button class="btn btn-primary" onclick="completeAndAdvance(6)">Mark complete &amp; continue →</button>
+      </div>
+    </section>
+
+    <!-- Section 8: Design -->
+    <section class="section" data-section="7">
+      <div class="section-meta">Section 08 · Design</div>
+      <h1 class="section-title">Design <em>your</em> system.</h1>
+      <p class="lead">Now it's your turn. Use these four prompts to start sketching what postsecondary advising could look like at your school. Your responses save automatically — and they'll appear in your final action plan. ✏️</p>
+      <p>The questions below come directly from the Scope &amp; Sequence implementation guide. Don't try to answer them perfectly — answer them honestly. The goal isn't a polished document; it's a starting point for a real conversation at your school.</p>
+      <div class="design-grid">
+        <div class="design-card"><div class="design-card-q">Question 01</div><h4>Who are the stakeholders to involve?</h4><textarea data-key="design-who" placeholder="Counselors, principals, CTE teachers, ELA teachers, families, business partners, alumni, ATC liaisons..."></textarea></div>
+        <div class="design-card"><div class="design-card-q">Question 02</div><h4>What are the opportunities for growth?</h4><textarea data-key="design-what" placeholder="Where are the gaps across the four focus areas? What are we doing well that could go further?"></textarea></div>
+        <div class="design-card"><div class="design-card-q">Question 03</div><h4>When and where could advising occur?</h4><textarea data-key="design-when" placeholder="Advisory periods, homeroom, specific course units, after-school programming, family nights..."></textarea></div>
+        <div class="design-card"><div class="design-card-q">Question 04</div><h4>How will advising occur?</h4><textarea data-key="design-how" placeholder="What lessons, routines, partnerships, and tools will deliver this work?"></textarea></div>
+      </div>
+      <h3>Now pick your role for tailored implementation tips</h3>
+      <div class="role-select">
+        <div class="role-card" onclick="showRole(this,'admin')"><span class="role-card-emoji">🎓</span><h5>Administrator</h5><p>Principal, AP, district leader</p></div>
+        <div class="role-card" onclick="showRole(this,'counselor')"><span class="role-card-emoji">🧭</span><h5>Counselor</h5><p>School counselor, advising coach</p></div>
+        <div class="role-card" onclick="showRole(this,'teacher')"><span class="role-card-emoji">📚</span><h5>Core/Elective Teacher</h5><p>Any subject-area educator</p></div>
+        <div class="role-card" onclick="showRole(this,'cte')"><span class="role-card-emoji">🛠️</span><h5>CTE Instructor</h5><p>CTE pathway teacher, ATC staff</p></div>
+      </div>
+      <div class="role-tips" id="role-admin"><h4>Quick wins for <em>administrators</em></h4><ul>
+        <li><strong>Protect the time.</strong> Build at least one regular advisory block into the master schedule.</li>
+        <li><strong>Name an advising lead.</strong> A single point person to coordinate Scope &amp; Sequence implementation.</li>
+        <li><strong>Host a family launch event.</strong> Introduce families to Futuriti.org, the Game Plan Template, and the Scope &amp; Sequence in the first quarter.</li>
+        <li><strong>Honor all paths.</strong> Add a "Postsecondary Plans" celebration that recognizes 4-year, 2-year, technical, military, and apprenticeship plans equally.</li>
+        <li><strong>Make KEES visible.</strong> Students start earning KEES in 9th grade based on GPA. Communicate that early and often.</li>
+      </ul></div>
+      <div class="role-tips" id="role-counselor"><h4>Quick wins for <em>counselors</em></h4><ul>
+        <li><strong>Pick one grade band to start.</strong> Don't try to roll out 6–12 in year one. Pilot with one grade.</li>
+        <li><strong>Push into 2–3 classrooms a month.</strong> Co-teach a Scope &amp; Sequence lesson with a willing teacher.</li>
+        <li><strong>Make Futuriti the through-line.</strong> Use it consistently from middle school through 12th.</li>
+        <li><strong>Audit your ILP routine.</strong> Are students actually using the Game Plan Template? Make one specific change this year.</li>
+        <li><strong>Don't skip the 8th-grade transition.</strong> Get students to ATC tours, EPSO awareness, and KEES introduction before 9th grade.</li>
+      </ul></div>
+      <div class="role-tips" id="role-teacher"><h4>Quick wins for <em>core/elective teachers</em></h4><ul>
+        <li><strong>Add one career connection per unit.</strong> "Here's how a [career] uses what we're learning today" — 60 seconds, massive impact.</li>
+        <li><strong>Invite one guest per semester.</strong> A parent, alum, or community member from a career related to your subject.</li>
+        <li><strong>Embed an Essential Skill.</strong> Pick one — goal-setting, professional communication — and teach it explicitly.</li>
+        <li><strong>Use Futuriti for one assignment.</strong> Career research, wage comparisons, pathway exploration.</li>
+        <li><strong>Be an "ILP champion" in your room.</strong> Remind students to upload work to their Game Plan when it fits.</li>
+      </ul></div>
+      <div class="role-tips" id="role-cte"><h4>Quick wins for <em>CTE instructors</em></h4><ul>
+        <li><strong>Leverage your CTSO.</strong> DECA, FBLA, SkillsUSA, FFA, HOSA — these are built-in career exploration.</li>
+        <li><strong>Connect to academic teachers.</strong> Help core teachers see how their content shows up in your pathway.</li>
+        <li><strong>Push work-based learning hard.</strong> Internships, job shadows, and apprenticeships are 11th-grade Scope &amp; Sequence experiences.</li>
+        <li><strong>Make industry credentials visible.</strong> A credential of value can launch a career directly.</li>
+        <li><strong>Talk about the WorkReady Scholarship.</strong> Students paying for CTE dual credit need to know about it.</li>
+      </ul></div>
+      <div class="reflection">
+        <div class="reflection-label">✦ Reflection · Your first move</div>
+        <div class="reflection-prompt">What's the very first action you'll take in the next two weeks? Make it small and specific — one move you can actually do.</div>
+        <div class="reflection-instruction">Write at least 3 sentences. The more specific, the more likely it actually happens.</div>
+        <textarea data-key="first-move" placeholder="Example: 'Email the principal about adding 15 min of advisory to Wednesday schedule. Then meet with the 9th-grade ELA team about adding one career connection per unit. Then introduce families to Futuriti at the next parent night.' Small, specific, in motion."></textarea>
+        <div class="reflection-meta"><span class="reflection-saved" data-saved-for="first-move"></span><span class="reflection-counter" data-counter-for="first-move">0 / 3 sentences</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(6)">← Back</button>
+        <button class="btn btn-primary" data-gate-section="7" onclick="completeAndAdvance(7)">Mark complete &amp; continue →</button>
+        <span class="btn-gate-msg" data-gate-msg-section="7"></span>
+      </div>
+    </section>
+
+    <!-- Section 9: Wrap-up -->
+    <section class="section" data-section="8">
+      <div class="section-meta">Section 09 · Wrap-up</div>
+      <h1 class="section-title">You're <em>ready</em>.</h1>
+      <p class="lead">When the Scope &amp; Sequence becomes part of how your school operates, you're not just hitting the 60×30 goal — you're giving every Kentucky student a fair shot at the future they choose. 🌟</p>
+      <h2>What this work <em>makes possible</em></h2>
+      <ul class="clean">
+        <li><strong>Consistency in advising</strong> and an enhanced school-wide advising culture</li>
+        <li><strong>Graduates prepared</strong> to make informed and intentional decisions about their future</li>
+        <li><strong>Stronger alignment</strong> between K–12, workforce needs, and postsecondary expectations</li>
+        <li><strong>Meaningful, student-centered ILPs</strong> — not paperwork, but actual plans students own</li>
+      </ul>
+      <h2>Your <em>downloads</em></h2>
+      <p>You earned these. Both download instantly and are personalized with your name and responses.</p>
+      <div class="resource-list">
+        <a href="#" onclick="downloadCertificate();return false;" class="resource"><div class="resource-icon">🏆</div><div class="resource-text"><strong>Certificate of Completion</strong><span>Personalized certificate with your name — opens in new window, then save as PDF or print</span></div><div class="resource-arrow">DOWNLOAD →</div></a>
+        <a href="#" onclick="downloadActionPlan();return false;" class="resource"><div class="resource-icon">📄</div><div class="resource-text"><strong>Your Personalized Action Plan</strong><span>Compiled from your reflections — yours to keep, share, and act on</span></div><div class="resource-arrow">DOWNLOAD →</div></a>
+      </div>
+      <h2>Resources to <em>keep going</em></h2>
+      <div class="resource-list">
+        <a href="https://www.futuriti.org" target="_blank" rel="noopener" class="resource"><div class="resource-icon">🧭</div><div class="resource-text"><strong>Futuriti.org</strong><span>700+ KY careers, Net Price Calculator, college map, in-demand jobs by region</span></div><div class="resource-arrow">OPEN →</div></a>
+        <a href="https://bit.ly/4vDrCxW" target="_blank" rel="noopener" class="resource"><div class="resource-icon">📋</div><div class="resource-text"><strong>Student Game Plan Template</strong><span>The ILP companion — five tabs that tie the Scope &amp; Sequence together</span></div><div class="resource-arrow">OPEN →</div></a>
+        <a href="https://bit.ly/41yxw5K" target="_blank" rel="noopener" class="resource"><div class="resource-icon">🛠️</div><div class="resource-text"><strong>Design Your Postsecondary Advising System</strong><span>Extended planning workbook for your team</span></div><div class="resource-arrow">OPEN →</div></a>
+        <a href="mailto:mitzi.holland@ky.gov" class="resource"><div class="resource-icon">✉️</div><div class="resource-text"><strong>Questions? Reach the Kentucky Advising Academy</strong><span>Mitzi Holland · Director, KAA · mitzi.holland@ky.gov</span></div><div class="resource-arrow">EMAIL →</div></a>
+      </div>
+      <div class="completion-badge" id="completionBadge">
+        <div class="completion-mark">✓</div>
+        <div class="completion-name" id="completionName"></div>
+        <h2>Training <em>complete</em></h2>
+        <p>Thank you for investing in this work. The students of Kentucky are better off because of educators who show up like you do. 💜</p>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(7)">← Back</button>
+        <button class="btn btn-cert" onclick="downloadCertificate()">🏆 Download certificate</button>
+        <button class="btn btn-download" onclick="downloadActionPlan()">⬇ Download action plan</button>
+        <button class="btn btn-primary" onclick="completeAndAdvance(8)">Mark training complete</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="save-indicator" id="saveIndicator">✓ Saved</div>
+
+<script>
+const sections = [
+  { id: 0, short: 'The Why' },
+  { id: 1, short: 'Framework' },
+  { id: 2, short: 'Focus Areas' },
+  { id: 3, short: 'Grade Detail' },
+  { id: 4, short: 'Futuriti' },
+  { id: 5, short: 'Game Plan' },
+  { id: 6, short: 'Whole-School' },
+  { id: 7, short: 'Design' },
+  { id: 8, short: 'Wrap-up' }
+];
+
+// Sections that require reflection completion before advancing
+const reflectionGates = {
+  0: ['intent'],
+  2: ['focus-areas-assessment'],
+  4: ['futuriti-use'],
+  5: ['ilp-reality'],
+  7: ['first-move']
+};
+
+let state = {
+  completed: [], current: 0, reflections: {}, quizzes: {},
+  role: null, pillar: null, name: '', org: '',
+  started: false, completedDate: null
+};
+
+function countSentences(text) {
+  if (!text) return 0;
+  const trimmed = text.trim();
+  if (!trimmed) return 0;
+  const parts = trimmed
+    .split(/(?<=[.!?])\s+|\n+/)
+    .map(s => s.trim())
+    .filter(s => s.length > 0 && /[a-zA-Z0-9]/.test(s));
+  return parts.length;
+}
+
+async function loadState() {
+  try {
+    const saved = await window.storage.get('kpa_training_state_v4');
+    if (saved && saved.value) state = { ...state, ...JSON.parse(saved.value) };
+  } catch (e) {}
+  applyState();
+}
+
+async function saveState() {
+  try {
+    await window.storage.set('kpa_training_state_v4', JSON.stringify(state));
+    showSaveIndicator();
+  } catch (e) { console.error('Save failed:', e); }
+}
+
+function showSaveIndicator() {
+  const ind = document.getElementById('saveIndicator');
+  ind.classList.add('show');
+  clearTimeout(window._saveTimer);
+  window._saveTimer = setTimeout(() => ind.classList.remove('show'), 1500);
+}
+
+function applyState() {
+  if (state.started && state.name) {
+    document.getElementById('nameGate').classList.add('hidden');
+    document.getElementById('userBadge').classList.add('show');
+    document.getElementById('userBadgeName').textContent = state.name;
+    document.getElementById('completionName').textContent = state.name;
+  } else {
+    if (state.name) document.getElementById('userNameInput').value = state.name;
+    if (state.org) document.getElementById('userOrgInput').value = state.org;
+    validateName();
+  }
+  document.querySelectorAll('textarea[data-key]').forEach(t => {
+    const key = t.dataset.key;
+    if (state.reflections[key]) {
+      t.value = state.reflections[key];
+      const indicator = document.querySelector('[data-saved-for="' + key + '"]');
+      if (indicator) indicator.textContent = '✓ Saved';
+      updateCounter(t);
+    }
+  });
+  if (state.role) {
+    const card = document.querySelector('.role-card[onclick*="\'' + state.role + '\'"]');
+    if (card) showRole(card, state.role, true);
+  }
+  Object.keys(state.quizzes || {}).forEach(qid => {
+    const quiz = document.querySelector('[data-quiz="' + qid + '"]');
+    if (!quiz) return;
+    const answer = state.quizzes[qid];
+    quiz.querySelectorAll('.quiz-option').forEach(o => {
+      o.disabled = true;
+      if (o.dataset.correct === 'true') o.classList.add('correct');
+      if (o.textContent.trim() === answer && o.dataset.correct !== 'true') o.classList.add('incorrect');
+    });
+    quiz.querySelector('.quiz-feedback').classList.add('show');
+  });
+  renderNav();
+  updateProgress();
+  updateAllGates();
+  if (state.started) goToSection(state.current, true);
+}
+
+function validateName() {
+  const name = document.getElementById('userNameInput').value.trim();
+  document.getElementById('startBtn').disabled = name.length < 2;
+}
+
+function startTraining() {
+  const name = document.getElementById('userNameInput').value.trim();
+  const org = document.getElementById('userOrgInput').value.trim();
+  if (name.length < 2) return;
+  state.name = name;
+  state.org = org;
+  state.started = true;
+  document.getElementById('nameGate').classList.add('hidden');
+  document.getElementById('userBadge').classList.add('show');
+  document.getElementById('userBadgeName').textContent = name;
+  document.getElementById('completionName').textContent = name;
+  saveState();
+}
+
+function renderNav() {
+  const container = document.getElementById('navItems');
+  container.innerHTML = sections.map(s => {
+    const isCompleted = state.completed.includes(s.id);
+    const isActive = state.current === s.id;
+    return '<div class="nav-item ' + (isActive ? 'active' : '') + ' ' + (isCompleted ? 'completed' : '') + '" onclick="goToSection(' + s.id + ')">' +
+      '<div class="nav-num"><span>' + String(s.id + 1).padStart(2, '0') + '</span></div>' +
+      '<div class="nav-text">' + s.short + '</div></div>';
+  }).join('');
+}
+
+function goToSection(idx, skipSave) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelector('.section[data-section="' + idx + '"]').classList.add('active');
+  state.current = idx;
+  renderNav();
+  updateAllGates();
+  if (!skipSave) saveState();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function checkGate(sectionId) {
+  const required = reflectionGates[sectionId];
+  if (!required) return { pass: true };
+  for (const key of required) {
+    const text = state.reflections[key] || '';
+    const count = countSentences(text);
+    if (count < 3) return { pass: false, key, count };
+  }
+  return { pass: true };
+}
+
+function updateAllGates() {
+  Object.keys(reflectionGates).forEach(sectionId => {
+    const id = parseInt(sectionId);
+    const gate = checkGate(id);
+    const btn = document.querySelector('[data-gate-section="' + id + '"]');
+    const msg = document.querySelector('[data-gate-msg-section="' + id + '"]');
+    if (!btn) return;
+    if (gate.pass) {
+      btn.disabled = false;
+      if (msg) msg.textContent = '';
+    } else {
+      btn.disabled = true;
+      const remaining = 3 - gate.count;
+      if (msg) msg.textContent = 'Write ' + remaining + ' more sentence' + (remaining === 1 ? '' : 's') + ' to continue';
+    }
+  });
+}
+
+function completeAndAdvance(idx) {
+  const gate = checkGate(idx);
+  if (!gate.pass) {
+    const ta = document.querySelector('textarea[data-key="' + gate.key + '"]');
+    if (ta) { ta.focus(); ta.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    return;
+  }
+  if (!state.completed.includes(idx)) state.completed.push(idx);
+  updateProgress();
+  saveState();
+  if (idx < sections.length - 1) {
+    goToSection(idx + 1);
+  } else {
+    if (!state.completedDate) {
+      state.completedDate = new Date().toISOString();
+      saveState();
+    }
+    renderNav();
+    const badge = document.getElementById('completionBadge');
+    if (badge) {
+      badge.style.transform = 'scale(1.02)';
+      setTimeout(() => badge.style.transform = '', 400);
+    }
+  }
+}
+
+function updateProgress() {
+  const pct = Math.round((state.completed.length / sections.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = pct + '% complete';
+}
+
+function updateCounter(textarea) {
+  const key = textarea.dataset.key;
+  const counter = document.querySelector('[data-counter-for="' + key + '"]');
+  if (!counter) return;
+  const count = countSentences(textarea.value);
+  counter.textContent = count + ' / 3 sentences' + (count >= 3 ? ' ✓' : '');
+  counter.classList.remove('met', 'unmet');
+  if (count >= 3) counter.classList.add('met');
+  else if (count > 0) counter.classList.add('unmet');
+}
+
+document.querySelectorAll('textarea[data-key]').forEach(t => {
+  let timer;
+  t.addEventListener('input', () => {
+    clearTimeout(timer);
+    const indicator = document.querySelector('[data-saved-for="' + t.dataset.key + '"]');
+    if (indicator) indicator.textContent = 'Saving...';
+    updateCounter(t);
+    timer = setTimeout(() => {
+      state.reflections[t.dataset.key] = t.value;
+      saveState();
+      if (indicator) indicator.textContent = '✓ Saved';
+      updateAllGates();
+    }, 600);
+  });
+});
+
+document.querySelectorAll('.quiz').forEach(quiz => {
+  const qid = quiz.dataset.quiz;
+  quiz.querySelectorAll('.quiz-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (opt.disabled) return;
+      const isCorrect = opt.dataset.correct === 'true';
+      quiz.querySelectorAll('.quiz-option').forEach(o => {
+        o.disabled = true;
+        if (o.dataset.correct === 'true') o.classList.add('correct');
+      });
+      if (!isCorrect) opt.classList.add('incorrect');
+      quiz.querySelector('.quiz-feedback').classList.add('show');
+      state.quizzes[qid] = opt.textContent.trim();
+      saveState();
+    });
+  });
+});
+
+function switchGradeBand(btn, band) {
+  document.querySelectorAll('.grade-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.grade-band-detail').forEach(d => d.classList.remove('active'));
+  document.querySelector('.grade-band-detail[data-band="' + band + '"]').classList.add('active');
+}
+
+function showPillar(card, key) {
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('selected'));
+  card.classList.add('selected');
+  document.querySelectorAll('.pillar-detail').forEach(d => d.classList.remove('show'));
+  document.getElementById('pillar-' + key).classList.add('show');
+  state.pillar = key;
+}
+
+function showRole(card, role, skipSave) {
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  document.querySelectorAll('.role-tips').forEach(t => t.classList.remove('show'));
+  document.getElementById('role-' + role).classList.add('show');
+  state.role = role;
+  if (!skipSave) saveState();
+}
+
+function downloadActionPlan() {
+  const r = state.reflections;
+  const role = state.role ? state.role.charAt(0).toUpperCase() + state.role.slice(1) : 'Not specified';
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const userLine = state.name ? state.name + (state.org ? ' · ' + state.org : '') : 'Participant';
+  const text = 'KAA POSTSECONDARY ADVISING SCOPE & SEQUENCE\nPERSONAL ACTION PLAN\n=========================================\nPrepared for: ' + userLine + '\nGenerated: ' + date + '\nRole: ' + role + '\n\n\nWHY I\'M HERE\n-----------------------------------------\n' + (r['intent'] || '(No response)') + '\n\n\nFOCUS AREAS ASSESSMENT\n-----------------------------------------\n' + (r['focus-areas-assessment'] || '(No response)') + '\n\n\nFUTURITI AT MY SCHOOL\n-----------------------------------------\n' + (r['futuriti-use'] || '(No response)') + '\n\n\nILP REALITY CHECK\n-----------------------------------------\n' + (r['ilp-reality'] || '(No response)') + '\n\n\nDESIGN PLAN\n-----------------------------------------\n\nWHO are the stakeholders to involve?\n' + (r['design-who'] || '(No response)') + '\n\nWHAT are the opportunities for growth?\n' + (r['design-what'] || '(No response)') + '\n\nWHEN and WHERE could advising occur?\n' + (r['design-when'] || '(No response)') + '\n\nHOW will advising occur?\n' + (r['design-how'] || '(No response)') + '\n\n\nMY FIRST MOVE (next 2 weeks)\n-----------------------------------------\n' + (r['first-move'] || '(No response)') + '\n\n\nKEY KENTUCKY RESOURCES\n-----------------------------------------\n* Futuriti.org — KY\'s career & college platform\n* Student Game Plan Template — bit.ly/4vDrCxW\n* Design Your Advising System — bit.ly/41yxw5K\n* Kentucky Advising Academy — mitzi.holland@ky.gov\n\nKENTUCKY-SPECIFIC PROGRAMS TO KNOW\n* KEES Scholarship — earned starting 9th grade based on GPA\n* WorkReady Scholarship — pays CTE dual credit tuition\n* Dual Credit Scholarship — available 11th and 12th grade\n* EPSOs — Early Postsecondary Opportunities\n* ATCs — Area Technology Centers\n\n\nTHE 60×30 GOAL\n-----------------------------------------\nKentucky is working toward 60% educational attainment by 2030.\nWe\'re at 56.2% today. The Scope & Sequence is how we close\nthat gap — one student, one school, one plan at a time.\n\nYou\'re part of this work. Thank you.\n\n— Council on Postsecondary Education\n   Kentucky Advising Academy\n';
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const safeName = (state.name || 'participant').replace(/[^a-z0-9]/gi, '-');
+  a.download = 'KY-Advising-Action-Plan-' + safeName + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function downloadCertificate() {
+  const name = state.name || 'Participant';
+  const org = state.org || '';
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const certId = 'KAA-' + Date.now().toString(36).toUpperCase();
+  const certHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificate of Completion - ' + name + '</title><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Geist,system-ui,sans-serif;background:#f0f0f5;padding:40px 20px;min-height:100vh;display:flex;flex-direction:column;align-items:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{margin-bottom:24px;display:flex;gap:12px}.toolbar button{padding:12px 22px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;background:linear-gradient(135deg,#4f46e5,#a855f7);color:white;box-shadow:0 8px 24px rgba(79,70,229,.3)}.toolbar button.alt{background:white;color:#0f172a;border:1px solid rgba(15,23,42,.12);box-shadow:none}.certificate{width:100%;max-width:1100px;aspect-ratio:11/8.5;background:linear-gradient(135deg,#ffffff 0%,#faf5ff 100%);border-radius:24px;padding:56px 64px;box-shadow:0 30px 80px rgba(15,23,42,.15);position:relative;overflow:hidden;display:flex;flex-direction:column}.certificate::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7,#fb7185)}.certificate::after{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,.12) 0%,transparent 70%);pointer-events:none}.cert-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;position:relative;z-index:1}.cert-brand{display:flex;align-items:center;gap:14px}.cert-brand-mark{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#4f46e5,#a855f7);display:grid;place-items:center;color:white;font-family:"Instrument Serif",serif;font-style:italic;font-size:32px;box-shadow:0 8px 20px rgba(79,70,229,.35)}.cert-brand-text strong{display:block;font-size:15px;color:#0f172a;font-weight:600;line-height:1.2}.cert-brand-text span{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.1em;color:#475569;font-weight:500;text-transform:uppercase}.cert-id{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.1em;color:#94a3b8;text-align:right;line-height:1.5}.cert-id strong{color:#475569;display:block;margin-bottom:2px;font-size:9px;letter-spacing:.15em;text-transform:uppercase}.cert-body{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;padding:20px 0}.cert-tag{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7c3aed;margin-bottom:16px;font-weight:600}.cert-h1{font-family:"Instrument Serif",serif;font-size:56px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:20px}.cert-h1 em{font-style:italic;background:linear-gradient(135deg,#4f46e5,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.cert-presented{font-size:14px;color:#475569;margin-bottom:18px;letter-spacing:.02em;font-weight:500}.cert-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:72px;line-height:1;letter-spacing:-.025em;color:#0f172a;margin-bottom:10px;padding:0 40px}.cert-org{font-family:Geist,sans-serif;font-size:15px;color:#475569;margin-bottom:24px;font-weight:500}.cert-divider{width:80px;height:2px;background:linear-gradient(90deg,transparent,#a855f7,transparent);margin:0 auto 24px}.cert-statement{font-size:15px;line-height:1.6;color:#334155;max-width:680px;margin:0 auto 24px}.cert-statement strong{color:#0f172a}.cert-footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:24px;border-top:1px solid rgba(15,23,42,.08);position:relative;z-index:1}.cert-sig{text-align:left;flex:1;max-width:240px}.cert-sig-name{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;color:#4f46e5;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid rgba(15,23,42,.15)}.cert-sig-title{font-family:"Geist Mono",monospace;font-size:9px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600;line-height:1.4}.cert-date{text-align:right;flex:1;max-width:240px}.cert-date-line{font-family:"Instrument Serif",serif;font-size:22px;color:#0f172a;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid rgba(15,23,42,.15)}.cert-date-label{font-family:"Geist Mono",monospace;font-size:9px;letter-spacing:.15em;color:#475569;text-transform:uppercase;font-weight:600}@media print{body{padding:0;background:white}.toolbar{display:none}.certificate{box-shadow:none;border-radius:0;max-width:none;width:100vw;min-height:auto}@page{size:landscape;margin:0}}</style></head><body><div class="toolbar"><button onclick="window.print()">🖨️ Print / Save as PDF</button><button class="alt" onclick="window.close()">Close</button></div><div class="certificate"><div class="cert-header"><div class="cert-brand"><div class="cert-brand-mark">K</div><div class="cert-brand-text"><strong>Kentucky Advising Academy</strong><span>KAA × Council on Postsecondary Education</span></div></div><div class="cert-id"><strong>Certificate ID</strong>' + certId + '</div></div><div class="cert-body"><div class="cert-tag">★ Certificate of Completion ★</div><div class="cert-h1">KAA Postsecondary Advising <em>Scope &amp; Sequence</em></div><div class="cert-presented">This certificate is proudly presented to</div><div class="cert-name">' + name + '</div>' + (org ? '<div class="cert-org">' + org + '</div>' : '<div class="cert-org"></div>') + '<div class="cert-divider"></div><div class="cert-statement">For successfully completing the <strong>KAA Postsecondary Advising Scope &amp; Sequence</strong> interactive training — demonstrating an understanding of Kentucky\'s 6–12 advising framework, the four focus areas, and the whole-school approach that supports every Kentucky student in reaching their postsecondary goals.</div></div><div class="cert-footer"><div class="cert-sig"><div class="cert-sig-name">Mitzi Holland</div><div class="cert-sig-title">Director · Kentucky Advising Academy</div></div><div class="cert-date"><div class="cert-date-line">' + date + '</div><div class="cert-date-label">Date Completed</div></div></div></div></body></html>';
+  const certWindow = window.open('', '_blank');
+  if (certWindow) {
+    certWindow.document.write(certHtml);
+    certWindow.document.close();
+  } else {
+    alert('Please allow pop-ups to download your certificate.');
+  }
+}
+
+async function resetProgress() {
+  if (!confirm('Reset all progress, reflections, and name? This cannot be undone.')) return;
+  state = { completed: [], current: 0, reflections: {}, quizzes: {}, role: null, pillar: null, name: '', org: '', started: false, completedDate: null };
+  try { await window.storage.delete('kpa_training_state_v4'); } catch (e) {}
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('.quiz-option').forEach(o => {
+    o.disabled = false;
+    o.classList.remove('correct', 'incorrect');
+  });
+  document.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
+  document.querySelectorAll('.role-card, .pillar').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.role-tips, .pillar-detail').forEach(d => d.classList.remove('show'));
+  document.getElementById('userNameInput').value = '';
+  document.getElementById('userOrgInput').value = '';
+  document.getElementById('nameGate').classList.remove('hidden');
+  document.getElementById('userBadge').classList.remove('show');
+  validateName();
+  renderNav();
+  updateProgress();
+  goToSection(0);
+}
+
+loadState();
+</script>
+
+</body>
+</html>
