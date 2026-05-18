@@ -283,6 +283,40 @@ ul.clean li strong{color:var(--text)}
 @media (max-width:900px){.layout{grid-template-columns:1fr;padding:0 20px;gap:0}.sidenav{position:relative;top:0;max-height:none;padding:16px 0;overflow-x:auto;display:flex;gap:6px;border-bottom:1px solid var(--border)}.sidenav-label{display:none}.nav-item{flex-shrink:0}.nav-item.active::before{display:none}.nav-text{white-space:nowrap}.domain-grid,.stat-grid,.role-select,.design-grid,.futuriti-stats,.audience-grid{grid-template-columns:1fr}.pillars{grid-template-columns:repeat(2,1fr)}.calendar-grid,.gameplan-tabs{grid-template-columns:repeat(2,1fr)}.grade-tabs{grid-template-columns:repeat(4,1fr)}h1.section-title{font-size:48px}.lead{font-size:18px}.topbar-inner{padding:12px 20px;gap:12px}.progress-text,.user-badge{display:none}.brand-text small{display:none}main{padding:32px 0 100px}.quiz,.grade-content,.role-tips,.futuriti-hero,.name-gate-card{padding:28px 24px}.quiz-question{font-size:22px}.completion-badge h2{font-size:40px}}
 .save-indicator{position:fixed;bottom:28px;right:28px;padding:12px 20px;background:linear-gradient(135deg,var(--emerald),#059669);color:white;border-radius:100px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;box-shadow:0 12px 32px rgba(16,185,129,.4);opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:1000}
 .save-indicator.show{opacity:1;transform:translateY(0)}
+/* ============ ADVISING SNAPSHOT ============ */
+.snapshot-intro{padding:24px 28px;background:linear-gradient(135deg,var(--tint-amber),#fef3c7);border:1px solid rgba(245,158,11,.25);border-radius:18px;margin-bottom:32px}
+.snapshot-intro-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#92400e;font-weight:700;margin-bottom:8px}
+.snapshot-intro p{margin:0 0 10px;color:var(--text);font-size:15px;line-height:1.6}
+.snapshot-intro p:last-child{margin-bottom:0}
+.snapshot-progress{display:flex;align-items:center;gap:12px;margin:24px 0 16px;padding:16px 22px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm)}
+.snapshot-progress-text{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:600;flex-shrink:0}
+.snapshot-progress-text strong{color:var(--brand-deep);font-size:13px;font-family:var(--body);letter-spacing:0;text-transform:none}
+.snapshot-progress-bar{flex:1;height:8px;background:var(--surface-3);border-radius:100px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(15,23,42,.05)}
+.snapshot-progress-fill{height:100%;background:linear-gradient(90deg,#fb7185,#f59e0b,#10b981);width:0%;transition:width .5s cubic-bezier(.16,1,.3,1);border-radius:100px}
+.snapshot-category{margin:32px 0;padding:32px 30px;background:var(--surface);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow-sm)}
+.snapshot-category-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.snapshot-category-emoji{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex-shrink:0}
+.snapshot-category[data-cat="culture"] .snapshot-category-emoji{background:linear-gradient(135deg,var(--brand-2),var(--brand-3));box-shadow:0 6px 16px rgba(124,58,237,.25)}
+.snapshot-category[data-cat="career"] .snapshot-category-emoji{background:linear-gradient(135deg,var(--coral),#f43f5e);box-shadow:0 6px 16px rgba(251,113,133,.25)}
+.snapshot-category[data-cat="postsec"] .snapshot-category-emoji{background:linear-gradient(135deg,var(--brand-1),var(--brand-2));box-shadow:0 6px 16px rgba(79,70,229,.25)}
+.snapshot-category[data-cat="finance"] .snapshot-category-emoji{background:linear-gradient(135deg,var(--amber),#ea580c);box-shadow:0 6px 16px rgba(245,158,11,.25)}
+.snapshot-category[data-cat="skills"] .snapshot-category-emoji{background:linear-gradient(135deg,var(--emerald),#059669);box-shadow:0 6px 16px rgba(16,185,129,.25)}
+.snapshot-category-title{font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:-.02em;color:var(--text)}
+.snapshot-category-count{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:.08em;font-weight:600;text-transform:uppercase}
+.snapshot-category-count.complete{color:var(--emerald)}
+.snapshot-question{padding:18px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.snapshot-question:last-child{border-bottom:none;padding-bottom:0}
+.snapshot-question-text{font-size:14.5px;line-height:1.55;color:var(--text)}
+.rating-pills{display:flex;gap:6px;flex-shrink:0}
+.rating-pill{padding:9px 16px;border:1.5px solid var(--border-strong);border-radius:100px;background:var(--surface);font-family:var(--body);font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;white-space:nowrap;letter-spacing:-.005em}
+.rating-pill:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.rating-pill[data-rating="1"]:hover{border-color:var(--coral);color:var(--coral-deep);background:var(--tint-rose)}
+.rating-pill[data-rating="2"]:hover{border-color:var(--amber);color:#92400e;background:var(--tint-amber)}
+.rating-pill[data-rating="3"]:hover{border-color:var(--emerald);color:#047857;background:var(--tint-emerald)}
+.rating-pill.selected[data-rating="1"]{background:linear-gradient(135deg,var(--coral),var(--coral-deep));border-color:var(--coral-deep);color:white;box-shadow:0 4px 12px rgba(251,113,133,.35)}
+.rating-pill.selected[data-rating="2"]{background:linear-gradient(135deg,var(--amber),#ea580c);border-color:#ea580c;color:white;box-shadow:0 4px 12px rgba(245,158,11,.35)}
+.rating-pill.selected[data-rating="3"]{background:linear-gradient(135deg,var(--emerald),#059669);border-color:#059669;color:white;box-shadow:0 4px 12px rgba(16,185,129,.35)}
+@media (max-width:680px){.snapshot-question{grid-template-columns:1fr;gap:12px}.rating-pills{justify-content:flex-start}.rating-pill{flex:1;text-align:center;padding:10px 8px}}
 </style>
 </head>
 <body>
@@ -327,22 +361,23 @@ ul.clean li strong{color:var(--text)}
     <section class="section active" data-section="0">
       <div class="section-meta">Section 01 · The Why</div>
       <h1 class="section-title">Why advising <em>matters</em>.</h1>
-      <p class="lead">Before we get into <em>what</em> the Scope &amp; Sequence is, we have to talk about <em>why</em> it exists. Kentucky has a workforce challenge — and structured advising is how we solve it. ✨</p>
+      <p class="lead">Every Kentucky school is accountable for <strong>Postsecondary Readiness (PSR)</strong> — and the work of the Scope &amp; Sequence is a clear path to improving it. When schools and districts get this right, students leave high school with real plans, real options, and real outcomes. ✨</p>
       <div class="stat-grid">
-        <div class="stat"><span class="stat-emoji">📊</span><div class="stat-num">56<sup>%</sup></div><div class="stat-label">Current Kentucky educational attainment rate</div></div>
-        <div class="stat"><span class="stat-emoji">🎯</span><div class="stat-num"><em>60</em><sup>%</sup></div><div class="stat-label">Our 60×30 goal — postsecondary credential by 2030</div></div>
+        <div class="stat"><span class="stat-emoji">📊</span><div class="stat-num"><em>PSR</em></div><div class="stat-label">A key accountability indicator for every Kentucky school</div></div>
+        <div class="stat"><span class="stat-emoji">🎯</span><div class="stat-num"><em>60</em><sup>%</sup></div><div class="stat-label">Kentucky's statewide 60×30 goal — postsecondary credential by 2030</div></div>
         <div class="stat"><span class="stat-emoji">💰</span><div class="stat-num">$1<em>M</em></div><div class="stat-label">Lifetime earnings advantage of a bachelor's degree in KY</div></div>
       </div>
       <h2>The <em>real</em> problem</h2>
       <p>Kentucky ranks 48th nationally in workforce participation. We have <strong>jobs going unfilled</strong> in growing industries like aerospace, advanced manufacturing, and healthcare — and we have <strong>students leaving high school without a clear plan</strong> for how to access them. The gap between those two facts is what advising closes.</p>
       <p>The challenge isn't a lack of opportunities. The challenge is that <em>too many Kentucky students never learn those opportunities exist</em>, never see themselves in them, and never get a structured path to reach them. That's not a student problem. That's a <strong>systems problem</strong> — and systems problems require systemic solutions.</p>
+      <p>That's where Postsecondary Readiness comes in. PSR is how Kentucky measures whether schools are actually preparing students for what comes next — and it's an accountability indicator your district sees every year. <strong>The Postsecondary Advising Scope &amp; Sequence is a clear path forward for schools and districts to improve PSR outcomes</strong> — by giving every student structured, consistent advising that builds toward real readiness.</p>
       <h2>Why advising as <em>moments</em> doesn't work</h2>
       <p>Here's what advising looks like in too many Kentucky schools today:</p>
       <ul class="clean">
         <li>A senior shows up at their counselor's office in October to talk about FAFSA. It's their first real conversation about financial aid in four years of high school.</li>
         <li>An 8th grader picks high school courses based on what their friends are taking, not on a CTE pathway connected to their interests.</li>
         <li>A 10th grader takes the ACT cold, with no preparation or context for why it matters.</li>
-        <li>A junior with strong grades doesn't apply for KEES money she's already earning, because no one ever explained how the program works.</li>
+        <li>A junior with strong grades doesn't realize she's already earning KEES money, because no one ever explained how the program works.</li>
         <li>A capable student decides college "isn't for them" — without ever exploring apprenticeships, technical credentials, or community college pathways that might actually be a perfect fit.</li>
       </ul>
       <p>None of these students lacked talent or motivation. They lacked <strong>structured guidance, delivered consistently, over time</strong>. When advising happens in isolated moments — a single college fair, a rushed scheduling session, a senior-year scramble — students miss the cumulative effect of seeing how their education connects to their future. The result? Some students get great advising at home, from family members who know how the system works. Others don't. And the gap that creates is one of the largest predictors of postsecondary success in Kentucky.</p>
@@ -352,13 +387,13 @@ ul.clean li strong{color:var(--text)}
         <p><strong>Advising isn't an event. It's a system.</strong> When advising is structured — building progressively from middle school through 12th grade, woven into the school day, and reinforced by every adult in the building — outcomes change. Students who experience high-quality advising are significantly more likely to pursue and complete postsecondary education.</p>
       </div>
       <h2>What <em>structured advising</em> changes</h2>
-      <p>Imagine the same students in a school where the Scope &amp; Sequence is the operating system:</p>
+      <p>Imagine the same students in a school where the Postsecondary Advising Scope &amp; Sequence is the operating system:</p>
       <ul class="clean">
         <li><strong>The 6th grader</strong> takes a career interest survey, builds an initial ILP, and starts thinking about what work she might enjoy as an adult — long before high school course selection forces a real decision.</li>
         <li><strong>The 8th grader</strong> tours the local Area Technology Center, learns about EPSOs, and meets with a counselor to plan 9th-grade courses aligned to a CTE pathway he's actually interested in.</li>
         <li><strong>The 10th grader</strong> uses Futuriti's Net Price Calculator to see what college actually costs in Kentucky and starts a free postsecondary readiness exam plan.</li>
         <li><strong>The 11th grader</strong> builds a senior-year financial aid timeline in October — not December — and has time to apply for scholarships before deadlines.</li>
-        <li><strong>The 12th grader</strong> files the FAFSA on time, applies to her postsecondary path with a network she's been building since 9th grade, and graduates with an actual plan rather than a vague hope.</li>
+        <li><strong>The 12th grader</strong> files the FAFSA on time, applies to her postsecondary path with a network she's been building since 6th grade, and graduates with an actual plan rather than a vague hope.</li>
       </ul>
       <p>Same students. Different outcomes. The difference isn't talent. It's <strong>structure</strong>.</p>
       <div class="reflection">
@@ -381,10 +416,10 @@ ul.clean li strong{color:var(--text)}
       <p class="lead">The Postsecondary Advising Scope &amp; Sequence is a structured progression of advising experiences that builds knowledge and confidence year after year. It's not a curriculum — it's a flexible framework. 🗺️</p>
       <h2>What a <em>scope &amp; sequence</em> actually is</h2>
       <p>If the term "scope &amp; sequence" sounds like education jargon, that's because it is — but the concept is simple. <strong>Scope</strong> is what gets covered. <strong>Sequence</strong> is the order in which it's covered. Together, they answer the question: <em>"What should every student learn, and when should they learn it?"</em></p>
-      <p>Most academic subjects have one. Math has a scope &amp; sequence — you learn fractions before algebra, algebra before calculus. ELA has one. Even PE has one. But for years, postsecondary advising in Kentucky did <em>not</em>. Each school made it up. Each counselor improvised. The result was wildly inconsistent advising across the state — some students got incredible support, others got almost none.</p>
+      <p>Most academic subjects have one. Math has a scope &amp; sequence — you learn fractions before algebra, algebra before calculus. ELA has one. Even PE has one. But for years, postsecondary advising in Kentucky didn't have one. Counselors are trained, and some schools have built great systems on their own — but most schools were left to figure it out only if they had the time, capacity, and resources to do so. The result? Some students got incredible support. Others got almost none.</p>
       <p>The KAA Scope &amp; Sequence changes that. It gives every Kentucky educator a shared answer to "what should advising look like in 6th grade? in 9th? in 11th?" — while leaving room for each school to deliver it in the way that works for their students, schedule, and culture.</p>
       <h2>Two <em>guides</em>, one framework</h2>
-      <p><strong>The Middle School (6–8) guide</strong> is organized by a monthly advising calendar. Each month has a theme — Self-Discovery in September, Network in November, Dollars &amp; Cents in December, and so on. Within each month, learning experiences scale up by grade. A 6th grader does a basic financial literacy vocabulary lesson; a 7th grader plays the Game of Life; an 8th grader uses the Family Budgeting Calculator. Same theme, deeper engagement.</p>
+      <p><strong>The Middle School (6–8) guide</strong> offers a monthly advising calendar as <em>one suggested implementation</em> — schools can also use the <strong>grade-level matrix</strong> to organize the same content differently. Pick what fits your school's rhythm. With the monthly approach, each month has a theme — Self-Discovery in September, Network in November, Dollars &amp; Cents in December, and so on. Within each month, learning experiences scale up by grade. A 6th grader, for example, does a basic financial literacy vocabulary lesson; a 7th grader plays the Game of Life; an 8th grader uses the Family Budgeting Calculator. Same theme, deeper engagement.</p>
       <p><strong>The High School (9–12) guide</strong> is organized by five lesson plans per grade per year: one to revisit the career interest &amp; strength survey, plus one for each of the four focus areas. They can be delivered separately once per quarter, all in one day, or stretched over a week — schools choose what works. Each grade has a distinct phase: 9th is Investigation, 10th is Connection, 11th is Decision, and 12th is Action.</p>
       <h2>The <em>journey</em>, by phase</h2>
       <p>Each grade has a specific phase that builds on the last. Here's how students move from exploration to action:</p>
@@ -400,7 +435,7 @@ ul.clean li strong{color:var(--text)}
       <p>Notice the progression of verbs. <em>Explore</em> a wide world of possibilities. <em>Prepare</em> by connecting interests to options. <em>Apply</em> what you've learned to the next chapter. Then <em>investigate</em> high school opportunities, <em>connect</em> career and postsecondary plans, make <em>decisions</em>, and take <em>action</em>. By 12th grade, students aren't choosing a future — they're implementing one they've been building for seven years.</p>
       <h2>Why we <em>built</em> it this way</h2>
       <ul class="clean">
-        <li><strong>Consistency for every student.</strong> Same baseline of high-quality advising regardless of school, zip code, or which counselor a student happens to get</li>
+        <li><strong>Consistency for every student.</strong> Same baseline of high-quality advising regardless of school, zip code, or school staffing</li>
         <li><strong>Aligned with Kentucky Graduation Requirements</strong> and the Kentucky Academic Standards for Career Studies</li>
         <li><strong>Supports meaningful ILP completion.</strong> Every learning experience generates evidence that goes in a student's Individual Learning Plan</li>
         <li><strong>Designed for a whole-school approach.</strong> Advising isn't just the counselor's job — it's everyone's job</li>
@@ -420,7 +455,7 @@ ul.clean li strong{color:var(--text)}
           <button class="quiz-option" data-correct="true">11th grade — Application</button>
           <button class="quiz-option" data-correct="false">12th grade — Action</button>
         </div>
-        <div class="quiz-feedback"><strong>Correct! ✓</strong> 11th grade is the <em>Decision</em> phase. <em>Application</em> is actually 8th grade — when students apply what they've learned to high school planning.</div>
+        <div class="quiz-feedback"><strong class="quiz-feedback-status">Correct! ✓</strong> 11th grade is the <em>Decision</em> phase. <em>Application</em> is actually 8th grade — when students apply what they've learned to high school planning.</div>
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goToSection(0)">← Back</button>
@@ -433,7 +468,7 @@ ul.clean li strong{color:var(--text)}
       <div class="section-meta">Section 03 · Focus Areas</div>
       <h1 class="section-title">The four <em>focus areas</em>.</h1>
       <p class="lead">Every grade addresses these same four focus areas — what changes is the depth, complexity, and urgency. By the end of 12th grade, students have built well-rounded knowledge across all four. 🎯</p>
-      <p>These four focus areas aren't arbitrary. They emerged from research, employer feedback, and what Kentucky students actually need to succeed after high school. Together, they cover the <em>knowledge</em> (what's possible), the <em>logistics</em> (how to access it), the <em>finances</em> (how to pay for it), and the <em>skills</em> (how to thrive once you're there). Drop any one of them, and the system breaks down.</p>
+      <p>These four focus areas aren't arbitrary. They emerged from research, stakeholder feedback, and what Kentucky students actually need to succeed after high school. Together, they cover the <em>knowledge</em> (what's possible), the <em>logistics</em> (how to access it), the <em>finances</em> (how to pay for it), and the <em>skills</em> (how to thrive once you're there). Drop any one of them, and the system breaks down.</p>
       <div class="domain-grid">
         <div class="domain" data-color="coral"><div class="domain-emoji">💼</div><h4>Career Exploration</h4><p>Interest surveys, career clusters, occupations research, and connecting interests to career paths.</p><div class="domain-detail"><strong>Why it matters:</strong> Students can't aspire to careers they don't know exist. Career Exploration is the entry point — it's how students discover what work feels meaningful, and it provides the personal "why" that powers the rest of the journey.</div></div>
         <div class="domain" data-color="violet"><div class="domain-emoji">🎓</div><h4>Postsecondary Opportunities</h4><p>Degree types, postsecondary pathways, early college options (EPSOs), and application processes.</p><div class="domain-detail"><strong>Why it matters:</strong> "Postsecondary" is bigger than four-year college. This focus area teaches students that apprenticeships, technical credentials, two-year degrees, military pathways, and certifications are all legitimate options.</div></div>
@@ -476,7 +511,7 @@ ul.clean li strong{color:var(--text)}
           <button class="quiz-option" data-correct="true">Athletic Recruitment Planning</button>
           <button class="quiz-option" data-correct="false">Essential Skills</button>
         </div>
-        <div class="quiz-feedback"><strong>Correct! ✓</strong> The four focus areas are <em>Career Exploration, Postsecondary Opportunities, Financial Literacy,</em> and <em>Essential Skills</em>.</div>
+        <div class="quiz-feedback"><strong class="quiz-feedback-status">Correct! ✓</strong> The four focus areas are <em>Career Exploration, Postsecondary Opportunities, Financial Literacy,</em> and <em>Essential Skills</em>.</div>
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goToSection(1)">← Back</button>
@@ -561,7 +596,7 @@ ul.clean li strong{color:var(--text)}
       </div>
       <h2>Notice the <em>spiral</em></h2>
       <p>Look at all seven grades together and you'll see the same focus areas appearing again and again — but each time, deeper. A 6th grader takes a career interest survey to discover what jobs exist. A 12th grader retakes it as part of a final reflection on a journey that started six years earlier. A 6th grader maps three supportive adults. A 12th grader sends a networking email to a professional in their field. <em>Same skill. Different stakes.</em></p>
-      <p>This is what curriculum designers call a "spiral curriculum" — concepts revisited at increasing levels of complexity. It's how learning sticks. It's also how a student who got a weak career exploration lesson in 6th grade still gets four more chances to build that knowledge before graduation.</p>
+      <p>This is what designers call a "spiral design" — concepts revisited at increasing levels of complexity. It's how learning sticks. It's also how a student who got a weak career exploration lesson in 6th grade still gets four more chances to build that knowledge before graduation.</p>
       <div class="quiz" data-quiz="q3">
         <div class="quiz-header">◆ Knowledge Check · 03</div>
         <div class="quiz-question">In which grade do students complete the FAFSA application as part of the Scope &amp; Sequence?</div>
@@ -571,7 +606,7 @@ ul.clean li strong{color:var(--text)}
           <button class="quiz-option" data-correct="true">12th grade — Action</button>
           <button class="quiz-option" data-correct="false">Both 11th and 12th grade</button>
         </div>
-        <div class="quiz-feedback"><strong>Correct! ✓</strong> 12th grade is the Action phase, where students <em>file</em> the FAFSA. 11th graders build the <em>timeline</em>.</div>
+        <div class="quiz-feedback"><strong class="quiz-feedback-status">Correct! ✓</strong> 12th grade is the Action phase, where students <em>file</em> the FAFSA. 11th graders build the <em>timeline</em>.</div>
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goToSection(2)">← Back</button>
@@ -653,7 +688,7 @@ ul.clean li strong{color:var(--text)}
           <button class="quiz-option" data-correct="false">Path Explorer</button>
           <button class="quiz-option" data-correct="false">KY Career Hub</button>
         </div>
-        <div class="quiz-feedback"><strong>Correct! ✓</strong> <em>Future Finder</em> is the interactive portal at the heart of Futuriti.</div>
+        <div class="quiz-feedback"><strong class="quiz-feedback-status">Correct! ✓</strong> <em>Future Finder</em> is the interactive portal at the heart of Futuriti.</div>
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goToSection(3)">← Back</button>
@@ -682,7 +717,7 @@ ul.clean li strong{color:var(--text)}
       <div class="callout"><span class="callout-emoji">✨</span><div class="callout-label">Why this matters</div><p>Across every Scope &amp; Sequence lesson, students are creating evidence that uploads to a tab in the Student Game Plan. <strong>This is what makes ILPs meaningful.</strong> Without the Game Plan, lessons disappear into a folder. With it, students see their own progression — survey results that change, networks that grow, courses that build toward something specific.</p><p>By 12th grade, a student's Game Plan is a <em>document of who they're becoming</em> — not a form they had to fill out.</p></div>
       <h2>What's needed to make it <em>real</em></h2>
       <ul class="clean">
-        <li><strong>Time to use it.</strong> Students need dedicated time during the school day to update their Game Plan — 15 minutes once a month is enough.</li>
+        <li><strong>Time to use it.</strong> Students need dedicated time during the school day to update their Game Plan. Work with your leadership team to determine a monthly cadence that fits your school's schedule.</li>
         <li><strong>Adults who reference it.</strong> Counselors, advisors, and teachers should refer to the Game Plan in conversations with students.</li>
         <li><strong>Family awareness.</strong> The Game Plan is most powerful when families know it exists and can ask their student about it.</li>
       </ul>
@@ -776,7 +811,7 @@ ul.clean li strong{color:var(--text)}
           <button class="quiz-option" data-correct="true">Core &amp; Elective Courses</button>
           <button class="quiz-option" data-correct="false">CTE Courses</button>
         </div>
-        <div class="quiz-feedback"><strong>Correct! ✓</strong> This is core &amp; elective course delivery — a teacher in a non-CTE class connecting subject content to real-world careers. Small moments like this, repeated across a school, make advising the air students breathe.</div>
+        <div class="quiz-feedback"><strong class="quiz-feedback-status">Correct! ✓</strong> This is core &amp; elective course delivery — a teacher in a non-CTE class connecting subject content to real-world careers. Small moments like this, repeated across a school, make advising the air students breathe.</div>
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="goToSection(5)">← Back</button>
@@ -811,7 +846,6 @@ ul.clean li strong{color:var(--text)}
         <li><strong>Make KEES visible.</strong> Students start earning KEES in 9th grade based on GPA. Communicate that early and often.</li>
       </ul></div>
       <div class="role-tips" id="role-counselor"><h4>Quick wins for <em>counselors</em></h4><ul>
-        <li><strong>Pick one grade band to start.</strong> Don't try to roll out 6–12 in year one. Pilot with one grade.</li>
         <li><strong>Push into 2–3 classrooms a month.</strong> Co-teach a Scope &amp; Sequence lesson with a willing teacher.</li>
         <li><strong>Make Futuriti the through-line.</strong> Use it consistently from middle school through 12th.</li>
         <li><strong>Audit your ILP routine.</strong> Are students actually using the Game Plan Template? Make one specific change this year.</li>
@@ -845,11 +879,219 @@ ul.clean li strong{color:var(--text)}
       </div>
     </section>
 
-    <!-- Section 9: Wrap-up -->
+    <!-- Section 9: Advising Snapshot -->
     <section class="section" data-section="8">
-      <div class="section-meta">Section 09 · Wrap-up</div>
+      <div class="section-meta">Section 09 · Advising Snapshot</div>
+      <h1 class="section-title">An honest <em>snapshot</em>.</h1>
+      <p class="lead">Before you wrap up, take a moment to assess where your school stands today. This 18-question self-assessment mirrors the official KAA Advising Snapshot tool — and the results will appear on your downloadable action plan. 📋</p>
+
+      <div class="snapshot-intro">
+        <div class="snapshot-intro-label">★ How to use this</div>
+        <p>For each statement, rate where your school is right now using a 3-point scale: <strong>Limited</strong> (we're not really doing this), <strong>Emerging</strong> (we've started, but it's inconsistent), or <strong>Established</strong> (this is a regular, reliable part of how we operate).</p>
+        <p>Be honest. The point isn't to look good — the point is to see clearly where to focus next.</p>
+      </div>
+
+      <div class="snapshot-progress">
+        <div class="snapshot-progress-text"><strong id="snapshotCount">0</strong> of 18 questions answered</div>
+        <div class="snapshot-progress-bar"><div class="snapshot-progress-fill" id="snapshotProgressFill"></div></div>
+      </div>
+
+      <div class="snapshot-category" data-cat="culture">
+        <div class="snapshot-category-header">
+          <div class="snapshot-category-emoji">🏫</div>
+          <div class="snapshot-category-title">Postsecondary Advising Culture</div>
+          <div class="snapshot-category-count" data-cat-count="culture">0 / 7</div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Teachers and additional school staff are included in the advising process.</div>
+          <div class="rating-pills" data-snap-key="culture-1">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-1', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-1', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-1', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">There is a clear plan or system for postsecondary advising, including annual updates to the Individual Learning Plans (ILPs).</div>
+          <div class="rating-pills" data-snap-key="culture-2">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-2', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-2', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-2', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">ILPs are meaningfully connected to postsecondary advising.</div>
+          <div class="rating-pills" data-snap-key="culture-3">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-3', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-3', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-3', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">The postsecondary advising process is inclusive of all students.</div>
+          <div class="rating-pills" data-snap-key="culture-4">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-4', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-4', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-4', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">The district has aligned postsecondary advising strategies with partner organizations and institutions of higher education.</div>
+          <div class="rating-pills" data-snap-key="culture-5">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-5', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-5', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-5', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Bi-directional communication occurs between middle and high school counselors regarding transitioning to high school.</div>
+          <div class="rating-pills" data-snap-key="culture-6">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-6', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-6', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-6', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">The school administration publicly defines and commits to high-quality college and career advising for each student, across all achievement levels.</div>
+          <div class="rating-pills" data-snap-key="culture-7">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('culture-7', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('culture-7', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('culture-7', 3)">Established</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="snapshot-category" data-cat="career">
+        <div class="snapshot-category-header">
+          <div class="snapshot-category-emoji">💼</div>
+          <div class="snapshot-category-title">Career Exploration</div>
+          <div class="snapshot-category-count" data-cat-count="career">0 / 2</div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Students regularly meet with a counselor or advisor to discuss career exploration opportunities, and their interests and skills.</div>
+          <div class="rating-pills" data-snap-key="career-1">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('career-1', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('career-1', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('career-1', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Individualized support is provided as needed for students and families throughout the postsecondary planning process.</div>
+          <div class="rating-pills" data-snap-key="career-2">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('career-2', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('career-2', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('career-2', 3)">Established</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="snapshot-category" data-cat="postsec">
+        <div class="snapshot-category-header">
+          <div class="snapshot-category-emoji">🎓</div>
+          <div class="snapshot-category-title">Postsecondary Opportunities</div>
+          <div class="snapshot-category-count" data-cat-count="postsec">0 / 4</div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Multiple Early Postsecondary Opportunities (EPSOs) are available to students (e.g. Advanced Placement, International Baccalaureate, dual enrollment, dual credit, industry-recognized credentials).</div>
+          <div class="rating-pills" data-snap-key="postsec-1">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('postsec-1', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('postsec-1', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('postsec-1', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Available CTE Programs of Study are aligned to local labor market demands and student interests.</div>
+          <div class="rating-pills" data-snap-key="postsec-2">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('postsec-2', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('postsec-2', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('postsec-2', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">High-quality Work-Based Learning (WBL) opportunities exist for students.</div>
+          <div class="rating-pills" data-snap-key="postsec-3">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('postsec-3', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('postsec-3', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('postsec-3', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Students and families are made aware early and often of these opportunities (EPSOs, CTE programs, and WBL opportunities) and how to choose the right option for them.</div>
+          <div class="rating-pills" data-snap-key="postsec-4">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('postsec-4', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('postsec-4', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('postsec-4', 3)">Established</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="snapshot-category" data-cat="finance">
+        <div class="snapshot-category-header">
+          <div class="snapshot-category-emoji">💰</div>
+          <div class="snapshot-category-title">Financial Aid and Literacy</div>
+          <div class="snapshot-category-count" data-cat-count="finance">0 / 2</div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Activities are implemented to assist students and families with the financial aid process.</div>
+          <div class="rating-pills" data-snap-key="finance-1">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('finance-1', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('finance-1', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('finance-1', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Students are exposed to basic financial literacy concepts from grades 6–12.</div>
+          <div class="rating-pills" data-snap-key="finance-2">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('finance-2', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('finance-2', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('finance-2', 3)">Established</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="snapshot-category" data-cat="skills">
+        <div class="snapshot-category-header">
+          <div class="snapshot-category-emoji">🤝</div>
+          <div class="snapshot-category-title">Essential Skills</div>
+          <div class="snapshot-category-count" data-cat-count="skills">0 / 3</div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Students are engaged in activities/experiences that develop social and emotional skills.</div>
+          <div class="rating-pills" data-snap-key="skills-1">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('skills-1', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('skills-1', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('skills-1', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Students are engaged in activities/experiences that develop employability skills.</div>
+          <div class="rating-pills" data-snap-key="skills-2">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('skills-2', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('skills-2', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('skills-2', 3)">Established</button>
+          </div>
+        </div>
+        <div class="snapshot-question">
+          <div class="snapshot-question-text">Students understand the importance of networking and building social capital.</div>
+          <div class="rating-pills" data-snap-key="skills-3">
+            <button class="rating-pill" data-rating="1" onclick="setSnapshotRating('skills-3', 1)">Limited</button>
+            <button class="rating-pill" data-rating="2" onclick="setSnapshotRating('skills-3', 2)">Emerging</button>
+            <button class="rating-pill" data-rating="3" onclick="setSnapshotRating('skills-3', 3)">Established</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goToSection(7)">← Back</button>
+        <button class="btn btn-primary" data-gate-section="8" onclick="completeAndAdvance(8)">Mark complete &amp; continue →</button>
+        <span class="btn-gate-msg" data-gate-msg-section="8"></span>
+      </div>
+    </section>
+
+    <!-- Section 10: Wrap-up -->
+    <section class="section" data-section="9">
+      <div class="section-meta">Section 10 · Wrap-up</div>
       <h1 class="section-title">You're <em>ready</em>.</h1>
-      <p class="lead">When the Scope &amp; Sequence becomes part of how your school operates, you're not just hitting the 60×30 goal — you're giving every Kentucky student a fair shot at the future they choose. 🌟</p>
+      <p class="lead">When the Postsecondary Advising Scope &amp; Sequence becomes part of how your school operates, you're improving <strong>Postsecondary Readiness</strong> for every student — and giving every Kentucky student a fair shot at the future they choose. 🌟</p>
       <h2>What this work <em>makes possible</em></h2>
       <ul class="clean">
         <li><strong>Consistency in advising</strong> and an enhanced school-wide advising culture</li>
@@ -877,10 +1119,10 @@ ul.clean li strong{color:var(--text)}
         <p>Thank you for investing in this work. The students of Kentucky are better off because of educators who show up like you do. 💜</p>
       </div>
       <div class="btn-row">
-        <button class="btn btn-secondary" onclick="goToSection(7)">← Back</button>
+        <button class="btn btn-secondary" onclick="goToSection(8)">← Back</button>
         <button class="btn btn-cert" onclick="downloadCertificate()">🏆 Download certificate</button>
         <button class="btn btn-download" onclick="downloadActionPlan()">⬇ Download action plan</button>
-        <button class="btn btn-primary" onclick="completeAndAdvance(8)">Mark training complete</button>
+        <button class="btn btn-primary" onclick="completeAndAdvance(9)">Mark training complete</button>
       </div>
     </section>
 
@@ -899,7 +1141,8 @@ const sections = [
   { id: 5, short: 'Game Plan' },
   { id: 6, short: 'Whole-School' },
   { id: 7, short: 'Design' },
-  { id: 8, short: 'Wrap-up' }
+  { id: 8, short: 'Snapshot' },
+  { id: 9, short: 'Wrap-up' }
 ];
 
 // Sections that require reflection completion before advancing
@@ -911,10 +1154,21 @@ const reflectionGates = {
   7: ['first-move']
 };
 
+// All 18 snapshot question keys grouped by category
+const snapshotKeys = {
+  culture: ['culture-1','culture-2','culture-3','culture-4','culture-5','culture-6','culture-7'],
+  career: ['career-1','career-2'],
+  postsec: ['postsec-1','postsec-2','postsec-3','postsec-4'],
+  finance: ['finance-1','finance-2'],
+  skills: ['skills-1','skills-2','skills-3']
+};
+const allSnapshotKeys = Object.values(snapshotKeys).flat();
+
 let state = {
   completed: [], current: 0, reflections: {}, quizzes: {},
   role: null, pillar: null, name: '', org: '',
-  started: false, completedDate: null
+  started: false, completedDate: null,
+  snapshot: {}
 };
 
 function countSentences(text) {
@@ -978,13 +1232,32 @@ function applyState() {
     const quiz = document.querySelector('[data-quiz="' + qid + '"]');
     if (!quiz) return;
     const answer = state.quizzes[qid];
+    let wasCorrect = false;
     quiz.querySelectorAll('.quiz-option').forEach(o => {
       o.disabled = true;
       if (o.dataset.correct === 'true') o.classList.add('correct');
-      if (o.textContent.trim() === answer && o.dataset.correct !== 'true') o.classList.add('incorrect');
+      if (o.textContent.trim() === answer) {
+        if (o.dataset.correct === 'true') wasCorrect = true;
+        else o.classList.add('incorrect');
+      }
     });
-    quiz.querySelector('.quiz-feedback').classList.add('show');
+    const feedback = quiz.querySelector('.quiz-feedback');
+    const statusEl = feedback.querySelector('.quiz-feedback-status');
+    if (statusEl) statusEl.textContent = wasCorrect ? 'Correct! ✓' : 'Not quite — ';
+    feedback.classList.add('show');
   });
+  // Restore snapshot ratings (pills + progress)
+  if (state.snapshot) {
+    Object.keys(state.snapshot).forEach(key => {
+      const rating = state.snapshot[key];
+      const pillGroup = document.querySelector('[data-snap-key="' + key + '"]');
+      if (pillGroup) {
+        const selected = pillGroup.querySelector('.rating-pill[data-rating="' + rating + '"]');
+        if (selected) selected.classList.add('selected');
+      }
+    });
+    updateSnapshotProgress();
+  }
   renderNav();
   updateProgress();
   updateAllGates();
@@ -1032,6 +1305,12 @@ function goToSection(idx, skipSave) {
 }
 
 function checkGate(sectionId) {
+  // Snapshot section: must have all 18 ratings
+  if (sectionId === 8) {
+    const answered = allSnapshotKeys.filter(k => state.snapshot[k]).length;
+    if (answered < 18) return { pass: false, snapshot: true, answered };
+    return { pass: true };
+  }
   const required = reflectionGates[sectionId];
   if (!required) return { pass: true };
   for (const key of required) {
@@ -1043,6 +1322,7 @@ function checkGate(sectionId) {
 }
 
 function updateAllGates() {
+  // Reflection-based gates
   Object.keys(reflectionGates).forEach(sectionId => {
     const id = parseInt(sectionId);
     const gate = checkGate(id);
@@ -1058,6 +1338,54 @@ function updateAllGates() {
       if (msg) msg.textContent = 'Write ' + remaining + ' more sentence' + (remaining === 1 ? '' : 's') + ' to continue';
     }
   });
+  // Snapshot gate
+  const snapBtn = document.querySelector('[data-gate-section="8"]');
+  const snapMsg = document.querySelector('[data-gate-msg-section="8"]');
+  if (snapBtn) {
+    const gate = checkGate(8);
+    if (gate.pass) {
+      snapBtn.disabled = false;
+      if (snapMsg) snapMsg.textContent = '';
+    } else {
+      snapBtn.disabled = true;
+      const remaining = 18 - gate.answered;
+      if (snapMsg) snapMsg.textContent = gate.answered + ' of 18 answered — ' + remaining + ' to go';
+    }
+  }
+}
+
+function setSnapshotRating(key, rating) {
+  state.snapshot[key] = rating;
+  // Visual: mark the clicked pill selected, unmark its siblings
+  const pillGroup = document.querySelector('[data-snap-key="' + key + '"]');
+  if (pillGroup) {
+    pillGroup.querySelectorAll('.rating-pill').forEach(p => p.classList.remove('selected'));
+    const selected = pillGroup.querySelector('.rating-pill[data-rating="' + rating + '"]');
+    if (selected) selected.classList.add('selected');
+  }
+  updateSnapshotProgress();
+  updateAllGates();
+  saveState();
+}
+
+function updateSnapshotProgress() {
+  const answered = allSnapshotKeys.filter(k => state.snapshot[k]).length;
+  const pct = Math.round((answered / 18) * 100);
+  const fill = document.getElementById('snapshotProgressFill');
+  const count = document.getElementById('snapshotCount');
+  if (fill) fill.style.width = pct + '%';
+  if (count) count.textContent = answered;
+  // Per-category counts
+  Object.keys(snapshotKeys).forEach(cat => {
+    const keys = snapshotKeys[cat];
+    const done = keys.filter(k => state.snapshot[k]).length;
+    const el = document.querySelector('[data-cat-count="' + cat + '"]');
+    if (el) {
+      el.textContent = done + ' / ' + keys.length;
+      if (done === keys.length) el.classList.add('complete');
+      else el.classList.remove('complete');
+    }
+  });
 }
 
 function completeAndAdvance(idx) {
@@ -1065,6 +1393,14 @@ function completeAndAdvance(idx) {
   if (!gate.pass) {
     const ta = document.querySelector('textarea[data-key="' + gate.key + '"]');
     if (ta) { ta.focus(); ta.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    else if (gate.snapshot) {
+      // Scroll to the first unanswered snapshot question
+      const firstUnanswered = allSnapshotKeys.find(k => !state.snapshot[k]);
+      if (firstUnanswered) {
+        const el = document.querySelector('[data-snap-key="' + firstUnanswered + '"]');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
     return;
   }
   if (!state.completed.includes(idx)) state.completed.push(idx);
@@ -1130,7 +1466,12 @@ document.querySelectorAll('.quiz').forEach(quiz => {
         if (o.dataset.correct === 'true') o.classList.add('correct');
       });
       if (!isCorrect) opt.classList.add('incorrect');
-      quiz.querySelector('.quiz-feedback').classList.add('show');
+      const feedback = quiz.querySelector('.quiz-feedback');
+      const statusEl = feedback.querySelector('.quiz-feedback-status');
+      if (statusEl) {
+        statusEl.textContent = isCorrect ? 'Correct! ✓' : 'Not quite — ';
+      }
+      feedback.classList.add('show');
       state.quizzes[qid] = opt.textContent.trim();
       saveState();
     });
@@ -1168,6 +1509,7 @@ function downloadActionPlan() {
   const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const name = state.name || 'Participant';
   const org = state.org || '';
+  const snap = state.snapshot || {};
 
   function esc(s) {
     if (!s) return '';
@@ -1176,6 +1518,78 @@ function downloadActionPlan() {
   function fieldOrEmpty(s) {
     return s && s.trim() ? esc(s) : '<em class="empty">No response recorded</em>';
   }
+
+  // Build snapshot section HTML
+  const ratingLabel = { 1: 'Limited', 2: 'Emerging', 3: 'Established', 0: 'Not rated' };
+  const snapCategories = [
+    { key: 'culture', emoji: '🏫', title: 'Postsecondary Advising Culture', questions: [
+      ['culture-1', 'Teachers and additional school staff are included in the advising process.'],
+      ['culture-2', 'Clear plan or system for postsecondary advising, including annual ILP updates.'],
+      ['culture-3', 'ILPs are meaningfully connected to postsecondary advising.'],
+      ['culture-4', 'The postsecondary advising process is inclusive of all students.'],
+      ['culture-5', 'District has aligned advising strategies with partner organizations and IHEs.'],
+      ['culture-6', 'Bi-directional communication between MS and HS counselors on transitions.'],
+      ['culture-7', 'School admin publicly defines and commits to high-quality advising for all students.']
+    ]},
+    { key: 'career', emoji: '💼', title: 'Career Exploration', questions: [
+      ['career-1', 'Students regularly meet with counselor/advisor on career exploration.'],
+      ['career-2', 'Individualized support provided for students and families in postsecondary planning.']
+    ]},
+    { key: 'postsec', emoji: '🎓', title: 'Postsecondary Opportunities', questions: [
+      ['postsec-1', 'Multiple EPSOs available (AP, IB, dual enrollment, dual credit, credentials).'],
+      ['postsec-2', 'CTE Programs of Study aligned to local labor market demands and student interests.'],
+      ['postsec-3', 'High-quality Work-Based Learning (WBL) opportunities exist for students.'],
+      ['postsec-4', 'Students and families made aware early and often of EPSOs, CTE, and WBL options.']
+    ]},
+    { key: 'finance', emoji: '💰', title: 'Financial Aid and Literacy', questions: [
+      ['finance-1', 'Activities implemented to assist students and families with financial aid process.'],
+      ['finance-2', 'Students exposed to basic financial literacy concepts from grades 6–12.']
+    ]},
+    { key: 'skills', emoji: '🤝', title: 'Essential Skills', questions: [
+      ['skills-1', 'Students engaged in activities/experiences that develop social and emotional skills.'],
+      ['skills-2', 'Students engaged in activities/experiences that develop employability skills.'],
+      ['skills-3', 'Students understand the importance of networking and building social capital.']
+    ]}
+  ];
+
+  // Count ratings across all 18
+  let established = 0, emerging = 0, limited = 0, notRated = 0;
+  snapCategories.forEach(cat => {
+    cat.questions.forEach(q => {
+      const rating = snap[q[0]] || 0;
+      if (rating === 3) established++;
+      else if (rating === 2) emerging++;
+      else if (rating === 1) limited++;
+      else notRated++;
+    });
+  });
+
+  let snapshotHtml = '<div class="section-block">'
+    + '<div class="section-label">Section 07 · Snapshot</div>'
+    + '<h2>Advising <em>snapshot</em></h2>'
+    + '<p class="intro-text">Where my school stands today across the five categories of the KAA Advising Snapshot tool. This is the baseline I\'m starting from.</p>'
+    + '<div class="snap-summary">'
+    +   '<div class="snap-summary-pill established"><span class="num">' + established + '</span> Established</div>'
+    +   '<div class="snap-summary-pill emerging"><span class="num">' + emerging + '</span> Emerging</div>'
+    +   '<div class="snap-summary-pill limited"><span class="num">' + limited + '</span> Limited</div>'
+    +   (notRated > 0 ? '<div class="snap-summary-pill" style="background:#f1f5f9;color:#475569;box-shadow:none;border:1px solid rgba(15,23,42,.08)"><span class="num">' + notRated + '</span> Not rated</div>' : '')
+    + '</div>';
+  snapCategories.forEach(cat => {
+    snapshotHtml += '<div class="snap-cat" data-cat="' + cat.key + '">'
+      + '<div class="snap-cat-header">'
+      +   '<div class="snap-cat-emoji">' + cat.emoji + '</div>'
+      +   '<div class="snap-cat-title">' + cat.title + '</div>'
+      + '</div>';
+    cat.questions.forEach(q => {
+      const rating = snap[q[0]] || 0;
+      snapshotHtml += '<div class="snap-q">'
+        + '<div class="snap-q-text">' + q[1] + '</div>'
+        + '<div class="snap-rating-badge r' + rating + '">' + ratingLabel[rating] + '</div>'
+        + '</div>';
+    });
+    snapshotHtml += '</div>';
+  });
+  snapshotHtml += '</div>';
 
   const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Action Plan — ' + esc(name) + '</title>'
     + '<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">'
@@ -1229,6 +1643,30 @@ function downloadActionPlan() {
     + '@media (max-width:680px){.programs-grid{grid-template-columns:1fr}}'
     + '.program{padding:12px 16px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid rgba(124,58,237,.08);font-size:13px;line-height:1.45;color:#475569}'
     + '.program strong{display:block;color:#0f172a;font-size:13.5px;font-weight:600;margin-bottom:2px;font-family:"Geist Mono",monospace;letter-spacing:.02em}'
+    /* Snapshot results display */
+    + '.snap-summary{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}'
+    + '.snap-summary-pill{padding:10px 18px;border-radius:100px;font-family:"Geist Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}'
+    + '.snap-summary-pill .num{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;letter-spacing:-.02em;font-weight:400}'
+    + '.snap-summary-pill.established{background:linear-gradient(135deg,#10b981,#059669);color:white;box-shadow:0 4px 12px rgba(16,185,129,.3)}'
+    + '.snap-summary-pill.emerging{background:linear-gradient(135deg,#f59e0b,#ea580c);color:white;box-shadow:0 4px 12px rgba(245,158,11,.3)}'
+    + '.snap-summary-pill.limited{background:linear-gradient(135deg,#fb7185,#e11d48);color:white;box-shadow:0 4px 12px rgba(251,113,133,.3)}'
+    + '.snap-cat{margin-bottom:18px;padding:22px 24px;background:white;border-radius:16px;border:1px solid rgba(124,58,237,.1);page-break-inside:avoid;break-inside:avoid}'
+    + '.snap-cat-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(15,23,42,.06)}'
+    + '.snap-cat-emoji{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:16px;flex-shrink:0}'
+    + '.snap-cat[data-cat="culture"] .snap-cat-emoji{background:linear-gradient(135deg,#7c3aed,#a855f7)}'
+    + '.snap-cat[data-cat="career"] .snap-cat-emoji{background:linear-gradient(135deg,#fb7185,#f43f5e)}'
+    + '.snap-cat[data-cat="postsec"] .snap-cat-emoji{background:linear-gradient(135deg,#4f46e5,#7c3aed)}'
+    + '.snap-cat[data-cat="finance"] .snap-cat-emoji{background:linear-gradient(135deg,#f59e0b,#ea580c)}'
+    + '.snap-cat[data-cat="skills"] .snap-cat-emoji{background:linear-gradient(135deg,#10b981,#059669)}'
+    + '.snap-cat-title{font-family:"Instrument Serif",serif;font-size:20px;font-weight:400;letter-spacing:-.015em;color:#0f172a}'
+    + '.snap-q{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(15,23,42,.06)}'
+    + '.snap-q:last-child{border-bottom:none}'
+    + '.snap-q-text{font-size:12.5px;line-height:1.5;color:#334155}'
+    + '.snap-rating-badge{padding:5px 12px;border-radius:100px;font-family:"Geist Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}'
+    + '.snap-rating-badge.r1{background:#ffe4e6;color:#e11d48;border:1px solid rgba(225,29,72,.2)}'
+    + '.snap-rating-badge.r2{background:#fef3c7;color:#92400e;border:1px solid rgba(245,158,11,.2)}'
+    + '.snap-rating-badge.r3{background:#d1fae5;color:#047857;border:1px solid rgba(16,185,129,.2)}'
+    + '.snap-rating-badge.r0{background:#f1f5f9;color:#94a3b8;border:1px solid rgba(15,23,42,.08);font-style:italic;font-weight:500}'
     + '.footer{padding:40px 56px;background:linear-gradient(135deg,#1e3a8a 0%,#4f46e5 50%,#7c3aed 100%);color:white;text-align:center;position:relative;overflow:hidden}'
     + '.footer::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(255,255,255,.08) 0%,transparent 30%);pointer-events:none}'
     + '.footer-h{font-family:"Instrument Serif",serif;font-size:34px;font-weight:400;line-height:1.05;letter-spacing:-.025em;margin-bottom:10px;position:relative;z-index:1}'
@@ -1295,6 +1733,7 @@ function downloadActionPlan() {
     +     '<p class="intro-text">The single most important part of this plan — the small, specific action I\'ll take in the next two weeks.</p>'
     +     '<div class="card amber"><div class="card-label">★ Next 2 weeks</div><div class="card-a">' + fieldOrEmpty(r['first-move']) + '</div></div>'
     +   '</div>'
+    +   snapshotHtml
     +   '<div class="kentucky-block">'
     +     '<h3>Kentucky <em>resources</em></h3>'
     +     '<div class="subtitle">Keep these bookmarked</div>'
@@ -1313,12 +1752,9 @@ function downloadActionPlan() {
     +   '</div>'
     + '</div>'
     + '<div class="footer">'
-    +   '<div class="footer-h">The <em>60×30</em> goal</div>'
-    +   '<div class="footer-stats">'
-    +     '<div class="footer-stat"><div class="footer-stat-num">56%</div><div class="footer-stat-label">Today</div></div>'
-    +     '<div class="footer-stat"><div class="footer-stat-num">60%</div><div class="footer-stat-label">By 2030</div></div>'
-    +   '</div>'
-    +   '<div class="footer-text">Kentucky is working toward 60% educational attainment by 2030. The Scope &amp; Sequence is how we close that gap — one student, one school, one plan at a time. You\'re part of this work.</div>'
+    +   '<div class="footer-h">Postsecondary <em>Readiness</em></div>'
+    +   '<div class="footer-text" style="margin-top:14px">The Postsecondary Advising Scope &amp; Sequence is a clear path forward for schools and districts to improve <strong style="color:#fde68a">Postsecondary Readiness (PSR)</strong> — a key accountability indicator for every Kentucky school. Better PSR means better long-term outcomes for students. This work also supports Kentucky\'s statewide <strong style="color:#fde68a">60×30 goal</strong> of 60% postsecondary attainment by 2030.</div>'
+    +   '<div class="footer-text" style="margin-top:18px;font-style:italic">One student. One school. One plan at a time. You\'re part of this work.</div>'
     +   '<div class="sign-off">— Council on Postsecondary Education &amp; the Kentucky Advising Academy</div>'
     + '</div>'
     + '</div>'
@@ -1471,7 +1907,7 @@ function downloadCertificate() {
 
 function resetProgress() {
   if (!confirm('Reset all progress, reflections, and name? This cannot be undone.')) return;
-  state = { completed: [], current: 0, reflections: {}, quizzes: {}, role: null, pillar: null, name: '', org: '', started: false, completedDate: null };
+  state = { completed: [], current: 0, reflections: {}, quizzes: {}, role: null, pillar: null, name: '', org: '', started: false, completedDate: null, snapshot: {} };
   try { localStorage.removeItem('kpa_training_state_v4'); } catch (e) {}
   document.querySelectorAll('textarea').forEach(t => t.value = '');
   document.querySelectorAll('.quiz-option').forEach(o => {
@@ -1481,6 +1917,8 @@ function resetProgress() {
   document.querySelectorAll('.quiz-feedback').forEach(f => f.classList.remove('show'));
   document.querySelectorAll('.role-card, .pillar').forEach(c => c.classList.remove('selected'));
   document.querySelectorAll('.role-tips, .pillar-detail').forEach(d => d.classList.remove('show'));
+  document.querySelectorAll('.rating-pill').forEach(p => p.classList.remove('selected'));
+  updateSnapshotProgress();
   document.getElementById('userNameInput').value = '';
   document.getElementById('userOrgInput').value = '';
   document.getElementById('nameGate').classList.remove('hidden');
